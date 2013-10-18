@@ -1,0 +1,16 @@
+I thought I'd throw a quick reference guide on the configuration of the xbee radios. I'll also put this in the git.
+
+If you guys want, we can change the PAN ID.  We can change the addresses if we really want to.  Though these are already in our code base.  Though it would be hard to change. 
+
+All:
+PAN ID: 1337
+
+Coordinator:
+16-bit source address:  1234
+Coordinator Enabled: Coordinator
+API Enabled: 2 - API ENABLED W/PPP
+
+End Points:
+16-bit source address; 5678 and 9ABCD
+Coordinator Enabled: 0 - END DEVICE
+API Enabled: 2 - API ENABLED W/PPP

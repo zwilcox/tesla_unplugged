@@ -6,6 +6,7 @@ void setup()
 {
   XBee xbee = XBee();
   xbee.begin(9600);
+  Serial.begin(9600);
   Serial.println("starting up");
   
 }
