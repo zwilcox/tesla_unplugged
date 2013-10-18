@@ -1,2 +1,16 @@
 PACKETS
-receiving 
+receiving
+
+From mega to database
+key: 	NC - New Car
+		P# - Pad number, 1,2,3
+		RA - Radio Address,
+		R	- RED
+		G	- Green
+		B	- Blue
+		maybe NC P# RA RG B value value value;
+
+adding new car		
+		[NC P# RA value R value G value B value]
+
+
