@@ -1,11 +1,13 @@
-#include <XBee.h>
+#include <XBee.h> 
 
 
 XBee xbee; 
 void setup()
 {
   XBee xbee = XBee();
+  xbee.setSerial(Serial1);
   xbee.begin(9600);
+  Serial.begin(9600);
 
   Serial.println("starting up");
   
@@ -14,7 +16,7 @@ void setup()
 void loop()
 {
   
-  xbee.readPacket();
+ xbee.readPacket();
  if (xbee.getResponse().isAvailable())
  {
     Rx16Response rx16 = Rx16Response();

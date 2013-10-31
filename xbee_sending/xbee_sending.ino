@@ -11,7 +11,7 @@ void setup()
 
 void loop()
 {
-  uint8_t payload[] = "hello";
+  uint8_t payload[] = "hello world";
   Tx16Request tx = Tx16Request(0x5678, payload, sizeof(payload));
   xbee.send(tx);
   
