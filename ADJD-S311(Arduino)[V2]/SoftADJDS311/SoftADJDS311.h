@@ -2,10 +2,11 @@
 #define SoftADJDS311_h
 
 #include <Arduino.h>
-#include <SoftI2C.h>
+#include <DigitalIO.h>
+#include <SoftI2cMaster.h>
 
 // ADJD-S311's I2C address, don't change
-#define ADJD_S311_ADDRESS 0x74
+#define ADJD_S311_ADDRESS 0xE8 //0x74<<1
 
 #define RED 0
 #define GREEN 1
@@ -68,19 +69,19 @@ class SoftADJDS311{
 	unsigned int colorInt[4];
 	signed char colorOffset[4];
 	
-	SoftI2C * i2cInstance;
+	SoftI2cMaster * i2cInstance;
 	
-	void getOffset();
-    void writeRegister(unsigned char data, unsigned char address);
-    unsigned char readRegister(unsigned char address);
-    int readRegisterInt(unsigned char address);
-	
-	
-	int calibrateClear();
-    int calibrateColor();
-    void calibrateCapacitors();
-    void writeInt(int address, int gain);
-    void performMeasurement();
+  void getOffset();
+  void writeRegister(unsigned char data, unsigned char address);
+  unsigned char readRegister(unsigned char address);
+  int readRegisterInt(unsigned char address);
+
+
+  int calibrateClear();
+  int calibrateColor();
+  void calibrateCapacitors();
+  void writeInt(int address, int gain);
+  void performMeasurement();
 };
 
 #endif

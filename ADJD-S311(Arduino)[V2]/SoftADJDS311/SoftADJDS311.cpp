@@ -3,7 +3,7 @@
 
 SoftADJDS311::SoftADJDS311(int led_pin, uint8_t dataPin, uint8_t clockPin) {
 	_led_pin = led_pin;
-	i2cInstance = new SoftI2C(dataPin, clockPin);
+	i2cInstance = new SoftI2cMaster( clockPin, dataPin );
 }
 SoftADJDS311::~SoftADJDS311()
 {
@@ -164,7 +164,7 @@ void SoftADJDS311::calibrateCapacitors(){
 
     // int colorGain = _calibrateColorGain();
     int colorGain = readRegisterInt(INT_RED_LO);
-	writeInt(INT_RED_LO, colorGain);
+    writeInt(INT_RED_LO, colorGain);
     writeInt(INT_GREEN_LO, colorGain);
     writeInt(INT_BLUE_LO, colorGain);
 
@@ -203,6 +203,13 @@ void SoftADJDS311::calibrateCapacitors(){
         calibrationGreen++;
       else if ((maxRead == blue) && (calibrationBlue<15))
         calibrationBlue++;
+		
+		Serial.print("Rcap: ");
+		Serial.println(calibrationRed);
+		Serial.print("Gcap: ");
+		Serial.println(calibrationGreen);
+		Serial.print("Bcap: ");
+		Serial.println(calibrationBlue);
     }
     else
       calibrated = 1;
@@ -266,8 +273,8 @@ void SoftADJDS311::getOffset(){
   writeRegister(0x02, 0x00); // start sensing
   while(readRegister(0x00) != 0)
     ; // waiting for a result
-  //writeRegister(0x01, 0x01);  // set trim
-  //delay(100);
+  writeRegister(0x01, 0x01);  // set trim
+  delay(100);
   for (int i=0; i<4; i++)
     colorOffset[i] = (signed char) readRegister(OFFSET_RED+i);
   digitalWrite(_led_pin, HIGH);
@@ -275,25 +282,23 @@ void SoftADJDS311::getOffset(){
 
 // Write a byte of data to a specific ADJD-S311 address
 void SoftADJDS311::writeRegister(unsigned char data, unsigned char address){
-  i2cInstance->startWrite(ADJD_S311_ADDRESS);
-  i2cInstance->write(address);
-  i2cInstance->write(data);
-  i2cInstance->endWrite();
+
+  if (!i2cInstance->transfer(ADJD_S311_ADDRESS | I2C_WRITE, &address, 1, I2C_CONTINUE)) return;
+  
+  i2cInstance->transferContinue(&data, 1);
 }
 
 // read a byte of data from ADJD-S311 address
-unsigned char SoftADJDS311::readRegister(unsigned char address){
+unsigned char SoftADJDS311::readRegister(unsigned char address)
+{
   unsigned char data;
+
+  // Send address of data.
+  if (!i2cInstance->transfer(ADJD_S311_ADDRESS | I2C_WRITE, &address, I2C_STOP)) return '\0';
   
-  i2cInstance->startWrite(ADJD_S311_ADDRESS);
-  i2cInstance->write(address);
-  i2cInstance->endWrite();
+  if (!i2cInstance->transfer(ADJD_S311_ADDRESS | I2C_READ, &data, 1)) return '\0';
   
-  i2cInstance->startRead(ADJD_S311_ADDRESS, 1);
-  while (!i2cInstance->available())
-    ;  // wait till we can get data
-  
-  return i2cInstance->read();
+  return data;
 }
 
 // Write two bytes of data to ADJD-S311 address and addres+1
