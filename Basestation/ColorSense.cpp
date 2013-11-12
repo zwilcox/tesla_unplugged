@@ -1,4 +1,3 @@
-#include <SoftADJDS311.h>
 #include <Arduino.h>
 #include "ColorSense.h"
 
@@ -12,9 +11,9 @@
 #define SDA3 		30
 #define SCL3 		31
 
-SoftADJDS311 * colorSensor1;
-SoftADJDS311 * colorSensor2;
-SoftADJDS311 * colorSensor3;
+static SoftADJDS311 * colorSensor1;
+static SoftADJDS311 * colorSensor2;
+static SoftADJDS311 * colorSensor3;
 
 namespace ColorSense
 {
@@ -69,5 +68,16 @@ namespace ColorSense
         return;
     }
   }
-
+  
+  
+  /**
+   * Creates the color string for the specified sensor.
+   * ALERT: colorStr MUST BE size 18 or larger or BAD BAD things will happen.
+   **/
+  void getColorString( tSensorID sensor, char * colorStr )
+  {      
+    RGBC color = readSensor(sensor);
+    sprintf(colorStr,"R%04d G%04d B%04d", color.red, color.blue, color.green);
+  }
+  
 };

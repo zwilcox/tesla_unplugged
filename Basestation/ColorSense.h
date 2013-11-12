@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <SoftADJDS311.h>
 
 namespace ColorSense
 {
@@ -13,5 +14,5 @@ namespace ColorSense
   RGBC readSensor( tSensorID sensor );
   void calibrateSensor( tSensorID sensor );
   void setLEDState( tSensorID sensor, bool trueForOn );
-  
+  void getColorString( tSensorID sensor, char * colorStr );
 };

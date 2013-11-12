@@ -1,22 +1,16 @@
 #include <Arduino.h>
 #include "XBeeUtility.h"
+#include "Utilities.h"
 
 static bool _isDataAvailable = false;
 static XBee xbee;
-
-uint8_t charArrayLength( char * array)
-{
-  uint8_t i = 0;
-
-  for(char * c = array ; *c != '\0'; c++, i++);
   
-  return i;
-
-}
 namespace XBeeUtility
 {
-  /**XBEE PACKET**/
-  tXBeePacket::tXBeePacket( Rx16Response rx16 )
+  /**XBEE PACKET CLASS FUNCTIONS**/
+  
+  //constructor from a rx16 response pkt.
+  tXBeePacket::tXBeePacket( Rx16Response rx16 ) : data (NULL)
   {
     char * rsp = new char[rx16.getDataLength()+1];
     rsp[rx16.getDataLength()] = '\0';
@@ -24,10 +18,11 @@ namespace XBeeUtility
     remoteAddress = rx16.getRemoteAddress16();
     data = rsp;
   }
-
-  tXBeePacket::tXBeePacket( uint16_t address = 0, char * dataStr = '\0')
+  
+  //constructor from a character string
+  tXBeePacket::tXBeePacket( uint16_t address = 0, char * dataStr = '\0') : data (NULL)
   {
-    uint8_t length = charArrayLength(dataStr);
+    uint8_t length = Utilities::charArrayLength(dataStr);
     char * rsp = new char[length+1];
     rsp[length] = '\0';
     strncpy(rsp,dataStr,length);
@@ -35,6 +30,7 @@ namespace XBeeUtility
     data = rsp;
   }
   
+  //destructor.
   tXBeePacket::~tXBeePacket( )
   {
     if (data)
@@ -43,22 +39,29 @@ namespace XBeeUtility
     }
   }
   
+  //returns xbeepacket remote address
   uint16_t tXBeePacket::getRemoteAddress()
   {
     return remoteAddress;
   }
   
+  //returns xbee packet data.
   char * tXBeePacket::getData()
   {
     return data;
   }
   
+  //returns length of the xbee packet payload.
   uint8_t tXBeePacket::getLength()
   {
-    return charArrayLength(data);
+    return Utilities::charArrayLength(data);
   }
-  /**END XBEE PACKET**/
-   
+  /**END XBEE PACKET CLASS FUNCTIONS**/
+  
+  /******* XBeeUtility::Initialize() ************
+   * This function opens serial communication with the XBee radio. 
+   * This function MUST be called before the rest of the namespace may be used.
+   **********************************************/
   void Initialize()
   {
     xbee.setSerial(Serial1);
@@ -108,7 +111,7 @@ namespace XBeeUtility
 
   void sendPacket( uint16_t remoteAddress, char * dataStr )
   {
-    Tx16Request tx = Tx16Request(remoteAddress, (uint8_t *) dataStr, charArrayLength(dataStr));
+    Tx16Request tx = Tx16Request(remoteAddress, (uint8_t *) dataStr, Utilities::charArrayLength(dataStr));
     xbee.send(tx);
   }
   
