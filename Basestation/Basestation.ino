@@ -1,11 +1,12 @@
 #include <DigitalIO.h>
 #include <SoftADJDS311.h>
-#include "ColorSense.h"
+#include "PadManager.h"
 #include "XBeeUtility.h"
 #include "SerialProcessor.h"
 #include "Utilities.h"
 #include <XBee.h>
 #include <QueueList.h>
+#include "Pad.h"
 
 void temporary_printIfXBeeReceive()
 {
@@ -29,7 +30,7 @@ void temporary_printIfXBeeReceive()
 void setup() 
 {
   Serial.begin(9600);
-  ColorSense::Initialize();
+  PadManager::Initialize();
   XBeeUtility::Initialize();
 }
 

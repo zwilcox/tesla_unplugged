@@ -3,7 +3,7 @@
 #include <string.h>
 #include "Utilities.h"
 #include <QueueList.h>
-#include "ColorSense.h"
+#include "PadManager.h"
 
 //forward declare file scope functions.
 static void processRawInboundPacket( char * pkt );
@@ -212,63 +212,59 @@ void setStringToCommand(tOutboundCommand cmd, char * str )
 
 void commandGetColor( char * pkt)
 {
-  using namespace ColorSense;
   char cmd[4];
   cmd[3] = '\0';
   strncpy(cmd,pkt,3);
-  char colorStr[18];
+  char colorStr[21];
   
   if( strcmp( cmd, "P1 " ) == 0)
   {
-    getColorString( Sensor1 , colorStr);
+    PadManager::getColorString( PadManager::Pad1 , colorStr);
     sendOutboundPacket( SendColor, colorStr );
   }
   else if( strcmp( cmd, "P2 " ) == 0)
   {
-    getColorString( Sensor2 , colorStr);
+    PadManager::getColorString( PadManager::Pad2 , colorStr);
     sendOutboundPacket( SendColor, colorStr );
   }
   else if( strcmp( cmd, "P3 " ) == 0)
   {
-    getColorString( Sensor3 , colorStr);
+    PadManager::getColorString( PadManager::Pad3 , colorStr);
     sendOutboundPacket( SendColor, colorStr );
   }
 }
 
 void commandCalColor( char * pkt)
 {
-  using namespace ColorSense;
   char cmd[4];
   cmd[3] = '\0';
   strncpy(cmd,pkt,3);
   
   if( strcmp( cmd, "P1 " ) == 0)
   {
-    setLEDState( Sensor1, true );  
-    calibrateSensor( Sensor1 );
-    setLEDState( Sensor1, false );  
+    PadManager::setLEDState( PadManager::Pad1, true );  
+    PadManager::calibrateSensor( PadManager::Pad1 );
+    PadManager::setLEDState( PadManager::Pad1, false );  
   }
   
   else if( strcmp( cmd, "P2 " ) == 0)
   {
-    setLEDState( Sensor2, true );  
-    calibrateSensor( Sensor2 );
-    setLEDState( Sensor2, false );  
+    PadManager::setLEDState( PadManager::Pad2, true );  
+    PadManager::calibrateSensor( PadManager::Pad2 );
+    PadManager::setLEDState( PadManager::Pad2, false );  
   }
   
   else if( strcmp( cmd, "P3 " ) == 0)
   {
-    setLEDState( Sensor3, true );  
-    calibrateSensor( Sensor3 );
-    setLEDState( Sensor3, false );  
+    PadManager::setLEDState( PadManager::Pad3, true );  
+    PadManager::calibrateSensor( PadManager::Pad3 );
+    PadManager::setLEDState( PadManager::Pad3, false );  
   }
   
 }
 
 void commandToggleLED( char * pkt)
 {
-
-  using namespace ColorSense;
   char cmd[4];
   cmd[3] = '\0';
   strncpy(cmd,pkt,3);
@@ -293,17 +289,17 @@ void commandToggleLED( char * pkt)
   
   if( strcmp( cmd, "P1 " ) == 0)
   {
-    setLEDState( Sensor1, turnLEDon );
+    PadManager::setLEDState( PadManager::Pad1, turnLEDon );
   }
   
   else if( strcmp( cmd, "P2 " ) == 0)
   {
-    setLEDState( Sensor2, turnLEDon );
+    PadManager::setLEDState( PadManager::Pad2, turnLEDon );
   }
   
   else if( strcmp( cmd, "P3 " ) == 0)
   {
-    setLEDState( Sensor3, turnLEDon );
+    PadManager::setLEDState( PadManager::Pad3, turnLEDon );
   }
   
 }
