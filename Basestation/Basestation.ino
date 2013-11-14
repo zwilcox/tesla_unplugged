@@ -2,11 +2,10 @@
 #include <SoftADJDS311.h>
 #include "PadManager.h"
 #include "XBeeUtility.h"
-#include "SerialProcessor.h"
+#include "SerialCommandPacketizer.h"
 #include "Utilities.h"
 #include <XBee.h>
 #include <QueueList.h>
-#include "Pad.h"
 
 void temporary_printIfXBeeReceive()
 {
@@ -38,10 +37,11 @@ void loop()
 {
   temporary_printIfXBeeReceive();
   
-  SerialProcessor::getPacketsFromSerial();
-  SerialProcessor::processInboundPackets();
-  
+  SerialCommandPacketizer::getPacketsFromSerial();
   Serial.println(Utilities::get_free_memory());
+  SerialCommandPacketizer::processInboundPackets();
+  
+
   delay(500);
 }
 

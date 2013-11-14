@@ -2,30 +2,37 @@
 #include "PadManager.h"
 #include "Pad.h"
 
+//pad1 pins
+#define CHARGEPADENABLE1 48
 #define SENSORLED1	23
-#define SENSORLED2	24 
-#define SENSORLED3	25
 #define SDA1 		26
 #define SCL1 		27
+
+//pad2 pins
+#define CHARGEPADENABLE2 50
+#define SENSORLED2	24 
 #define SDA2 		28
 #define SCL2 		29
+
+//pad3 pins
+#define CHARGEPADENABLE3 52
+#define SENSORLED3	25
 #define SDA3 		30
 #define SCL3 		31
 
+//file scope variables; 'singleton' class instances.
 static ChargePad * pad1;
 static ChargePad * pad2;
 static ChargePad * pad3;
-
-//todo: Make generic for n pads.
 
 
 namespace PadManager
 {
   void Initialize()
   {
-    pad1 = new ChargePad(SDA1,SCL1,SENSORLED1);
-    pad2 = new ChargePad(SDA2,SCL2,SENSORLED2);
-    pad3 = new ChargePad(SDA3,SCL3,SENSORLED3);
+    pad1 = new ChargePad(SDA1,SCL1,SENSORLED1,CHARGEPADENABLE1);
+    pad2 = new ChargePad(SDA2,SCL2,SENSORLED2,CHARGEPADENABLE2);
+    pad3 = new ChargePad(SDA3,SCL3,SENSORLED3,CHARGEPADENABLE3);
   }
 
   RGBC readColorSensor( tPadID pad )
@@ -57,9 +64,9 @@ namespace PadManager
     }
   }
   
-  void setLEDState( tPadID sensor, bool trueForOn )
+  void setLEDState( tPadID pad, bool trueForOn )
   {
-    switch(sensor)
+    switch(pad)
     {
       case Pad1:
         pad1->setColorSensorLED( trueForOn );
@@ -73,28 +80,20 @@ namespace PadManager
     }
   }
   
-  
-  /**
-   * Creates the color string for the specified pad..
-   * ALERT: colorStr MUST BE size 21 or larger or BAD BAD things will happen.
-   **/
-  void getColorString( tPadID pad, char * colorStr )
-  {      
+  void setPadState( tPadID pad, bool trueForOn )
+  {
     switch(pad)
     {
       case Pad1:
-        strncpy(colorStr,"P1 ",3);                  //set the first part of str to padID, 
-        pad1->colorSensorToString( &colorStr[3] );  //then get rest of color str from pad itself.
+        pad1->setPadState( trueForOn );
         return;
       case Pad2:
-        strncpy(colorStr,"P2 ",3);
-        pad2->colorSensorToString( &colorStr[3] );
+        pad2->setPadState( trueForOn );
         return;
       case Pad3:
-        strncpy(colorStr,"P3 ",3);
-        pad3->colorSensorToString( &colorStr[3] );
+        pad3->setPadState( trueForOn );
         return;
     }
   }
-  
+
 };

@@ -1,7 +1,9 @@
+#pragma once
+
 #include <arduino.h>
 
 //other stuff
-namespace SerialProcessor
+namespace SerialCommandPacketizer
 {
   typedef enum 
   {
@@ -46,4 +48,5 @@ namespace SerialProcessor
   
   void getPacketsFromSerial();
   void processInboundPackets();
+  void sendOutboundPacket(tOutboundCommand cmd, char * payload );
 }

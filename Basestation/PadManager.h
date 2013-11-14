@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Arduino.h>
 #include <SoftADJDS311.h>
 
@@ -14,5 +16,6 @@ namespace PadManager
   RGBC readColorSensor( tPadID pad );
   void calibrateSensor( tPadID pad );
   void setLEDState( tPadID pad, bool trueForOn );
-  void getColorString( tPadID pad, char * colorStr );
+  void setPadState( tPadID pad, bool trueForOn );
 };
+

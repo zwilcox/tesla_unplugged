@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Arduino.h>
 
 namespace Utilities
@@ -7,3 +9,4 @@ namespace Utilities
   int get_free_memory();
  
 };
+

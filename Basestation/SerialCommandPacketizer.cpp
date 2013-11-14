@@ -1,22 +1,20 @@
 #define BUFF_SIZE 64
-#include "SerialProcessor.h"
+#include "SerialCommandPacketizer.h"
 #include <string.h>
 #include "Utilities.h"
 #include <QueueList.h>
 #include "PadManager.h"
+#include "PacketProcessor.h"
 
 //forward declare file scope functions.
 static void processRawInboundPacket( char * pkt );
-static void setStringToCommand(SerialProcessor::tOutboundCommand cmd, char * str );
-static void commandGetColor( char * pkt);
-static void commandCalColor( char * pkt);
-static void commandToggleLED( char * pkt);
+static void setStringToCommand(SerialCommandPacketizer::tOutboundCommand cmd, char * str );
 
 //file scope variables
-static QueueList < SerialProcessor::InboundSerialPacket * > pktList;
+static QueueList < SerialCommandPacketizer::InboundSerialPacket * > pktList;
 
 //namespace implementation
-namespace SerialProcessor
+namespace SerialCommandPacketizer
 {
 
   /**INBOUND SERIAL PACKET CLASS**/
@@ -118,7 +116,7 @@ namespace SerialProcessor
       switch(pkt->getCommand())
       {
         case GetColor:
-          commandGetColor(pkt->payload);
+          PacketProcessor::commandGetColor(pkt->payload);
           break;
         case GetCurrent:
           Serial.println("Get Current");
@@ -127,13 +125,13 @@ namespace SerialProcessor
           Serial.println("Get Voltage");
           break;
         case ToggleLED:
-          commandToggleLED(pkt->payload);
+          PacketProcessor::commandToggleLED(pkt->payload);
           break;
         case TogglePad:
-          Serial.println("Toggle Pad");
+          PacketProcessor::commandTogglePad(pkt->payload);
           break;
         case CalColor:
-          commandCalColor(pkt->payload);
+          PacketProcessor::commandCalColor(pkt->payload);
           break;
         case GetRadio:
           Serial.println("Get Radio");
@@ -145,6 +143,7 @@ namespace SerialProcessor
           Serial.println("Info Cars");
           break;
         default:
+          //return error packet.
           Serial.println("INVALID_INBOUND_COMMAND");
           break;
       }
@@ -168,7 +167,7 @@ namespace SerialProcessor
 }
 
 //file scope functions
-using namespace SerialProcessor;
+using namespace SerialCommandPacketizer;
 
 void processRawInboundPacket( char * pkt )
 {
@@ -209,97 +208,3 @@ void setStringToCommand(tOutboundCommand cmd, char * str )
       return;
   } 
 } 
-
-void commandGetColor( char * pkt)
-{
-  char cmd[4];
-  cmd[3] = '\0';
-  strncpy(cmd,pkt,3);
-  char colorStr[21];
-  
-  if( strcmp( cmd, "P1 " ) == 0)
-  {
-    PadManager::getColorString( PadManager::Pad1 , colorStr);
-    sendOutboundPacket( SendColor, colorStr );
-  }
-  else if( strcmp( cmd, "P2 " ) == 0)
-  {
-    PadManager::getColorString( PadManager::Pad2 , colorStr);
-    sendOutboundPacket( SendColor, colorStr );
-  }
-  else if( strcmp( cmd, "P3 " ) == 0)
-  {
-    PadManager::getColorString( PadManager::Pad3 , colorStr);
-    sendOutboundPacket( SendColor, colorStr );
-  }
-}
-
-void commandCalColor( char * pkt)
-{
-  char cmd[4];
-  cmd[3] = '\0';
-  strncpy(cmd,pkt,3);
-  
-  if( strcmp( cmd, "P1 " ) == 0)
-  {
-    PadManager::setLEDState( PadManager::Pad1, true );  
-    PadManager::calibrateSensor( PadManager::Pad1 );
-    PadManager::setLEDState( PadManager::Pad1, false );  
-  }
-  
-  else if( strcmp( cmd, "P2 " ) == 0)
-  {
-    PadManager::setLEDState( PadManager::Pad2, true );  
-    PadManager::calibrateSensor( PadManager::Pad2 );
-    PadManager::setLEDState( PadManager::Pad2, false );  
-  }
-  
-  else if( strcmp( cmd, "P3 " ) == 0)
-  {
-    PadManager::setLEDState( PadManager::Pad3, true );  
-    PadManager::calibrateSensor( PadManager::Pad3 );
-    PadManager::setLEDState( PadManager::Pad3, false );  
-  }
-  
-}
-
-void commandToggleLED( char * pkt)
-{
-  char cmd[4];
-  cmd[3] = '\0';
-  strncpy(cmd,pkt,3);
-  
-  bool turnLEDon = false;
-  char onOff[3];
-  onOff[2] = '\0';
-  strncpy(onOff,&pkt[3],2);
-  
-  if( strcmp (onOff, "1 ") == 0)
-  {
-    turnLEDon = true;
-  }
-  else if( strcmp (onOff, "0 ") == 0)
-  {
-    turnLEDon = false;
-  }
-  else
-  {
-    return;
-  }
-  
-  if( strcmp( cmd, "P1 " ) == 0)
-  {
-    PadManager::setLEDState( PadManager::Pad1, turnLEDon );
-  }
-  
-  else if( strcmp( cmd, "P2 " ) == 0)
-  {
-    PadManager::setLEDState( PadManager::Pad2, turnLEDon );
-  }
-  
-  else if( strcmp( cmd, "P3 " ) == 0)
-  {
-    PadManager::setLEDState( PadManager::Pad3, turnLEDon );
-  }
-  
-}

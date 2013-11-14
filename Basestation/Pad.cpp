@@ -2,12 +2,18 @@
 #include "Pad.h"
 
 
-ChargePad::ChargePad( uint8_t pinColorSensorSDA, 
+ChargePad::ChargePad( 
+                  uint8_t pinColorSensorSDA, 
                   uint8_t pinColorSensorSCL, 
-                  uint8_t pinColorSensorLED )
+                  uint8_t pinColorSensorLED,
+                  uint8_t pinChargeEnable 
+                    ) : 
+                  _pinPadEnable(pinChargeEnable)
 {
   colorSensor = new SoftADJDS311(pinColorSensorLED,pinColorSensorSDA,pinColorSensorSCL);
-  
+  pinMode(_pinPadEnable, OUTPUT);
+  digitalWrite(_pinPadEnable, LOW );
+  padState = false;
 }
 
 
@@ -23,12 +29,13 @@ void ChargePad::setColorSensorLED( bool trueForOn )
 
 void ChargePad::setPadState( bool trueForOn )
 {
-  
+  digitalWrite(_pinPadEnable, (trueForOn) ? HIGH : LOW );
+  padState = trueForOn;
 }
 
 bool ChargePad::getPadState( void )
 {
-
+  return padState;
 }
 
 uint16_t ChargePad::getPadVoltage( )
@@ -38,33 +45,11 @@ uint16_t ChargePad::getPadVoltage( )
 
 uint16_t ChargePad::getPadCurrent( )
 {
-
+  
 }
 
-void ChargePad::padVoltagetToString( char * str )
+RGBC ChargePad::readColorSensor( void )
 {
-
-}
-
-void ChargePad::padCurrentToString( char * str )
-{
-
-}
-  /**
-   * Creates the color string for the color sensor reading.
-   * ALERT: colorStr MUST BE size 18 or larger or BAD BAD things will happen.
-   **/
-void ChargePad::colorSensorToString( char * colorStr )
-{
-  RGBC color = colorSensor->read();
-  sprintf(colorStr,"R%04d G%04d B%04d", color.red, color.blue, color.green);
-}
-
-
-
-
-RGBC readColorSensor( void )
-{
-
+  return colorSensor->read();
 }
 
