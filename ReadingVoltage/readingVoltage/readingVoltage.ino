@@ -1,22 +1,23 @@
-#define VOLTAGE_READ A0
-#define V_IN_R 97.7f
-#define GND_R 98.1f
-#define REFV 5
+#include "voltage_reader.h"
 
-float rFactor;
+voltage_reader* volts;
 void setup()
 {
   Serial.begin(9600);
-  rFactor = 1023.0 * (GND_R)/ (GND_R + V_IN_R);
+  
+  volts = new voltage_reader(A0);
+  //3 for the ratio of voltage divider
+ // rFactor = 1023.0 / 4;  //1023 for the resolution of the pot
   Serial.println("Starting up!");
 }
 
 void loop()
 {
-  int sensorValue = analogRead(VOLTAGE_READ);
-  float voltage = (sensorValue / rFactor)* REFV;
+//  int sensorValue = analogRead(VOLTAGE_READ);
+  
+  //float voltage = (sensorValue / rFactor)* REFV;
   Serial.print("V is ");
-  Serial.println(voltage); 
+  Serial.println(volts->get_voltage()); 
   delay(500);
 
 
