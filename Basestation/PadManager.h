@@ -17,5 +17,7 @@ namespace PadManager
   void calibrateSensor( tPadID pad );
   void setLEDState( tPadID pad, bool trueForOn );
   void setPadState( tPadID pad, bool trueForOn );
+  float getPadVoltage ( tPadID pad );
+  float getPadCurrent ( tPadID pad );
 };
 

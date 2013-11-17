@@ -6,11 +6,17 @@ ChargePad::ChargePad(
                   uint8_t pinColorSensorSDA, 
                   uint8_t pinColorSensorSCL, 
                   uint8_t pinColorSensorLED,
-                  uint8_t pinChargeEnable 
+                  uint8_t pinChargeEnable,
+                  uint8_t pinCurrentSense,
+                  uint8_t pinVoltageSense,
+                  uint16_t voltageSenseResistanceR1,
+                  uint16_t voltageSenseResistanceR2
                     ) : 
                   _pinPadEnable(pinChargeEnable)
 {
   colorSensor = new SoftADJDS311(pinColorSensorLED,pinColorSensorSDA,pinColorSensorSCL);
+  voltageSensor = new voltage_reader(pinVoltageSense,voltageSenseResistanceR1,voltageSenseResistanceR2);
+  currentSensor = new ACS712(pinCurrentSense);
   pinMode(_pinPadEnable, OUTPUT);
   digitalWrite(_pinPadEnable, LOW );
   padState = false;
@@ -38,14 +44,14 @@ bool ChargePad::getPadState( void )
   return padState;
 }
 
-uint16_t ChargePad::getPadVoltage( )
+float ChargePad::getPadVoltage( )
 {
-
+  return voltageSensor->get_voltage(10);
 }
 
-uint16_t ChargePad::getPadCurrent( )
+float ChargePad::getPadCurrent( )
 {
-  
+  return currentSensor->get_current(10);
 }
 
 RGBC ChargePad::readColorSensor( void )

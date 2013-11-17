@@ -1,4 +1,5 @@
 #include "ACS712.h"
+
 ACS712::ACS712(int pin)
 {
 	this->pin = pin;

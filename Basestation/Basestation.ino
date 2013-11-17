@@ -6,6 +6,8 @@
 #include "Utilities.h"
 #include <XBee.h>
 #include <QueueList.h>
+#include <ACS712.h>
+#include <voltage_reader.h>
 
 void temporary_printIfXBeeReceive()
 {

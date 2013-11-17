@@ -3,23 +3,37 @@
 #include "Pad.h"
 
 //pad1 pins
-#define CHARGEPADENABLE1 48
-#define SENSORLED1	23
-#define SDA1 		26
-#define SCL1 		27
+#define CHARGEPADENABLE1  48
+#define SENSORLED1	      23
+#define SDA1 		          26
+#define SCL1 		          27
+#define VOLTAGESENSOR1    A8 
+#define CURRENTSENSOR1    A9
+
+#define R1_PAD1           1250000
+#define R2_PAD1           1200000
 
 //pad2 pins
-#define CHARGEPADENABLE2 50
-#define SENSORLED2	24 
-#define SDA2 		28
-#define SCL2 		29
+#define CHARGEPADENABLE2  50
+#define SENSORLED2	      24 
+#define SDA2 		          28
+#define SCL2 		          29
+#define VOLTAGESENSOR2    A10
+#define CURRENTSENSOR2    A11
+
+#define R1_PAD2           5850000
+#define R2_PAD2           1373000
 
 //pad3 pins
-#define CHARGEPADENABLE3 52
-#define SENSORLED3	25
-#define SDA3 		30
-#define SCL3 		31
+#define CHARGEPADENABLE3  52
+#define SENSORLED3	      25
+#define SDA3 		          30
+#define SCL3 		          31
+#define VOLTAGESENSOR3    A12
+#define CURRENTSENSOR3    A13
 
+#define R1_PAD3           5820000
+#define R2_PAD3           1473000
 //file scope variables; 'singleton' class instances.
 static ChargePad * pad1;
 static ChargePad * pad2;
@@ -30,9 +44,20 @@ namespace PadManager
 {
   void Initialize()
   {
-    pad1 = new ChargePad(SDA1,SCL1,SENSORLED1,CHARGEPADENABLE1);
-    pad2 = new ChargePad(SDA2,SCL2,SENSORLED2,CHARGEPADENABLE2);
-    pad3 = new ChargePad(SDA3,SCL3,SENSORLED3,CHARGEPADENABLE3);
+    pad1 = new ChargePad(SDA1,SCL1,SENSORLED1,
+                        CHARGEPADENABLE1,
+                        CURRENTSENSOR1,
+                        VOLTAGESENSOR1,R1_PAD1,R2_PAD1);
+                        
+    pad2 = new ChargePad(SDA2,SCL2,SENSORLED2,
+                        CHARGEPADENABLE2,
+                        CURRENTSENSOR2,
+                        VOLTAGESENSOR2,R1_PAD2,R2_PAD2);
+                        
+    pad3 = new ChargePad(SDA3,SCL3,SENSORLED3,
+                        CHARGEPADENABLE3,
+                        CURRENTSENSOR3,
+                        VOLTAGESENSOR3,R1_PAD3,R2_PAD3);
   }
 
   RGBC readColorSensor( tPadID pad )
@@ -93,6 +118,32 @@ namespace PadManager
       case Pad3:
         pad3->setPadState( trueForOn );
         return;
+    }
+  }
+  
+  float getPadCurrent( tPadID pad )
+  {
+    switch(pad)
+    {
+      case Pad1:
+        return pad1->getPadCurrent();
+      case Pad2:
+        return pad2->getPadCurrent();
+      case Pad3:
+        return pad3->getPadCurrent();
+    }
+  }
+  
+  float getPadVoltage( tPadID pad )
+  {
+    switch(pad)
+    {
+      case Pad1:
+        return pad1->getPadVoltage();
+      case Pad2:
+        return pad2->getPadVoltage();
+      case Pad3:
+        return pad3->getPadVoltage();
     }
   }
 

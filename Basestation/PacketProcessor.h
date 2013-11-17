@@ -6,9 +6,10 @@
 
 namespace PacketProcessor
 {
-  void commandGetColor( char * pkt);
-  void commandCalColor( char * pkt);
-  void commandToggleLED( char * pkt);
+  void commandGetColor( char * pkt );
+  void commandCalColor( char * pkt );
+  void commandToggleLED( char * pkt );
   void commandTogglePad( char * pkt );
- 
+  void commandGetVoltage( char * pkt );
+  void commandGetCurrent( char * pkt );
 }

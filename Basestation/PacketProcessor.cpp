@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "PadManager.h"
 #include "SerialCommandPacketizer.h"
+#include "Utilities.h"
 
 //forward declare local scope function
 static void colorSensorToString(RGBC color , char * colorStr );
@@ -16,20 +17,18 @@ namespace PacketProcessor
     strncpy(pID,pkt,3);
     char colorStr[21];
     RGBC color;
+    strncpy(colorStr,pID,3);  
     
     if( strcmp( pID, "P1 " ) == 0)
     {
-      strncpy(colorStr,"P1 ",3);  
       color = PadManager::readColorSensor( PadManager::Pad1 );
     }
     else if( strcmp( pID, "P2 " ) == 0)
     {
-      strncpy(colorStr,"P2 ",3);
       color = PadManager::readColorSensor( PadManager::Pad2);
     }
     else if( strcmp( pID, "P3 " ) == 0)
     {
-      strncpy(colorStr,"P3 ",3);
       color = PadManager::readColorSensor( PadManager::Pad3 );
     }
     else
@@ -163,7 +162,83 @@ namespace PacketProcessor
       return;
     }
   }
+  
+  void commandGetVoltage( char * pkt)
+  {
+    char pID[4];
+    pID[3] = '\0';
+    strncpy(pID,pkt,3);
+    float voltage = 0.0f;
+    char voltageStr[11];
+    voltageStr[10] = '\0';
+    strncpy(voltageStr,pID,3);
+    
+    if( strcmp( pID, "P1 " ) == 0)
+    {
+      voltage = PadManager::getPadVoltage( PadManager::Pad1 );
+    }
+    
+    else if( strcmp( pID, "P2 " ) == 0)
+    {
+      voltage = PadManager::getPadVoltage( PadManager::Pad2 );
+    }
+    
+    else if( strcmp( pID, "P3 " ) == 0)
+    {
+      voltage = PadManager::getPadVoltage( PadManager::Pad3 );
+    }
+    
+    else
+    {
+      //silently ignore or send error packet
+      return;
+    }
+
+    Utilities::floatToStr(voltage,&voltageStr[3]);
+    voltageStr[9] = 'V';
+    SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendVoltage, voltageStr );
+    
+  }
+  
+  void commandGetCurrent( char * pkt)
+  {
+    char pID[4];
+    pID[3] = '\0';
+    strncpy(pID,pkt,3);
+    float current = 0.0f;
+    char currentStr[11];
+    currentStr[10] = '\0';
+    strncpy(currentStr,pID,3);
+    
+    if( strcmp( pID, "P1 " ) == 0)
+    {
+      current = PadManager::getPadCurrent( PadManager::Pad1 );
+    }
+    
+    else if( strcmp( pID, "P2 " ) == 0)
+    {
+      current = PadManager::getPadCurrent( PadManager::Pad2 );
+    }
+    
+    else if( strcmp( pID, "P3 " ) == 0)
+    {
+      current = PadManager::getPadCurrent( PadManager::Pad3 );
+    }
+    
+    else
+    {
+      //silently ignore or send error packet
+      return;
+    }
+    
+    Utilities::floatToStr(current,&currentStr[3]);
+    currentStr[9] = 'A';
+    SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendCurrent, currentStr );
+    
+  }
 }
+
+
 
 /**
  * Creates the color string for the color sensor reading.

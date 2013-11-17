@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <utilities.h>
+#include "Utilities.h"
 
 extern int __bss_end;  
 extern void *__brkval;
@@ -35,6 +35,28 @@ namespace Utilities
     
     return i;
 
+  }
+  
+  void floatToStr( float val, char * str)
+  {
+    sprintf(str,"%02d",(int) val);
+    sprintf(&str[2],".");
+    
+    uint8_t printIndx = 3;
+    unsigned int precision = 100;
+    unsigned int frac;
+    if(val >= 0)
+      frac = (val - int(val)) * precision;
+    else
+       frac = (int(val)- val ) * precision;
+    int frac1 = frac;
+    while( frac1 /= 10 )
+        precision /= 10;
+    precision /= 10;
+    while(  precision /= 10)
+        sprintf(&str[printIndx++],"0");
+
+    sprintf(&str[printIndx],"%d",frac);
   }
   
 };

@@ -119,10 +119,10 @@ namespace SerialCommandPacketizer
           PacketProcessor::commandGetColor(pkt->payload);
           break;
         case GetCurrent:
-          Serial.println("Get Current");
+          PacketProcessor::commandGetCurrent(pkt->payload);
           break;
         case GetVoltage:
-          Serial.println("Get Voltage");
+          PacketProcessor::commandGetVoltage(pkt->payload);
           break;
         case ToggleLED:
           PacketProcessor::commandToggleLED(pkt->payload);
