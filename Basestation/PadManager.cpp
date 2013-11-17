@@ -10,8 +10,8 @@
 #define VOLTAGESENSOR1    A8 
 #define CURRENTSENSOR1    A9
 
-#define R1_PAD1           1250000
-#define R2_PAD1           1200000
+#define R1_PAD1           5850000
+#define R2_PAD1           1625000
 
 //pad2 pins
 #define CHARGEPADENABLE2  50

@@ -9,8 +9,8 @@ ChargePad::ChargePad(
                   uint8_t pinChargeEnable,
                   uint8_t pinCurrentSense,
                   uint8_t pinVoltageSense,
-                  uint16_t voltageSenseResistanceR1,
-                  uint16_t voltageSenseResistanceR2
+                  uint32_t voltageSenseResistanceR1,
+                  uint32_t voltageSenseResistanceR2
                     ) : 
                   _pinPadEnable(pinChargeEnable)
 {

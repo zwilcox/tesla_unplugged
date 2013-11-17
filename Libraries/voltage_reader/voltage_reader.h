@@ -26,7 +26,7 @@ class voltage_reader
         	*	@param r1  - resistor connected to voltage being measured
         	*	@param r2  - resistor connected to ground
         	*/ 
-        	voltage_reader(int pin, int r1, int r2);
+        	voltage_reader(int pin, uint32_t r1, uint32_t r2);
         	/*
         	*	Set changes the ADC pin used to measure voltage
         	*	Uses builder method to so caller can keep setting values;
@@ -45,7 +45,7 @@ class voltage_reader
         	*	@param r1  - resistor connected to voltage being measured
         	*	@param r2  - resistor connected to ground
         	*/
-        	voltage_reader set_resistance(int r1, int r2);
+        	voltage_reader set_resistance(uint32_t r1, uint32_t r2);
         	/*
         	*	Reads the ADC once and returns the voltage reading;
         	*/

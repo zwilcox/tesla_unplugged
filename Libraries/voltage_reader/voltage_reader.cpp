@@ -6,7 +6,7 @@ voltage_reader::voltage_reader(int pin)
 	reference_v = 5.0f;
 }
 
-voltage_reader::voltage_reader(int pin, unsigned int r1, unsigned int r2)
+voltage_reader::voltage_reader(int pin, uint32_t r1, uint32_t r2)
 {
 	this->pin = pin;
 	r_factor = (r2 + 0.0f) / (r2 + r1 + 0.0f);
@@ -24,7 +24,7 @@ voltage_reader voltage_reader::set_reference_v(float v)
   return *this;
 }
 
-voltage_reader voltage_reader::set_resistance(unsigned int r1, unsigned int r2)
+voltage_reader voltage_reader::set_resistance(uint32_t r1, uint32_t r2)
 {
 	r_factor = (r2 + 0.0f) / (r2 + r1 + 0.0f);
 	r_factor = 1023.0 * r_factor;
@@ -44,5 +44,6 @@ float voltage_reader::get_voltage(int iterations)
 	{        
     average += (analogRead(pin) / r_factor) * reference_v;
 	}
+
 	return average / iterations;
 }
