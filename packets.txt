@@ -1,19 +1,19 @@
-PACKETS
-receiving
+From PC to Mega		Command		Arg1	Arg2	Payload		NOTES:
 
-From mega to database
-key: 	NC - New Car
-		P# - Pad number, 1,2,3
-		RA - Radio Address,
-		R	- RED
-		G	- Green
-		B	- Blue
-		maybe NC P# RA RG B value value value;
-
-adding new car		
-		[NC P# RA value R value G value B value]
+getColor		      GC		P#				                causes mega to respond with specified pad's color reading, SC command
+getCurrent		    GA		ID				                causes mega to respond with specified pad/car's current reading, SA command
+getVoltage		    GV		ID				                causes mega to respond with specified pad/car's voltage reading, SV command
+TogglePad		      TP		P#	0/1			              causes mega to turn the specified pad on (1) or off (0)
+ToogleLED		      TC		ID	0/1			              causes mega to turn the specified pad's LED on or off
+CalibrateColor		CC		P#				                causes mega to run calibration routine for specified pad
+GetRadio		      GR						                  causes mega to respond with error or the one new radio on network
+ClearList		      CL						                  causes mega to clear its list of authorized cars
+InfoCar			      IC		P#	ID	R # G # B #	      causes mega to record information about specified car/pad in its list
 
 
+from mega to PC
+
+<<<<<<< HEAD
                                                                      
                                                                      
                                                                      
@@ -40,6 +40,15 @@ SendCurrent		SA		ID				mega sends current information of specified pad/vehicle
 SendRadio		SR		ID/ER				mega sends only unknown radio ID or ERROR to PC
 ChargeBegin		CB		P#	ID			mega sends notice to database that charge session for car X has started
 ChargeEnd		CE		P#	ID			mega sends notice to database that charge session for car X is over
+=======
+ListCars		      LC
+SendColor		      SC		P#		R # G # B #	        mega sends color it sees on specified pad
+SendVoltage		    SV		ID				                mega sends voltage information of specified pad/vehicle ID
+SendCurrent		    SA		ID				                mega sends current information of specified pad/vehicle0
+SendRadio		      SR		ID/ER				              mega sends only unknown radio ID or ERROR to PC
+ChargeBegin		    CB		P#	ID			              mega sends notice to database that charge session for car X has started
+ChargeEnd		      CE		P#	ID			              mega sends notice to database that charge session for car X is over
+>>>>>>> 9fd414e63f8e5d4b4e35b91b56c93f88060c6220
 
 
 
@@ -47,4 +56,9 @@ ChargeEnd		CE		P#	ID			mega sends notice to database that charge session for car
 KEY:
 
 P#	--- this means ID for pads only: P1, P2, P3
+<<<<<<< HEAD
 ID	--- vehicle or pad ID
+=======
+ID	--- vehicle or pad ID
+O
+>>>>>>> 9fd414e63f8e5d4b4e35b91b56c93f88060c6220
