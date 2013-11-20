@@ -46,14 +46,20 @@ void setup()
 
 void loop()
 {
-  //check button for led
-  //check button
+
   //check voltage
+  float v_measurement = volts->get_voltage(50);
+  
   //if voltage high enough
+  //step down converter doesn't come on until 4v
+  if(v_measurement >= 4.0f)
+  {
     //check current
+    float c_measurement = current->get_current();
     //send voltage
     //send current
-  Serial.println(volts->get_voltage());
+  }
+  Serial.println(volts->get_voltage(50));
    delay(500); 
 }
 
@@ -73,11 +79,5 @@ void pin2ISR()
       
     }
   last_interrupt_time = interrupt_time;
-
-}
-ISR(EXT_INT0_vect)
-{
-    //trans->turn_on();
-        digitalWrite(8, HIGH ); 
 
 }
