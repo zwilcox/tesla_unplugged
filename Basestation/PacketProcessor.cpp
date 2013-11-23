@@ -17,7 +17,7 @@ namespace PacketProcessor
     char pID[4]; 
     pID[3] = '\0';
     strncpy(pID,pkt,3);
-    char colorStr[21];
+    char colorStr[22];
     RGBC color;
     strncpy(colorStr,pID,3);  
     
@@ -369,9 +369,9 @@ bool stringToColor(char * colorStr, RGBC &color)
 
 /**
  * Creates the color string for the color sensor reading.
- * ALERT: colorStr MUST BE size 18 or larger or BAD BAD things will happen.
+ * ALERT: colorStr MUST BE size 19 or larger or BAD BAD things will happen.
  **/
 void colorToString(RGBC color, char * colorStr )
 {
-  sprintf(colorStr,"R%04d G%04d B%04d", color.red, color.blue, color.green);
+  sprintf(colorStr,"R%04d G%04d B%04d ", color.red, color.blue, color.green);
 }
