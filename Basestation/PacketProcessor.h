@@ -12,4 +12,6 @@ namespace PacketProcessor
   void commandTogglePad( char * pkt );
   void commandGetVoltage( char * pkt );
   void commandGetCurrent( char * pkt );
+  void commandInfoCar( char * pkt );
+  void commandClearList( char * pkt );
 }

@@ -137,10 +137,10 @@ namespace SerialCommandPacketizer
           Serial.println("Get Radio");
           break;
         case ClearList:
-         Serial.println("Clear List");
+          PacketProcessor::commandClearList(pkt->payload);
           break;
         case InfoCar:
-          Serial.println("Info Cars");
+          PacketProcessor::commandInfoCar(pkt->payload);
           break;
         default:
           //return error packet.

@@ -8,6 +8,10 @@
 #include <QueueList.h>
 #include <ACS712.h>
 #include <voltage_reader.h>
+#include "ChargeSession.h"
+#include <LinkedList.h>
+#include "AuthorizedCar.h"
+
 
 void temporary_printIfXBeeReceive()
 {
