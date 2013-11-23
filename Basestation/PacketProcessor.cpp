@@ -3,9 +3,11 @@
 #include "PadManager.h"
 #include "SerialCommandPacketizer.h"
 #include "Utilities.h"
-
+#include "ChargeManager.h"
 //forward declare local scope function
-static void colorSensorToString(RGBC color , char * colorStr );
+static void colorToString(RGBC color , char * colorStr );
+static bool stringToColor(char * colorStr, RGBC &color);
+
   
 namespace PacketProcessor
 {
@@ -15,7 +17,7 @@ namespace PacketProcessor
     char pID[4]; 
     pID[3] = '\0';
     strncpy(pID,pkt,3);
-    char colorStr[21];
+    char colorStr[22];
     RGBC color;
     strncpy(colorStr,pID,3);  
     
@@ -37,7 +39,7 @@ namespace PacketProcessor
       return;
     }
     
-    colorSensorToString( color, &colorStr[3] );
+    colorToString( color, &colorStr[3] );
     SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendColor, colorStr );
   }
 
@@ -236,15 +238,140 @@ namespace PacketProcessor
     SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendCurrent, currentStr );
     
   }
+  
+  void commandClearList( char * pkt )
+  {
+    ChargeManager::ClearAuthorizedCarList();
+  }
+  
+  void commandInfoCar( char * pkt )
+  {
+    //get the pad ID
+    char pID[4]; //for "P# \0"
+    pID[3] = '\0';
+    strncpy(pID,pkt,3);  //read pkt[0-2], now on &pkt[3]
+    PadManager::tPadID pad;
+    if( strcmp( pID, "P1 " ) == 0)
+    {
+      pad = PadManager::Pad1;
+    }
+    else if( strcmp( pID, "P2 " ) == 0)
+    {
+      pad = PadManager::Pad2;
+    }
+    else if( strcmp( pID, "P3 " ) == 0)
+    {
+      pad = PadManager::Pad2;
+    }
+    else
+    {
+      //silently ignore or send error packet
+                      Serial.println("error during pID read");
+      return;
+    }
+
+    //get the vehicle ID
+    char vIDStr[6]; //"#### \0"
+    vIDStr[5] = 0;
+    uint16_t vID = 0;
+    strncpy(vIDStr,&pkt[3],5); //read pkt[3-7], now on pkt[8]
+    if(sscanf(vIDStr, "%x" , &vID) != 1 || vIDStr[4] != ' ')
+    {
+      //silently ignore or send error packet
+                Serial.println("error during vID read");
+      return;
+    }
+    
+    //get the color.
+    RGBC color;
+    char colorStr[19]; //"R#### G#### B#### \0"
+    colorStr[18] = 0;
+    strncpy(colorStr,&pkt[8],18); //read pkt[8-25], now done.
+    if(!stringToColor(colorStr,color))
+    {
+      //silently ignore or send error packet.
+          Serial.println("error during color read");
+      return;
+    }
+    
+    char parsedColorStr[19];
+    parsedColorStr[18] = 0;
+    
+    colorToString(color,parsedColorStr);
+    Serial.print("Read color str: ");
+    Serial.println(parsedColorStr);
+ 
+    ChargeManager::NotifyOfNewCarInfo(vID,pad,color);
+  }
 }
 
 
+bool stringToColor(char * colorStr, RGBC &color)
+{
+  //read red;
+  char redStr[7];
+  redStr[6] = 0;
+  uint16_t red;
+  strncpy(redStr,colorStr,6); //read  colorstr[0-5], now on colorstr[6]
+  if (redStr[0] != 'R' || redStr[5] != ' ')
+  {
+    //error!
+    return false;
+  }
+  red = atoi(&redStr[1]);
+  if ( red == 0 && strcmp( &redStr[1], "0000 " ) != 0 )
+  {
+    //error!
+    return false;
+  }
+  
+  //read green;
+  char greenStr[7];
+  greenStr[6] = 0;
+  uint16_t green;
+  strncpy(greenStr,&colorStr[6],6); //read  colorstr[6-11], now on colorstr[12]
+  if (greenStr[0] != 'G' || greenStr[5] != ' ')
+  {
+    //error!
+    return false;
+  }
+  green = atoi(&greenStr[1]);
+  if ( green == 0 && strcmp( &greenStr[1], "0000 " ) != 0 )
+  {
+    //error!
+    return false;
+  }
+  
+  //read blue;
+  char blueStr[7];
+  blueStr[6] = 0;
+  uint16_t blue;
+  strncpy(blueStr,&colorStr[12],6); //read  colorstr[12-18], done
+  if (blueStr[0] != 'B' || blueStr[5] != ' ')
+  {
+    //error!
+    return false;
+  }
+  blue = atoi(&blueStr[1]);
+  if ( blue == 0 && strcmp( &blueStr[1], "0000 " ) != 0 )
+  {
+    //error!
+    return false;
+  }
+  
+  color.red = red;
+  color.green = green;
+  color.blue = blue;
+  color.clear = 0;
+  
+  return true;
+}
 
 /**
  * Creates the color string for the color sensor reading.
- * ALERT: colorStr MUST BE size 18 or larger or BAD BAD things will happen.
+ * ALERT: colorStr MUST BE size 19 or larger or BAD BAD things will happen.
  **/
-void colorSensorToString(RGBC color, char * colorStr )
+void colorToString(RGBC color, char * colorStr )
 {
-  sprintf(colorStr,"R%04d G%04d B%04d", color.red, color.blue, color.green);
+  sprintf(colorStr,"R%04d G%04d B%04d ", color.red, color.blue, color.green);
 }
