@@ -3,9 +3,6 @@
 
 Transponder::Transponder(unsigned int led)
 {
-  
-    Serial.begin(9600);
-
     led_pin = led;
     //set up button
 

@@ -9,9 +9,11 @@
 #define VOLTAGE_PORT 1
 #define LED 7
 #define BUTTON 2
+#define MASTER_ADDRESS 0x5678
 
 static bool should_broadcast;
-
+const static String voltage_preamble = "CC 00 VV ";
+const static String current_preamble = "CC 00 CA ";
 static ACS712* current;
 static XBee* radio;
 static voltage_reader* volts;
@@ -19,7 +21,6 @@ static Transponder* trans;
 
 void setup()
 {
-
   should_broadcast = false;
 
   //set up current
@@ -54,13 +55,34 @@ void loop()
   //step down converter doesn't come on until 4v
   if(v_measurement >= 4.0f)
   {
+
     //check current
     float c_measurement = current->get_current();
     //send voltage
+    uint8_t* payload = prepare_message(voltage_preamble, v_measurement);
+    Tx16Request tx = Tx16Request(MASTER_ADDRESS, payload, sizeof(payload));
+  //  radio->send(tx);
     //send current
-  }
-  Serial.println(volts->get_voltage(50));
+   payload = prepare_message(current_preamble, c_measurement);
+    tx = Tx16Request(MASTER_ADDRESS, payload, sizeof(payload));
+  //  radio->send(tx);
+
+  }  
+ 
    delay(500); 
+}
+
+uint8_t* prepare_message(const String message, float f)
+{
+  //  Serial.println(f);
+  char c [sizeof(f)];
+  dtostrf(f, 5, 2, c);
+  String temp = message + c;
+ // Serial.print(temp);
+  uint8_t results[temp.length()];
+  temp.getBytes(results, temp.length());
+ Serial.println((char*)results);
+  return results; 
 }
 
 void pin2ISR()
