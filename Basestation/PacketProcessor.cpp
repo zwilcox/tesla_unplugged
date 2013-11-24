@@ -197,7 +197,8 @@ namespace PacketProcessor
     }
 
     Utilities::floatToStr(voltage,&voltageStr[3]);
-    voltageStr[9] = 'V';
+    voltageStr[8] = 'V';
+    voltageStr[9] = ' ';
     SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendVoltage, voltageStr );
     
   }
@@ -234,7 +235,8 @@ namespace PacketProcessor
     }
     
     Utilities::floatToStr(current,&currentStr[3]);
-    currentStr[9] = 'A';
+    currentStr[9] = ' ';
+    currentStr[8] = 'A';
     SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendCurrent, currentStr );
     
   }

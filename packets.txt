@@ -9,12 +9,13 @@ CalibrateColor		CC		P#				                causes mega to run calibration routine
 GetRadio		      GR						                  causes mega to respond with error or the one new radio on network
 ClearList		      CL						                  causes mega to clear its list of authorized cars
 InfoCar			      IC		P#	ID	R# G# B#	      causes mega to record information about specified car/pad in its list
-
+LoadCalibration   LC    P#  R# G# B#
 
 from mega to PC
 
 
-ListCars		      LC
+BootNotify		    BT
+PadCalibation     PC
 SendColor		      SC		P#		R# G# B#	        mega sends color it sees on specified pad
 SendVoltage		    SV		ID				                mega sends voltage information of specified pad/vehicle ID
 SendCurrent		    SA		ID				                mega sends current information of specified pad/vehicle0

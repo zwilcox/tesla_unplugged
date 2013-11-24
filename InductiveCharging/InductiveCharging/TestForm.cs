@@ -17,6 +17,7 @@ namespace InductiveCharging
         public TestForm()
         {
             InitializeComponent();
+            serialPort1.PortName = Properties.Settings.Default.selectedPort;
         }
 
         private void displayText(object sender, EventArgs e)
@@ -32,7 +33,8 @@ namespace InductiveCharging
             {
                 //char[] buff = new char[1];
                 //buff[0] = cmd;
-                serialPort1.Write(cmd);
+                serialPort1.Write("[" + cmd + " ]");
+                testSerialTextBox.AppendText("tx: [" + cmd + " ]\n");
                 return true;
             }
         }
