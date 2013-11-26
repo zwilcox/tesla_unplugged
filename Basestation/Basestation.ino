@@ -11,6 +11,7 @@
 #include "ChargeSession.h"
 #include <LinkedList.h>
 #include "AuthorizedCar.h"
+#include "ChargeManager.h"
 
 
 void temporary_printIfXBeeReceive()
@@ -46,6 +47,10 @@ void loop()
   SerialCommandPacketizer::getPacketsFromSerial();
   Serial.println(Utilities::get_free_memory());
   SerialCommandPacketizer::processInboundPackets();
+  
+  ChargeManager::checkForNewChargeSessions();
+  ChargeManager::updateChargeSessionInfo();
+  ChargeManager::sendChargeSessionData();
   
 
   delay(500);

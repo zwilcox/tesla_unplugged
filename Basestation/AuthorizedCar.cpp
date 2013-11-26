@@ -20,19 +20,20 @@ AuthorizedCar::~AuthorizedCar()
 
 }
 
-bool AuthorizedCar::isPad1ColorAuthorized(RGBC color)
+bool AuthorizedCar::isColorAuthorized(PadManager::tPadID chargePad, RGBC color)
 {
-  return colorIsNear(Pad1AuthorizedColor,color,TOLERANCE);
-}
-
-bool AuthorizedCar::isPad2ColorAuthorized(RGBC color)
-{
-  return colorIsNear(Pad2AuthorizedColor,color,TOLERANCE);
-}
-
-bool AuthorizedCar::isPad3ColorAuthorized(RGBC color)
-{
-  return colorIsNear(Pad3AuthorizedColor,color,TOLERANCE);
+      switch(chargePad)
+      {
+        case PadManager::Pad1:
+          return colorIsNear(Pad1AuthorizedColor,color,TOLERANCE);
+          break;
+        case PadManager::Pad2:
+          return colorIsNear(Pad2AuthorizedColor,color,TOLERANCE);
+          break;
+        case PadManager::Pad3:
+          return colorIsNear(Pad3AuthorizedColor,color,TOLERANCE);
+          break;
+      }  
 }
 
 void AuthorizedCar::setAuthorizedColor(RGBC color, PadManager::tPadID pad)

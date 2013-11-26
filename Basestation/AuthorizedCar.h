@@ -11,9 +11,7 @@ class AuthorizedCar
     ~AuthorizedCar();
     uint16_t vID;
     
-    bool isPad1ColorAuthorized(RGBC color);
-    bool isPad2ColorAuthorized(RGBC color);
-    bool isPad3ColorAuthorized(RGBC color);
+    bool isColorAuthorized(PadManager::tPadID chargePad, RGBC color);
     
     void setAuthorizedColor(RGBC color, PadManager::tPadID pad);
 

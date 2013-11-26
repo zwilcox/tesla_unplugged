@@ -263,7 +263,7 @@ namespace PacketProcessor
     }
     else if( strcmp( pID, "P3 " ) == 0)
     {
-      pad = PadManager::Pad2;
+      pad = PadManager::Pad3;
     }
     else
     {

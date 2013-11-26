@@ -7,6 +7,8 @@ namespace ChargeManager
 {
   void NotifyOfNewCarInfo(uint16_t vID, PadManager::tPadID pad, RGBC color);
   void ClearAuthorizedCarList();
-  void updateChargeSessions();
+  void updateChargeSessionInfo();
+  void checkForNewChargeSessions();
+  void sendChargeSessionData();
 };
 
