@@ -12,8 +12,8 @@
 #define MASTER_ADDRESS 0x5678
 
 static bool should_broadcast;
-const static String voltage_preamble = "CC 00 VV ";
-const static String current_preamble = "CC 00 CA ";
+const static String voltage_preamble = "SV ";
+const static String current_preamble = "SA ";
 static ACS712* current;
 static XBee* radio;
 static voltage_reader* volts;
@@ -59,28 +59,33 @@ void loop()
     //check current
     float c_measurement = current->get_current();
     //send voltage
-    uint8_t* payload = prepare_message(voltage_preamble, v_measurement);
-    Tx16Request tx = Tx16Request(MASTER_ADDRESS, payload, sizeof(payload));
-  //  radio->send(tx);
+    int count = 0;
+    uint8_t* payload = prepare_message(voltage_preamble, v_measurement, &count);
+    Tx16Request tx = Tx16Request(MASTER_ADDRESS, payload, count);
+    radio->send(tx);
     //send current
-   payload = prepare_message(current_preamble, c_measurement);
-    tx = Tx16Request(MASTER_ADDRESS, payload, sizeof(payload));
-  //  radio->send(tx);
-
+    count = 0;
+   payload = prepare_message(current_preamble, c_measurement, &count);
+    tx = Tx16Request(MASTER_ADDRESS, payload, count);
+    radio->send(tx);
+    delay(500);
   }  
  
-   delay(500); 
+    
 }
 
-uint8_t* prepare_message(const String message, float f)
+uint8_t* prepare_message(const String message, float f, int* sizeOf)
 {
   //  Serial.println(f);
   char c [sizeof(f)];
   dtostrf(f, 5, 2, c);
-  String temp = message + c;
+  // SV #V  or
+  // SA #A
+  String temp = message + c + message.charAt(1);
  // Serial.print(temp);
   uint8_t results[temp.length()];
   temp.getBytes(results, temp.length());
+  *sizeOf = temp.length();
  Serial.println((char*)results);
   return results; 
 }

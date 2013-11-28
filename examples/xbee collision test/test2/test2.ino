@@ -9,6 +9,7 @@ void setup()
 {
   radio = new XBee();
   tx = Tx16Request(0x5678, payload, sizeof(payload));
+  Serial.begin(9600);
 
   pinMode(PIN, INPUT);
   digitalWrite(PIN, HIGH);

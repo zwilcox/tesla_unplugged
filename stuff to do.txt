@@ -1,0 +1,29 @@
+List of Shit
+
+BaseStation stuff:
+	Detect and authorize car
+		-create charge session data structure send notification to car say you're charging
+
+	Receive all date from XBee
+			build list
+			iterate through list
+			send shit to computer
+
+
+	Transmit charge data to PC
+
+	Load calibrated info for light sensors
+
+	end charging station logic
+
+PC Stuff:
+	Get database working
+	Receive data from base station and do stuff with it
+	Enroll new car
+
+Build circuit stuff
+Build ramps
+
+Fine tune Car code after base station is complete.
+
+Assemble Car
