@@ -37,6 +37,10 @@ namespace Utilities
 
   }
   
+  /***** floatToStr( float val, char * str) ******
+   * Reads the float val and prints 5 characters into the char * array str.
+   * Important: array size 6 or greater or BAD things happen.
+   ********************************************/
   void floatToStr( float val, char * str)
   {
     sprintf(str,"%02d",(int) val);

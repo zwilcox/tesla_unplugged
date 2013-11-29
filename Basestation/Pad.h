@@ -5,6 +5,10 @@
 #include <voltage_reader.h>
 #include <ACS712.h>
 
+
+/**
+ * 'Driver' class for a charge pad.
+ */
 class ChargePad
 {
   public:

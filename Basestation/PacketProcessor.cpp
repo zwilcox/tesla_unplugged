@@ -11,7 +11,11 @@ static bool stringToColor(char * colorStr, RGBC &color);
   
 namespace PacketProcessor
 {
-
+  /**
+   * This function is for the GC command.
+   * Reads a payload of: 'P# '
+   * Sends color of given sensor or error message back to PC.
+   */
   void commandGetColor( char * pkt)
   {
     char pID[4]; 
@@ -43,6 +47,11 @@ namespace PacketProcessor
     SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendColor, colorStr );
   }
 
+  /**
+   * This function is for the CC command.
+   * Reads a payload of: 'P# '
+   * Calls the appropriate calibration command or sends to PC error message.
+   */
   void commandCalColor( char * pkt)
   {
     char cmd[4];
@@ -51,7 +60,7 @@ namespace PacketProcessor
     
     if( strcmp( cmd, "P1 " ) == 0)
     {
-      PadManager::setLEDState( PadManager::Pad1, true );  
+      PadManager::setLEDState( PadManager::Pad1, true );  //todo: pad class keeps track of LED state during calibration.
       PadManager::calibrateSensor( PadManager::Pad1 );
       PadManager::setLEDState( PadManager::Pad1, false );  
     }
@@ -72,6 +81,12 @@ namespace PacketProcessor
     
   }
 
+  /**
+   * This function is for the TC command.
+   * Reads a payload of: 'P# 1 ' for on or 'P# 0 ' for off.
+   * Turns on the LED for the given pad on or off, depending on payload.
+   * sends to PC error message if packet incorrect.
+   */
   void commandToggleLED( char * pkt)
   {
     char pID[4];
@@ -119,6 +134,11 @@ namespace PacketProcessor
     
   }
   
+  /**
+   * This function is for the TP command.
+   * Reads a payload of: 'P# 1/0 '
+   * Calls the appropriate pad on/off command or sends to PC error message.
+   */
   void commandTogglePad(char * pkt )
   {
     char pID[4];
@@ -165,6 +185,11 @@ namespace PacketProcessor
     }
   }
   
+  /**
+   * This function is for the GV command.
+   * Reads a payload of: 'P# '
+   * Reads voltage for given pad and sends to PC the voltage. (or error if pad packet)
+   */
   void commandGetVoltage( char * pkt)
   {
     char pID[4];
@@ -203,6 +228,11 @@ namespace PacketProcessor
     
   }
   
+  /**
+   * This function is for the GA command.
+   * Reads a payload of: 'P# '
+   * Reads the current for the given pad and sends to PC current. (or error if pad packet)
+   */
   void commandGetCurrent( char * pkt)
   {
     char pID[4];
@@ -241,11 +271,29 @@ namespace PacketProcessor
     
   }
   
+  /**
+   * This function is for the CL command.
+   * Reads a payload of: ' '
+   * Clears list of all authorized cars and cancels all charge sesions (or error if pad packet)
+   */
   void commandClearList( char * pkt )
   {
+    if (pkt[0] != '0') 
+    {
+      Serial.println("[INVALID_INBOUND_COMMAND]");
+      return;
+    }
+    
     ChargeManager::ClearAuthorizedCarList();
   }
   
+  /**
+   * This function is for the IC command.
+   * Reads a payload of: 'P1 2222 R0000 G0000 B0000 '
+   * This function reads the pad, vehicle ID, and color, then
+   * notifies charge manager of vehicle authorization information.
+   * (Or sends error to PC if bad packet format)
+   */
   void commandInfoCar( char * pkt )
   {
     //get the pad ID
@@ -304,7 +352,10 @@ namespace PacketProcessor
   }
 }
 
-
+/**
+ * This helper function reads string of format 'R#### G#### B#### ' and sets 
+ * RGBC to the read color, with clear being 0. Returns true on success or false on parse error.
+ */
 bool stringToColor(char * colorStr, RGBC &color)
 {
   //read red;

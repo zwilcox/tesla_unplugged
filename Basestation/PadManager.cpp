@@ -9,7 +9,7 @@
 #define SCL1 		          27
 #define VOLTAGESENSOR1    A8 
 #define CURRENTSENSOR1    A9
-
+//voltage sense resistance
 #define R1_PAD1           5850000
 #define R2_PAD1           1625000
 
@@ -20,7 +20,7 @@
 #define SCL2 		          29
 #define VOLTAGESENSOR2    A10
 #define CURRENTSENSOR2    A11
-
+//voltage sense resistance
 #define R1_PAD2           5850000
 #define R2_PAD2           1373000
 
@@ -31,9 +31,10 @@
 #define SCL3 		          31
 #define VOLTAGESENSOR3    A12
 #define CURRENTSENSOR3    A13
-
+//voltage sense resistance
 #define R1_PAD3           5820000
 #define R2_PAD3           1473000
+
 //file scope variables; 'singleton' class instances.
 static ChargePad * pad1;
 static ChargePad * pad2;
@@ -44,22 +45,26 @@ namespace PadManager
 {
   void Initialize()
   {
-    pad1 = new ChargePad(SDA1,SCL1,SENSORLED1,
-                        CHARGEPADENABLE1,
-                        CURRENTSENSOR1,
-                        VOLTAGESENSOR1,R1_PAD1,R2_PAD1);
+    //create new pad driver instances.
+    pad1 = new ChargePad(SDA1,SCL1,SENSORLED1,           //color sensor pins
+                        CHARGEPADENABLE1,                //charge pad enable pin
+                        CURRENTSENSOR1,                  //current sense pin
+                        VOLTAGESENSOR1,R1_PAD1,R2_PAD1); //voltage sense pins
                         
     pad2 = new ChargePad(SDA2,SCL2,SENSORLED2,
                         CHARGEPADENABLE2,
                         CURRENTSENSOR2,
                         VOLTAGESENSOR2,R1_PAD2,R2_PAD2);
                         
-    pad3 = new ChargePad(SDA3,SCL3,SENSORLED3,
-                        CHARGEPADENABLE3,
-                        CURRENTSENSOR3,
-                        VOLTAGESENSOR3,R1_PAD3,R2_PAD3);
+    pad3 = new ChargePad(SDA3,SCL3,SENSORLED3,            
+                        CHARGEPADENABLE3,                 
+                        CURRENTSENSOR3,                   
+                        VOLTAGESENSOR3,R1_PAD3,R2_PAD3);  
   }
 
+  /**
+   * Reads the color value of the sensor on the given pad.
+   */
   RGBC readColorSensor( tPadID pad )
   {
     switch(pad)
@@ -73,6 +78,9 @@ namespace PadManager
     }
   }
 
+  /**
+   * Runs the sensor calibration method for the given pad.
+   */
   void calibrateSensor( tPadID pad )
   {
     switch(pad)
@@ -89,6 +97,9 @@ namespace PadManager
     }
   }
   
+  /**
+   * Turns the color sensor LED on or off on the given pad.
+   */
   void setLEDState( tPadID pad, bool trueForOn )
   {
     switch(pad)
@@ -105,6 +116,9 @@ namespace PadManager
     }
   }
   
+  /**
+   * Turns the given charge pad inductive circuit on or off.
+   */
   void setPadState( tPadID pad, bool trueForOn )
   {
     switch(pad)
@@ -121,6 +135,9 @@ namespace PadManager
     }
   }
   
+  /**
+   * Reads the current from the given charge pad.
+   */
   float getPadCurrent( tPadID pad )
   {
     switch(pad)
@@ -134,6 +151,9 @@ namespace PadManager
     }
   }
   
+  /**
+   * Reads the voltage from the given charge pad.
+   */
   float getPadVoltage( tPadID pad )
   {
     switch(pad)

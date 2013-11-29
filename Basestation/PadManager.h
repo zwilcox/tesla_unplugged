@@ -3,8 +3,14 @@
 #include <Arduino.h>
 #include <SoftADJDS311.h>
 
+/**
+ * Pad manager manages instances of all chargepad drivers. 
+ * Control of charge pads should be done through access functions of pad manager.
+ * This ensures that there is only one driver instance created for each pad.
+ */
 namespace PadManager
 {
+
   typedef enum 
   { 
     Pad1 = 1,

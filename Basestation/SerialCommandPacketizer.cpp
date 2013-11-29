@@ -66,6 +66,10 @@ namespace SerialCommandPacketizer
   /**END INBOUND SERIAL PACKET CLASS**/
   
   
+  /**
+   * Reads the arduino serial input stream and creates command packets
+   * out of all [packetized] bytes on the input stream. All packets added to a list.
+   */
   void getPacketsFromSerial()
   {
     static char buff[BUFF_SIZE];
@@ -107,6 +111,9 @@ namespace SerialCommandPacketizer
     
   }
   
+  /**
+   * Iterates over the list of packets and calls the appropriate packet-parsing function
+   */
   void processInboundPackets()
   {
     while ( !pktList.isEmpty() )
@@ -152,6 +159,9 @@ namespace SerialCommandPacketizer
     }
   }
   
+  /**
+   * Sends an outbound packet in the [packetized] outbound packet format.
+   */
   void sendOutboundPacket(tOutboundCommand cmd, char * payload )
   {
     char cmdStr[3];
@@ -166,16 +176,20 @@ namespace SerialCommandPacketizer
   
 }
 
-//file scope functions
+//file scope functions:::
+
 using namespace SerialCommandPacketizer;
 
+/**
+ * takes a string and creates a packet object from it, adding it to the list.
+ */
 void processRawInboundPacket( char * pkt )
 {
   pktList.push( new InboundSerialPacket(pkt) );
 }
 
   /**
-   * Creates the color string for the specified sensor.
+   * Given a tOutboundCommand, copies the string representation into char * str.
    * ALERT: str MUST BE size 3 or larger or BAD THINGS happen.
    **/
 void setStringToCommand(tOutboundCommand cmd, char * str )
