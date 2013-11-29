@@ -4,7 +4,7 @@
 XBee xbee; 
 void setup()
 {
-  XBee xbee = XBee();
+  xbee = XBee();
   xbee.setSerial(Serial1);
   xbee.begin(9600);
   Serial.begin(9600);

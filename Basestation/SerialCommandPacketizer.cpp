@@ -144,7 +144,7 @@ namespace SerialCommandPacketizer
           break;
         default:
           //return error packet.
-          Serial.println("INVALID_INBOUND_COMMAND");
+          Serial.println("[INVALID_INBOUND_COMMAND]");
           break;
       }
       

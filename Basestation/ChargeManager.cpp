@@ -10,6 +10,8 @@ static LinkedList<ChargeSession*> ChargeSessionList;
 static bool Pad1InSession;
 static bool Pad2InSession;
 static bool Pad3InSession;
+void CancelChargeSessions();
+  
 
 static AuthorizedCar * getCarFromChargeSession(ChargeSession * session);
 
@@ -50,10 +52,32 @@ namespace ChargeManager
     AuthorizedCarList.insert(car);
     return;
   }
-
+  
+  void CancelChargeSessions()
+  {
+    if (ChargeSessionList.isEmpty()) return;
+    
+    ListIterator<ChargeSession *> iterator(&ChargeSessionList);
+    
+    while(!ChargeSessionList.isEmpty())
+    {
+      ChargeSession * toDelete = iterator.current();
+      iterator.removeCurrent();
+      
+      PadManager::setPadState(toDelete->chargePad, false);
+        
+      if(toDelete)
+        delete (toDelete);
+    }
+    
+    Pad1InSession = false;
+    Pad2InSession = false;
+    Pad3InSession = false;
+  }
+  
   void ClearAuthorizedCarList()
   {
-    //CancelChargeSessions();
+    CancelChargeSessions();
     if (AuthorizedCarList.isEmpty()) return;
     
     ListIterator<AuthorizedCar *> iterator(&AuthorizedCarList);
@@ -62,7 +86,7 @@ namespace ChargeManager
     {
       AuthorizedCar * toDelete = iterator.current();
       iterator.removeCurrent();
-      
+
       if(toDelete)
         delete (toDelete);
     }
@@ -76,29 +100,37 @@ namespace ChargeManager
     ListIterator<ChargeSession *> iterator(&ChargeSessionList);
     
     ChargeSession * sessionToUpdate;
-    do
+    while (!iterator.isEmpty() && iterator.current() != 0)
     {
       sessionToUpdate = iterator.current();
-      AuthorizedCar * sessionCar = getCarFromChargeSession(sessionToUpdate);
+      
+      AuthorizedCar * sessionCar = sessionToUpdate->getVehicleRef();
       RGBC color = PadManager::readColorSensor(sessionToUpdate->chargePad);
-      bool authorized = false;
-      authorized = sessionCar->isColorAuthorized(sessionToUpdate->chargePad,color);
+      bool authorized = sessionCar->isColorAuthorized(sessionToUpdate->chargePad,color);
       
       if(!authorized)
       {
+        Serial.println("car no longer authorized. GTFO BITCHFACE");
         PadManager::setPadState(sessionToUpdate->chargePad, false);
-        if (sessionToUpdate)
-          delete sessionToUpdate;
         
-        if (iterator.hasNext())
+        switch(sessionToUpdate->chargePad)
         {
-          iterator.removeCurrent();
+          case PadManager::Pad1:
+            Pad1InSession = false;
+            break;
+          case PadManager::Pad2:
+            Pad2InSession = false;
+            break;
+          case PadManager::Pad3:
+            Pad3InSession = false;
+            break;
         }
-        else
-        {
-          return; //reached end of list... just exit, don't keep checking list.
-        }
-        sessionToUpdate = iterator.current();
+                
+        iterator.removeCurrent(); //remove it from the list..
+        
+        delete sessionToUpdate; //delete charge session.
+       
+        continue; //keep looking at list objects, if there are any
       }
 
       if(!sessionToUpdate->isPadInfoUpdated())
@@ -107,9 +139,12 @@ namespace ChargeManager
         sessionToUpdate->updatePadVoltage(padVoltage);
 
         float padCurrent = PadManager::getPadCurrent(sessionToUpdate->chargePad);
-        sessionToUpdate->updatePadCurrent(padCurrent);
+        sessionToUpdate->updatePadCurrent(padCurrent);  
       }
-    }while(iterator.moveNext());
+
+      if(!iterator.moveNext())  
+        return;
+    }
   }
 
   void checkForNewChargeSessions()
@@ -125,10 +160,24 @@ namespace ChargeManager
     AuthorizedCar * carToCheck;
     do
     {
+      
       carToCheck = iterator.current();
+      Serial.print(carToCheck->vID);
+      if(carToCheck->isInChargeSession)
+      {
+        Serial.println("  In charge session.");
+        continue;
+      }
+      else
+      {
+        Serial.print("  Checking pads for car: ");
+        Serial.println(carToCheck->vID);
+      }
+      
+      
       if (!carToCheck->isRegistrationComplete())
       {
-        Serial.print("Car not yet registered");
+        Serial.println("  Not yet registered");
         continue;
       }
       
@@ -137,8 +186,9 @@ namespace ChargeManager
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad1,p1ColorRead)) 
         {
+          Serial.println("  Starting charge session on pad1");
           //create new charge session
-          ChargeSession * newSession = new ChargeSession(PadManager::Pad1, carToCheck->vID);
+          ChargeSession * newSession = new ChargeSession(PadManager::Pad1, carToCheck);
           ChargeSessionList.insert(newSession);
           Pad1InSession = true;
           PadManager::setPadState(PadManager::Pad1,true);
@@ -149,7 +199,8 @@ namespace ChargeManager
       {  
         if (carToCheck->isColorAuthorized(PadManager::Pad2,p2ColorRead)) 
         {
-          ChargeSession * newSession = new ChargeSession(PadManager::Pad2, carToCheck->vID);
+          Serial.println("  Starting charge session on pad2");
+          ChargeSession * newSession = new ChargeSession(PadManager::Pad2, carToCheck);
           ChargeSessionList.insert(newSession);
           Pad2InSession = true;
           PadManager::setPadState(PadManager::Pad2,true);
@@ -160,14 +211,16 @@ namespace ChargeManager
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad3,p3ColorRead)) 
         {
-          ChargeSession * newSession = new ChargeSession(PadManager::Pad3, carToCheck->vID);
+          Serial.println("  Starting charge session on pad3");
+          ChargeSession * newSession = new ChargeSession(PadManager::Pad3, carToCheck);
           ChargeSessionList.insert(newSession);
           Pad3InSession = true;
           PadManager::setPadState(PadManager::Pad3,true);
           continue;
         }
       }
-    }while(iterator.moveNext() && (Pad1InSession || Pad2InSession || Pad3InSession ));
+      
+    }while(iterator.moveNext() && (!Pad1InSession || !Pad2InSession || !Pad3InSession ));
   }
   
   void sendChargeSessionData()
@@ -192,15 +245,4 @@ namespace ChargeManager
       }
     }while(iterator.moveNext());
   }
-}
-AuthorizedCar * getCarFromChargeSession(ChargeSession * session)
-{
-    ListIterator<AuthorizedCar *> iterator(&AuthorizedCarList);
-    
-    AuthorizedCar * carToCheck;
-    do
-    {
-      if (carToCheck->vID == session->vehicleID)
-        return carToCheck;
-    }while(iterator.moveNext());
 }

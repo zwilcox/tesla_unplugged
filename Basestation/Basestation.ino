@@ -50,7 +50,7 @@ void loop()
   
   ChargeManager::checkForNewChargeSessions();
   ChargeManager::updateChargeSessionInfo();
-  ChargeManager::sendChargeSessionData();
+  //ChargeManager::sendChargeSessionData();
   
 
   delay(500);

@@ -1,12 +1,12 @@
 #pragma once
 #include <Arduino.h>
 #include "PadManager.h"
-
+#include "AuthorizedCar.h"
 class ChargeSession
 {
 
   public:
-    ChargeSession(PadManager::tPadID pad, uint16_t vID);
+    ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle);
     ~ChargeSession();
 
     uint16_t vehicleID;
@@ -20,8 +20,12 @@ class ChargeSession
     
     bool isPadInfoUpdated();
     bool isVehicleInfoUpdated();
+    
+    AuthorizedCar * getVehicleRef();
 
   private:
+    AuthorizedCar * _vehicle;
+    
     float vCurrent;
     float vVoltage;
     bool isvCurrentNew;

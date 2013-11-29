@@ -35,7 +35,7 @@ namespace PacketProcessor
     }
     else
     {
-      //silently ignore OR return error packet???
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     
@@ -93,7 +93,7 @@ namespace PacketProcessor
     }
     else
     {
-      //ignore silently, or send error packet.
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     
@@ -113,7 +113,7 @@ namespace PacketProcessor
     }
     else
     {
-      //ignore silently or send error packet
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     
@@ -140,7 +140,7 @@ namespace PacketProcessor
     }
     else
     {
-      //ignore silently, or send error packet.
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     
@@ -160,7 +160,7 @@ namespace PacketProcessor
     }
     else
     {
-      //ignore silently or send error packet
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
   }
@@ -192,7 +192,7 @@ namespace PacketProcessor
     
     else
     {
-      //silently ignore or send error packet
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
 
@@ -230,7 +230,7 @@ namespace PacketProcessor
     
     else
     {
-      //silently ignore or send error packet
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     
@@ -267,8 +267,7 @@ namespace PacketProcessor
     }
     else
     {
-      //silently ignore or send error packet
-                      Serial.println("error during pID read");
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
 
@@ -279,8 +278,7 @@ namespace PacketProcessor
     strncpy(vIDStr,&pkt[3],5); //read pkt[3-7], now on pkt[8]
     if(sscanf(vIDStr, "%x" , &vID) != 1 || vIDStr[4] != ' ')
     {
-      //silently ignore or send error packet
-                Serial.println("error during vID read");
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     
@@ -291,8 +289,7 @@ namespace PacketProcessor
     strncpy(colorStr,&pkt[8],18); //read pkt[8-25], now done.
     if(!stringToColor(colorStr,color))
     {
-      //silently ignore or send error packet.
-          Serial.println("error during color read");
+      Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
     

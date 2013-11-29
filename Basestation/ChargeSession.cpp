@@ -2,8 +2,8 @@
 #include "ChargeSession.h"
 
 
-ChargeSession::ChargeSession(PadManager::tPadID pad, uint16_t vID) : 
-                            chargePad(pad), vehicleID(vID)
+ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) : 
+                            chargePad(pad), vehicleID(vehicle->vID), _vehicle(vehicle)
 {
   isvCurrentNew = false;
   isvVoltageNew = false;
@@ -11,13 +11,19 @@ ChargeSession::ChargeSession(PadManager::tPadID pad, uint16_t vID) :
   ispVoltageNew = false;
   padInfoUpdated = false;
   vehicleInfoUpdated = false;
+  _vehicle->isInChargeSession = true;
 }
 
 ChargeSession::~ChargeSession()
 {
-
+  _vehicle->isInChargeSession = false;
 }
-  
+
+AuthorizedCar * ChargeSession::getVehicleRef()
+{
+  return _vehicle;
+}
+
 void ChargeSession::updateVehicleVoltage(float v)
 {
   vVoltage = v;

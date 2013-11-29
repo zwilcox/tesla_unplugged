@@ -16,9 +16,9 @@ class AuthorizedCar
     void setAuthorizedColor(RGBC color, PadManager::tPadID pad);
 
     bool isRegistrationComplete();
-    
+    bool isInChargeSession;
+  
   private:
-    
     void updateRegistrationStatus();
     
     RGBC Pad1AuthorizedColor;

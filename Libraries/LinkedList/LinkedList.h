@@ -68,17 +68,20 @@ void LinkedList<T>::insert(T object)
  
   if(!root)
   {
+    Serial.println("List empty, creating root node");
     root = node;
   }
   
   if(end)
   {
+    Serial.println("Adding at end of list");
     end->next = node;
     node->prev = end;
   }
 
   _size++;
   end = node;
+  Serial.println("assigning end to new node");
 }
 
 template <typename T>
@@ -106,8 +109,23 @@ Node<T> * LinkedList<T>::remove(Node<T> * node)
       toReturn = node->next;
     }
     
+    else if (node == end && node == root)
+    {
+      Serial.print("Removing only node... ");
+    
+      root = node->next;
+      end = node->prev;
+      toReturn = 0;
+      
+      
+      Serial.print("Current is now: ");
+      Serial.println((toReturn) ? true : false);
+      
+    }
+    
     else if(node == root)
     {
+
       node->next->prev = 0; //null
       root = node->next;
       toReturn = root;
