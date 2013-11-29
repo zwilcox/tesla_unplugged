@@ -7,12 +7,12 @@
 
 static LinkedList<AuthorizedCar*> AuthorizedCarList;
 static LinkedList<ChargeSession*> ChargeSessionList;
+
 static bool Pad1InSession;
 static bool Pad2InSession;
 static bool Pad3InSession;
-void CancelChargeSessions();
-  
 
+static void CancelChargeSessions();
 static AuthorizedCar * getCarFromChargeSession(ChargeSession * session);
 
 namespace ChargeManager 
@@ -24,6 +24,11 @@ namespace ChargeManager
     Pad3InSession = false;
   }
 
+  /**
+   * When PC sends vehicle authorization information, this function
+   * finds the given car in the list of authorized cars and updates info,
+   * or creates a new authorized car object if the given vID did not exist in the list.
+   */
   void NotifyOfNewCarInfo(uint16_t vID, PadManager::tPadID pad, RGBC color)
   {
     ListIterator<AuthorizedCar *> iterator(&AuthorizedCarList);
@@ -52,29 +57,10 @@ namespace ChargeManager
     AuthorizedCarList.insert(car);
     return;
   }
-  
-  void CancelChargeSessions()
-  {
-    if (ChargeSessionList.isEmpty()) return;
-    
-    ListIterator<ChargeSession *> iterator(&ChargeSessionList);
-    
-    while(!ChargeSessionList.isEmpty())
-    {
-      ChargeSession * toDelete = iterator.current();
-      iterator.removeCurrent();
-      
-      PadManager::setPadState(toDelete->chargePad, false);
-        
-      if(toDelete)
-        delete (toDelete);
-    }
-    
-    Pad1InSession = false;
-    Pad2InSession = false;
-    Pad3InSession = false;
-  }
-  
+   
+  /**
+   * When PC sends CL command, this cancels all charge sessions and removes all authorized cars from list.
+   */ 
   void ClearAuthorizedCarList()
   {
     CancelChargeSessions();
@@ -93,6 +79,11 @@ namespace ChargeManager
     
   }
   
+  
+  /**
+   * Iterates over list of current charge sessions and updates information for each one.
+   * If the vehicle is no longer on the pad, the charge session is ended/deleted. 
+   */ 
   void updateChargeSessionInfo()
   {
     if(ChargeSessionList.isEmpty()) return;
@@ -147,6 +138,10 @@ namespace ChargeManager
     }
   }
 
+  /**
+   * Reads colors from each pad and checks them against each car to detect if an authorized car is on a pad.
+   * If an authorized car is on a pad, this function creates a new charge session and adds it to the list.
+   */
   void checkForNewChargeSessions()
   {
     if (AuthorizedCarList.isEmpty()) return;
@@ -223,6 +218,10 @@ namespace ChargeManager
     }while(iterator.moveNext() && (!Pad1InSession || !Pad2InSession || !Pad3InSession ));
   }
   
+  /**
+   * Iterates over list of charge session data, if it has been updated, it sends
+   * back to PC.
+   */
   void sendChargeSessionData()
   {
     if (ChargeSessionList.isEmpty()) return;
@@ -245,4 +244,29 @@ namespace ChargeManager
       }
     }while(iterator.moveNext());
   }
+}
+
+/**
+ * Cancels all current charge sessions.
+ */
+void CancelChargeSessions()
+{
+  if (ChargeSessionList.isEmpty()) return;
+  
+  ListIterator<ChargeSession *> iterator(&ChargeSessionList);
+  
+  while(!ChargeSessionList.isEmpty())
+  {
+    ChargeSession * toDelete = iterator.current();
+    iterator.removeCurrent();
+    
+    PadManager::setPadState(toDelete->chargePad, false);
+      
+    if(toDelete)
+      delete (toDelete);
+  }
+  
+  Pad1InSession = false;
+  Pad2InSession = false;
+  Pad3InSession = false;
 }
