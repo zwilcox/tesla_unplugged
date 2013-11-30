@@ -81,7 +81,7 @@ uint8_t* prepare_message(const String message, float f, int* sizeOf)
   dtostrf(f, 5, 2, c);
   // SV #V  or
   // SA #A
-  String temp = message + c + message.charAt(1);
+  String temp = message + c;
  // Serial.print(temp);
   uint8_t results[temp.length()];
   temp.getBytes(results, temp.length());

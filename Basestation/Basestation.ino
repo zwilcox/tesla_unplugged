@@ -35,24 +35,24 @@ void temporary_printIfXBeeReceive()
 
 void setup() 
 {
-  Serial.begin(9600);
-  PadManager::Initialize();
-  XBeeUtility::Initialize();
+	Serial.begin(9600);
+	PadManager::Initialize();
+	XBeeUtility::Initialize();
 }
 
 void loop() 
 {
-  temporary_printIfXBeeReceive();
+	temporary_printIfXBeeReceive();
   
-  SerialCommandPacketizer::getPacketsFromSerial();
-  Serial.println(Utilities::get_free_memory());
-  SerialCommandPacketizer::processInboundPackets();
+	SerialCommandPacketizer::getPacketsFromSerial();
+	Serial.println(Utilities::get_free_memory());
+	SerialCommandPacketizer::processInboundPackets();
   
-  ChargeManager::checkForNewChargeSessions();
-  ChargeManager::updateChargeSessionInfo();
-  //ChargeManager::sendChargeSessionData();
+	ChargeManager::checkForNewChargeSessions();
+	ChargeManager::updateChargeSessionInfo();
+	//ChargeManager::sendChargeSessionData();
   
-
+	
   delay(500);
 }
 
