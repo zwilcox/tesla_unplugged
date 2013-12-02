@@ -42,7 +42,7 @@ void setup()
 
 //set up button
   Serial.begin(9600);
- 
+  Serial.println("Finished Setup");
 }
 
 void loop()
@@ -58,6 +58,10 @@ void loop()
 
     //check current
     float c_measurement = current->get_current();
+    Serial.println("The current is: ");
+    Serial.println(c_measurement);
+    Serial.println("The adc is" );
+    Serial.println(analogRead(0));
     //send voltage
     int count = 0;
     uint8_t* payload = prepare_message(voltage_preamble, v_measurement, &count);
@@ -65,6 +69,7 @@ void loop()
     radio->send(tx);
     //send current
     count = 0;
+    
    payload = prepare_message(current_preamble, c_measurement, &count);
     tx = Tx16Request(MASTER_ADDRESS, payload, count);
     radio->send(tx);
@@ -86,7 +91,7 @@ uint8_t* prepare_message(const String message, float f, int* sizeOf)
   uint8_t results[temp.length()];
   temp.getBytes(results, temp.length());
   *sizeOf = temp.length();
- Serial.println((char*)results);
+// Serial.println((char*)results);
   return results; 
 }
 

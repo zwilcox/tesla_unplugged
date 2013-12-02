@@ -1,11 +1,16 @@
-#include <Arduino.h>
 #include "ChargeManager.h"
-#include <LinkedList.h>
-#include "ChargeSession.h"
-#include "AuthorizedCar.h"
-#include "PadManager.h"
 
+
+//Hey Ari...Zach here. Here's a good example of some documentation that would help a lot here...
+/*
+*	AuthorizedCar is a list of all the cars that have been registered and are authorized to charge.
+*/
 static LinkedList<AuthorizedCar*> AuthorizedCarList;
+
+/*
+*	The ChargeSessionList is a list of authorized cars that are currently charging on the pad.
+*/
+
 static LinkedList<ChargeSession*> ChargeSessionList;
 
 static bool Pad1InSession;
@@ -270,3 +275,34 @@ void CancelChargeSessions()
   Pad2InSession = false;
   Pad3InSession = false;
 }
+
+void ChargeManager::updateVoltage(uint16_t address, float measurement)
+{
+	ChargeSession* car = ChargeManager::findCarByAddress(address);
+	if( car != NULL)
+		car->updateVehicleVoltage(measurement);
+}
+void ChargeManager::updateCurrent(uint16_t address, float measurement)
+{
+	ChargeSession* car = ChargeManager::findCarByAddress(address);
+	if( car != NULL)
+		car->updateVehicleCurrent(measurement);
+}
+
+ChargeSession* ChargeManager::findCarByAddress(uint16_t address)
+{
+	//iterate through list
+	ListIterator<ChargeSession *> it(&ChargeSessionList);
+
+	for (	; !it.isEmpty() && it.current() != 0; it.moveNext())
+	{
+		//if address == car_address
+			//return car
+		ChargeSession* temp =it.current();
+		if(temp->vehicleID == address)
+			return temp;
+			
+	}
+	return NULL;
+}
+

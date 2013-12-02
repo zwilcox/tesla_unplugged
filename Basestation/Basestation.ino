@@ -14,12 +14,27 @@
 #include "ChargeManager.h"
 
 
-void temporary_printIfXBeeReceive()
+void process_car_message()
 {
-  if (XBeeUtility::isDataAvailable())
-  {
+  
     XBeeUtility::tXBeePacket * pkt = XBeeUtility::getPkt();
-    
+	uint16_t address = pkt-> getRemoteAddress();
+	char* message = pkt->getData();
+	char compare[3] = {message[0], message[1], 0};
+	//message format: SV ##.##
+	//                0123
+	float measurment = atof(&message[3]);  
+	if(! strcmp(compare, "SV") )
+	{
+		//process voltage stuff
+		ChargeManager::updateVoltage(address, measurment);
+	}
+	else if(! strcmp(compare, "SA") )
+	{
+		//process current stuff
+		ChargeManager::updateCurrent(address, measurment);
+	}
+   /* 
     Serial.print("XBee Receive: ");
     Serial.print(pkt->getLength());
     Serial.print(" bytes from: ");
@@ -27,11 +42,11 @@ void temporary_printIfXBeeReceive()
     Serial.println(".");
     Serial.println(pkt->getData());
     Serial.println("");
-    
+    */
     if(pkt)
       delete(pkt);
-  }
-}
+	
+}	
 
 void setup() 
 {
@@ -42,7 +57,6 @@ void setup()
 
 void loop() 
 {
-	temporary_printIfXBeeReceive();
   
 	SerialCommandPacketizer::getPacketsFromSerial();
 	Serial.println(Utilities::get_free_memory());
@@ -50,8 +64,12 @@ void loop()
   
 	ChargeManager::checkForNewChargeSessions();
 	ChargeManager::updateChargeSessionInfo();
+	
 	//ChargeManager::sendChargeSessionData();
-  
+    if (XBeeUtility::isDataAvailable())
+	{
+		process_car_message();
+    }
 	
   delay(500);
 }
