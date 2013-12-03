@@ -87,14 +87,7 @@ static void zeroColor(RGBC &color)
 }
 
 static bool colorIsNear(RGBC color1, RGBC color2)
-{
-  Serial.print("Red diff is:   ");
-  Serial.println(color1.red - color2.red);
-  Serial.print("Green diff is: ");
-  Serial.println(color1.green - color2.green);
-  Serial.print("Blue diff is:  ");
-  Serial.println(color1.blue - color2.blue);
-  
+{  
   if ((int)(color1.red - color2.red) > TOLERANCE || (int)(color2.red - color1.red) > TOLERANCE)
     return false;
   if ((int)(color1.green - color2.green) > TOLERANCE || (int)(color2.green - color1.green) > TOLERANCE)

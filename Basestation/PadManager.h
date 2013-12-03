@@ -25,5 +25,7 @@ namespace PadManager
   void setPadState( tPadID pad, bool trueForOn );
   float getPadVoltage ( tPadID pad );
   float getPadCurrent ( tPadID pad );
+  void setStrToPadID(tPadID pad, char * str );
+  
 };
 

@@ -14,40 +14,6 @@
 #include "ChargeManager.h"
 
 
-void process_car_message()
-{
-  
-    XBeeUtility::tXBeePacket * pkt = XBeeUtility::getPkt();
-	uint16_t address = pkt-> getRemoteAddress();
-	char* message = pkt->getData();
-	char compare[3] = {message[0], message[1], 0};
-	//message format: SV ##.##
-	//                0123
-	float measurment = atof(&message[3]);  
-	if(! strcmp(compare, "SV") )
-	{
-		//process voltage stuff
-		ChargeManager::updateVoltage(address, measurment);
-	}
-	else if(! strcmp(compare, "SA") )
-	{
-		//process current stuff
-		ChargeManager::updateCurrent(address, measurment);
-	}
-   /* 
-    Serial.print("XBee Receive: ");
-    Serial.print(pkt->getLength());
-    Serial.print(" bytes from: ");
-    Serial.print(pkt->getRemoteAddress());
-    Serial.println(".");
-    Serial.println(pkt->getData());
-    Serial.println("");
-    */
-    if(pkt)
-      delete(pkt);
-	
-}	
-
 void setup() 
 {
 	Serial.begin(9600);
@@ -57,20 +23,25 @@ void setup()
 
 void loop() 
 {
-  
+  //get incomming commands from PC.
 	SerialCommandPacketizer::getPacketsFromSerial();
 	Serial.println(Utilities::get_free_memory());
+  
+  //print incomming commands from PC.
 	SerialCommandPacketizer::processInboundPackets();
   
+  //look for new cars on pads...
 	ChargeManager::checkForNewChargeSessions();
-	ChargeManager::updateChargeSessionInfo();
 	
-	//ChargeManager::sendChargeSessionData();
-    if (XBeeUtility::isDataAvailable())
-	{
-		process_car_message();
-    }
+  //get & process information on pad side.
+  ChargeManager::updateChargeSessionInfo();
+
+  //get & process information from cars, including charging cars
+  XBeeUtility::processIncommingCarMessages(5);
 	
+  //send all charge information to PC database
+  ChargeManager::sendChargeSessionData();
+  
   delay(500);
 }
 

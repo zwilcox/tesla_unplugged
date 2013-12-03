@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "XBeeUtility.h"
 #include "Utilities.h"
+#include "ChargeManager.h"
 
 static bool _isDataAvailable = false;
 static XBee xbee;
@@ -115,5 +116,49 @@ namespace XBeeUtility
     xbee.send(tx);
   }
   
+  void processIncommingCarMessages(uint16_t count)
+  {
+    tXBeePacket * pkt;
+    uint16_t i = 0;
+    while (isDataAvailable() && i++ < count)
+    {
+      pkt = getPkt();
+      uint16_t address = pkt-> getRemoteAddress();
+      
+      char* message = pkt->getData();
+      char compare[4] = {message[0], message[1], message[2], 0};
+      
+      //message format: SV ##.##
+      //                0123
+      float measurment = atof(&message[3]);  
+      if(! strcmp(compare, "SV ") )
+      {
+        //process voltage stuff
+        ChargeManager::updateVehicleVoltage(address, measurment);
+      }
+      else if(! strcmp(compare, "SA ") )
+      {
+        //process current stuff
+        ChargeManager::updateVehicleCurrent(address, measurment);
+      }
+      else
+      {
+        //error. does not compute.
+      }
+      
+     /** 
+      Serial.print("XBee Receive: ");
+      Serial.print(pkt->getLength());
+      Serial.print(" bytes from: ");
+      Serial.print(pkt->getRemoteAddress());
+      Serial.println(".");
+      Serial.println(pkt->getData());
+      Serial.println("");
+      */
+      if(pkt)
+        delete(pkt);
+      pkt = 0;
+    }
+  }	
   
 }

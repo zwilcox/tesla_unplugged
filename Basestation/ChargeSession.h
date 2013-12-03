@@ -18,6 +18,11 @@ class ChargeSession
     void updatePadVoltage(float v);
     void updatePadCurrent(float c);
     
+    float getVehicleCurrent( void );
+    float getPadCurrent( void );
+    float getVehicleVoltage( void );
+    float getPadVoltage( void );
+    
     bool isPadInfoUpdated();
     bool isVehicleInfoUpdated();
     
@@ -31,14 +36,10 @@ class ChargeSession
     bool isvCurrentNew;
     bool isvVoltageNew;
     bool vehicleInfoUpdated;    
-    void notifyVehicleUpdatedStatus();
 
     float pCurrent;
     float pVoltage;
     bool ispCurrentNew;
     bool ispVoltageNew;
     bool padInfoUpdated;
-    void notifyPadUpdatedStatus();
-
-
 };

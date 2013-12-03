@@ -23,6 +23,7 @@ namespace XBeeUtility
       
   };
   
+  void processIncommingCarMessages(uint16_t count);  
 	void Initialize( void );
 	bool isDataAvailable( void );
 	tXBeePacket * getPkt( void );

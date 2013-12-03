@@ -167,4 +167,20 @@ namespace PadManager
     }
   }
 
+  void setStrToPadID( tPadID pad , char * str )
+  {
+    switch(pad)
+    {
+      case Pad1:
+        strcpy(str,"P1 ");
+        return;
+      case Pad2:
+        strcpy(str,"P2 ");
+        return;
+      case Pad3:
+        strcpy(str,"P3 ");
+        return;
+    }
+  }
+  
 };

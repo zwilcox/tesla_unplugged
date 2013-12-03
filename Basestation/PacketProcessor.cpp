@@ -423,5 +423,5 @@ bool stringToColor(char * colorStr, RGBC &color)
  **/
 void colorToString(RGBC color, char * colorStr )
 {
-  sprintf(colorStr,"R%04d G%04d B%04d ", color.red, color.blue, color.green);
+  sprintf(colorStr,"R%04d G%04d B%04d ", color.red, color.green, color.blue);
 }

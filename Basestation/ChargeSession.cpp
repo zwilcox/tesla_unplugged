@@ -28,46 +28,56 @@ void ChargeSession::updateVehicleVoltage(float v)
 {
   vVoltage = v;
   isvVoltageNew = true;
-  notifyVehicleUpdatedStatus();
 }
 
 void ChargeSession::updateVehicleCurrent(float c)
 {
   vCurrent = c;
   isvCurrentNew = true;
-  notifyVehicleUpdatedStatus();
 }
   
 void ChargeSession::updatePadVoltage(float v)
 {
   pVoltage = v;
   ispVoltageNew = true;
-  notifyPadUpdatedStatus();
 }
 
 void ChargeSession::updatePadCurrent(float c)
 {
   pCurrent = c;
   ispCurrentNew = true;
-  notifyPadUpdatedStatus();
+}
+
+float ChargeSession::getPadCurrent()
+{
+  ispCurrentNew = false;
+  return pCurrent;
+}
+
+float ChargeSession::getVehicleCurrent()
+{
+  isvCurrentNew = false;
+  return vCurrent;
+}
+
+float ChargeSession::getPadVoltage()
+{
+  ispVoltageNew = false;
+  return pVoltage;
+}
+
+float ChargeSession::getVehicleVoltage()
+{
+  isvVoltageNew = false;
+  return vVoltage;
 }
 
 bool ChargeSession::isPadInfoUpdated()
 {
-  return padInfoUpdated;
+  return (ispVoltageNew && ispCurrentNew);
 }
 
 bool ChargeSession::isVehicleInfoUpdated()
 {
-  return vehicleInfoUpdated;
-}
-
-void ChargeSession::notifyVehicleUpdatedStatus()
-{
-  vehicleInfoUpdated == (isvVoltageNew && isvCurrentNew);
-}
-
-void ChargeSession::notifyPadUpdatedStatus()
-{
-  padInfoUpdated == (ispVoltageNew && ispCurrentNew);
+  return (isvVoltageNew && isvCurrentNew);
 }
