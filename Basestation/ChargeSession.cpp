@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "ChargeSession.h"
-
+#define UPDATE_FREQUENCY 250
 
 ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) : 
                             chargePad(pad), vehicleID(vehicle->vID), _vehicle(vehicle)
@@ -12,6 +12,7 @@ ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) :
   padInfoUpdated = false;
   vehicleInfoUpdated = false;
   _vehicle->isInChargeSession = true;
+  nextUpdateMillis = millis() + UPDATE_FREQUENCY;
 }
 
 ChargeSession::~ChargeSession()
@@ -46,6 +47,21 @@ void ChargeSession::updatePadCurrent(float c)
 {
   pCurrent = c;
   ispCurrentNew = true;
+}
+
+bool ChargeSession::shouldSendInfo()
+{
+  uint32_t elapsed = millis();
+  
+  if (elapsed >= nextUpdateMillis || elapsed < (nextUpdateMillis - UPDATE_FREQUENCY))
+  {
+    nextUpdateMillis = elapsed + UPDATE_FREQUENCY;
+    return true;
+  }
+  else
+  {
+    return false; 
+  }
 }
 
 float ChargeSession::getPadCurrent()

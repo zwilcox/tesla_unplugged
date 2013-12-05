@@ -1,5 +1,5 @@
 #include "AuthorizedCar.h"
-#define TOLERANCE 100
+#define TOLERANCE 50
 
 static void zeroColor(RGBC &color);
 static bool colorIsNear(RGBC color1, RGBC color2);

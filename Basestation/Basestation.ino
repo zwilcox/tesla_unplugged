@@ -16,29 +16,29 @@
 
 void setup() 
 {
-	Serial.begin(9600);
-	PadManager::Initialize();
-	XBeeUtility::Initialize();
+  Serial.begin(9600);
+  PadManager::Initialize();
+  XBeeUtility::Initialize();
 }
 
 void loop() 
 {
   //get incomming commands from PC.
-	SerialCommandPacketizer::getPacketsFromSerial();
-	Serial.println(Utilities::get_free_memory());
+  SerialCommandPacketizer::getPacketsFromSerial();
+  Serial.println(Utilities::get_free_memory());
   
   //print incomming commands from PC.
-	SerialCommandPacketizer::processInboundPackets();
+  SerialCommandPacketizer::processInboundPackets();
   
   //look for new cars on pads...
-	ChargeManager::checkForNewChargeSessions();
-	
+  ChargeManager::checkForNewChargeSessions();
+  
   //get & process information on pad side.
   ChargeManager::updateChargeSessionInfo();
 
   //get & process information from cars, including charging cars
   XBeeUtility::processIncommingCarMessages(5);
-	
+  
   //send all charge information to PC database
   ChargeManager::sendChargeSessionData();
   

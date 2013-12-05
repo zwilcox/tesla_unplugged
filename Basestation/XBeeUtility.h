@@ -9,25 +9,25 @@ namespace XBeeUtility
   class tXBeePacket
   {
     public:    
-		tXBeePacket( Rx16Response );
-		tXBeePacket( uint16_t remoteAddress, char * dataStr);
-		~tXBeePacket();
+    tXBeePacket( Rx16Response );
+    tXBeePacket( uint16_t remoteAddress, char * dataStr);
+    ~tXBeePacket();
       
-		uint16_t getRemoteAddress();
-		char * getData();
-		uint8_t getLength();
-		
+    uint16_t getRemoteAddress();
+    char * getData();
+    uint8_t getLength();
+    
     private:
-		uint16_t remoteAddress;
-		char * data;
+    uint16_t remoteAddress;
+    char * data;
       
   };
   
   void processIncommingCarMessages(uint16_t count);  
-	void Initialize( void );
-	bool isDataAvailable( void );
-	tXBeePacket * getPkt( void );
-	//void queuePacketForSend( tXBeePacket pkt );
-	void sendPacket( uint16_t remoteAddress, char * dataStr );
+  void Initialize( void );
+  bool isDataAvailable( void );
+  tXBeePacket * getPkt( void );
+  //void queuePacketForSend( tXBeePacket pkt );
+  void sendPacket( uint16_t remoteAddress, char * dataStr );
   
 }

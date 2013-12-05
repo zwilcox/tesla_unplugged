@@ -28,6 +28,8 @@ class ChargeSession
     
     AuthorizedCar * getVehicleRef();
 
+    bool shouldSendInfo();
+    
   private:
     AuthorizedCar * _vehicle;
     
@@ -42,4 +44,6 @@ class ChargeSession
     bool ispCurrentNew;
     bool ispVoltageNew;
     bool padInfoUpdated;
+    
+    uint32_t nextUpdateMillis;
 };

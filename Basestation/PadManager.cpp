@@ -4,9 +4,9 @@
 
 //pad1 pins
 #define CHARGEPADENABLE1  48
-#define SENSORLED1	      23
-#define SDA1 		          26
-#define SCL1 		          27
+#define SENSORLED1        23
+#define SDA1               26
+#define SCL1               27
 #define VOLTAGESENSOR1    A8 
 #define CURRENTSENSOR1    A9
 //voltage sense resistance
@@ -15,9 +15,9 @@
 
 //pad2 pins
 #define CHARGEPADENABLE2  50
-#define SENSORLED2	      24 
-#define SDA2 		          28
-#define SCL2 		          29
+#define SENSORLED2        24 
+#define SDA2               28
+#define SCL2               29
 #define VOLTAGESENSOR2    A10
 #define CURRENTSENSOR2    A11
 //voltage sense resistance
@@ -26,9 +26,9 @@
 
 //pad3 pins
 #define CHARGEPADENABLE3  52
-#define SENSORLED3	      25
-#define SDA3 		          30
-#define SCL3 		          31
+#define SENSORLED3        25
+#define SDA3               30
+#define SCL3               31
 #define VOLTAGESENSOR3    A12
 #define CURRENTSENSOR3    A13
 //voltage sense resistance

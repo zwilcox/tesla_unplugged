@@ -36,10 +36,10 @@ class ChargePad
 
   
   private:
-    uint8_t 			  _pinPadEnable;
+    uint8_t         _pinPadEnable;
       
-    SoftADJDS311 	  * colorSensor;
-    bool 				      padState;
-    voltage_reader 	*	voltageSensor;
-    ACS712			    *	currentSensor;
+    SoftADJDS311     * colorSensor;
+    bool               padState;
+    voltage_reader   *  voltageSensor;
+    ACS712          *  currentSensor;
 };
