@@ -13,19 +13,35 @@
 #include "AuthorizedCar.h"
 #include "ChargeManager.h"
 
+#define MEM_PRINT_INTERVAL 5000
+static uint32_t nextMemPrint;
+
+void printMemLeft()
+{  
+  if(millis() >= nextMemPrint)
+  { 
+    Serial.print("MEM LEFT: ~");
+    Serial.print(Utilities::get_free_memory());
+    Serial.println(" bytes");
+    nextMemPrint = millis() + MEM_PRINT_INTERVAL;
+  }
+}
 
 void setup() 
 {
   Serial.begin(9600);
   PadManager::Initialize();
   XBeeUtility::Initialize();
+  
+  nextMemPrint = millis() + MEM_PRINT_INTERVAL;
 }
 
 void loop() 
 {
   //get incomming commands from PC.
   SerialCommandPacketizer::getPacketsFromSerial();
-  Serial.println(Utilities::get_free_memory());
+  
+  printMemLeft();
   
   //print incomming commands from PC.
   SerialCommandPacketizer::processInboundPackets();
@@ -41,7 +57,5 @@ void loop()
   
   //send all charge information to PC database
   ChargeManager::sendChargeSessionData();
-  
-  delay(500);
 }
 

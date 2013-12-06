@@ -63,4 +63,13 @@ namespace Utilities
     sprintf(&str[printIndx],"%d",frac);
   }
   
+  
+  void zeroColor(RGBC &color)
+  {
+    color.red = 0;
+    color.blue = 0;
+    color.green = 0;
+    color.clear = 0;
+  }
+  
 };

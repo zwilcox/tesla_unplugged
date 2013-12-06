@@ -20,17 +20,22 @@ ChargePad::ChargePad(
   pinMode(_pinPadEnable, OUTPUT);
   digitalWrite(_pinPadEnable, LOW );
   padState = false;
+  ledState = false;
 }
 
 
 void ChargePad::calibrateColorSensor( void )
 {
+  colorSensor->init();
+  colorSensor->ledOn();
   colorSensor->calibrate();
+  (ledState) ? colorSensor->ledOn() : colorSensor->ledOff();
 }
 
 void ChargePad::setColorSensorLED( bool trueForOn )
 {
   (trueForOn) ? colorSensor->ledOn() : colorSensor->ledOff();
+  ledState = trueForOn;
 }
 
 void ChargePad::setPadState( bool trueForOn )

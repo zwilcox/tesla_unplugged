@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <SoftADJDS311.h>
 
 namespace Utilities
 {
@@ -9,6 +10,6 @@ namespace Utilities
   int get_free_memory( void );
   
   void floatToStr( float val, char * str );
- 
+  void zeroColor(RGBC &color);
 };
 

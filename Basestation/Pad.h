@@ -42,4 +42,6 @@ class ChargePad
     bool               padState;
     voltage_reader   *  voltageSensor;
     ACS712          *  currentSensor;
+    
+    bool ledState;
 };

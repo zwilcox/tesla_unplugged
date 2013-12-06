@@ -5,6 +5,22 @@
 #include "AuthorizedCar.h"
 #include "Utilities.h"
 
+
+//TEMPORARY FUNCTION REMOVE OR MOVE TO UTILITES AND REMOVE FROM PACKETPROCESSOR.CPP
+static void printColorString(PadManager::tPadID pad, RGBC color)
+{
+  
+  char colorStr[22];
+  colorStr[21] = 0;
+
+  PadManager::setStrToPadID(pad,colorStr);
+  sprintf(&colorStr[3],"R%04d G%04d B%04d ", color.red, color.green, color.blue);
+  SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendColor, colorStr );
+
+}
+
+
+
 /**
  *  AuthorizedCar is a list of all the cars that have been registered and are authorized to charge.
  */
@@ -20,6 +36,7 @@ static bool isPad2InSession;
 static bool isPad3InSession;
 
 static void CancelChargeSessions();
+static void EndChargeSession(ChargeSession * sessionToEnd );
 static AuthorizedCar * getCarFromChargeSession(ChargeSession * session);
 static ChargeSession * findChargeSessionByAddress(uint16_t address);
 
@@ -109,31 +126,11 @@ namespace ChargeManager
       
       if(!authorized)
       {
-        char payload[10];
-        payload[9] = 0;
+
+        EndChargeSession(sessionToUpdate);
+        printColorString(sessionToUpdate->chargePad, color);
         
-        Serial.print(sessionCar->vID);
-        Serial.println(" no longer detected on charge pad. Session over.");
-        PadManager::setPadState(sessionToUpdate->chargePad, false);
-        
-        switch(sessionToUpdate->chargePad)
-        {
-          case PadManager::Pad1:
-            isPad1InSession = false;
-            break;
-          case PadManager::Pad2:
-            isPad2InSession = false;
-            break;
-          case PadManager::Pad3:
-            isPad3InSession = false;
-            break;
-        }
-                
         iterator.removeCurrent(); //remove it from the list..
-        
-        setStrToPadID(sessionToUpdate->chargePad,payload);
-        sprintf(&payload[3],"%04X ", sessionCar->vID);
-        SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeEnd, payload);
         
         delete sessionToUpdate; //delete charge session.
        
@@ -174,8 +171,7 @@ namespace ChargeManager
       char payload[10];
       payload[9] = 0;
       carToCheck = iterator.current();
-      Serial.println(carToCheck->vID);
-      
+
       if(carToCheck->isInChargeSession || !carToCheck->isRegistrationComplete())
       {
         continue;
@@ -185,7 +181,6 @@ namespace ChargeManager
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad1,p1ColorRead)) 
         { 
-          Serial.println("  Starting charge session on pad1");
           //create new charge session
           ChargeSession * newSession = new ChargeSession(PadManager::Pad1, carToCheck);
           ChargeSessionList.insert(newSession);
@@ -196,6 +191,8 @@ namespace ChargeManager
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
           
+          printColorString(newSession->chargePad,p1ColorRead);
+          
           continue;
         }
       }
@@ -203,8 +200,6 @@ namespace ChargeManager
       {  
         if (carToCheck->isColorAuthorized(PadManager::Pad2,p2ColorRead)) 
         {
-          Serial.print(carToCheck->vID);
-          Serial.println("  Starting charge session on pad2");
           ChargeSession * newSession = new ChargeSession(PadManager::Pad2, carToCheck);
           ChargeSessionList.insert(newSession);
           isPad2InSession = true;
@@ -214,6 +209,8 @@ namespace ChargeManager
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
           
+          printColorString(newSession->chargePad,p2ColorRead);
+          
           continue;
         }
       }
@@ -221,8 +218,7 @@ namespace ChargeManager
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad3,p3ColorRead)) 
         {
-          Serial.print(carToCheck->vID);
-          Serial.println("  Starting charge session on pad3");
+          
           ChargeSession * newSession = new ChargeSession(PadManager::Pad3, carToCheck);
           ChargeSessionList.insert(newSession);
           isPad3InSession = true;
@@ -232,11 +228,12 @@ namespace ChargeManager
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
           
+          printColorString(newSession->chargePad,p3ColorRead);
+          
           continue;
         }
       }
-      
-    }while(iterator.moveNext() && (!isPad1InSession || !isPad2InSession || !isPad3InSession ));
+    }while(iterator.moveNext() && (!isPad1InSession || !isPad2InSession || !isPad3InSession )); //while lis is not empty and any pad is not in a session.
   }
   
   /**
@@ -327,7 +324,7 @@ void CancelChargeSessions()
     ChargeSession * toDelete = iterator.current();
     iterator.removeCurrent();
     
-    PadManager::setPadState(toDelete->chargePad, false);
+    EndChargeSession(toDelete);
       
     if(toDelete)
       delete (toDelete);
@@ -338,6 +335,32 @@ void CancelChargeSessions()
   isPad3InSession = false;
 }
 
+void EndChargeSession(ChargeSession * sessionToEnd )
+{
+  if (!sessionToEnd) return;
+  
+  char payload[10];
+  payload[9] = 0;
+
+  PadManager::setPadState(sessionToEnd->chargePad, false);
+  
+  switch(sessionToEnd->chargePad)
+  {
+    case PadManager::Pad1:
+      isPad1InSession = false;
+      break;
+    case PadManager::Pad2:
+      isPad2InSession = false;
+      break;
+    case PadManager::Pad3:
+      isPad3InSession = false;
+      break;
+  }
+  
+  setStrToPadID(sessionToEnd->chargePad,payload);
+  sprintf(&payload[3],"%04X ", sessionToEnd->vehicleID);
+  SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeEnd, payload);
+}
 
 /**
  * Given a vehicle ID, iterates the list of authorized cars and returns the charge session object.
@@ -347,14 +370,14 @@ ChargeSession * findChargeSessionByAddress(uint16_t address)
   //iterate through list
   ListIterator<ChargeSession *> it(&ChargeSessionList);
 
-  for (  ; !it.isEmpty() && it.current() != 0; it.moveNext())
+  do
   {
     //if address == car_address
-      //return car
     ChargeSession* temp =it.current();
     if(temp->vehicleID == address)
       return temp;
       
-  }
+  }while(it.moveNext());
+  
   return NULL;
 }

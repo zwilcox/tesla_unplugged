@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "PadManager.h"
 #include "Pad.h"
+#include "PacketProcessor.h"
 
 //pad1 pins
 #define CHARGEPADENABLE1  48
@@ -40,6 +41,9 @@ static ChargePad * pad1;
 static ChargePad * pad2;
 static ChargePad * pad3;
 
+static RGBC P1Ambient;
+static RGBC P2Ambient;
+static RGBC P3Ambient;
 
 namespace PadManager
 {
@@ -87,12 +91,29 @@ namespace PadManager
     {
       case Pad1:
         pad1->calibrateColorSensor();
+        do{
+          Serial.println("Waiting to read ambient:");
+          P1Ambient = pad1->readColorSensor();
+        }while (P1Ambient.red + P1Ambient.green + P1Ambient.blue < 100);//block while the box is still on the sensor,
+        delay(1000);                                                    //then wait a few sec for shadow of hand to move
+        P1Ambient = pad1->readColorSensor();                            //then take ambient light reading.
+        PacketProcessor::commandGetColor("P1 ");
         return;
       case Pad2:
         pad2->calibrateColorSensor();
+        do{
+          P2Ambient = pad2->readColorSensor();
+        }while (P2Ambient.red + P2Ambient.green + P2Ambient.blue < 100);//block while the box is still on the sensor,
+        delay(1000);                                                    //then wait a few sec for shadow of hand to move
+        P2Ambient = pad2->readColorSensor();                            //then take ambient light reading.
         return;
       case Pad3:
         pad3->calibrateColorSensor();
+        do{
+          P3Ambient = pad3->readColorSensor();
+        }while (P3Ambient.red + P3Ambient.green + P3Ambient.blue < 100);//block while the box is still on the sensor,
+        delay(1000);                                                    //then wait a few sec for shadow of hand to move
+        P3Ambient = pad3->readColorSensor();                            //then take ambient light reading.
         return;
     }
   }
@@ -183,4 +204,32 @@ namespace PadManager
     }
   }
   
+  void updateAmbientReading (tPadID pad)
+  {
+    switch(pad)
+    {
+      case Pad1:
+        P1Ambient = pad1->readColorSensor();
+        return;
+      case Pad2:
+        P2Ambient = pad2->readColorSensor();
+        return;
+      case Pad3:
+        P3Ambient = pad3->readColorSensor();
+        return;
+    }
+  }
+  
+  RGBC getAmbientColor(tPadID pad)
+  {
+    switch(pad)
+    {
+      case Pad1:
+        return P1Ambient;
+      case Pad2:
+        return P2Ambient;
+      case Pad3:
+        return P3Ambient;
+    }
+  }
 };

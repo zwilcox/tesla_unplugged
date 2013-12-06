@@ -60,23 +60,17 @@ namespace PacketProcessor
     
     if( strcmp( cmd, "P1 " ) == 0)
     {
-      PadManager::setLEDState( PadManager::Pad1, true );  //todo: pad class keeps track of LED state during calibration.
       PadManager::calibrateSensor( PadManager::Pad1 );
-      PadManager::setLEDState( PadManager::Pad1, false );  
     }
     
     else if( strcmp( cmd, "P2 " ) == 0)
     {
-      PadManager::setLEDState( PadManager::Pad2, true );  
       PadManager::calibrateSensor( PadManager::Pad2 );
-      PadManager::setLEDState( PadManager::Pad2, false );  
     }
     
     else if( strcmp( cmd, "P3 " ) == 0)
     {
-      PadManager::setLEDState( PadManager::Pad3, true );  
       PadManager::calibrateSensor( PadManager::Pad3 );
-      PadManager::setLEDState( PadManager::Pad3, false );  
     }
     
   }
@@ -278,7 +272,7 @@ namespace PacketProcessor
    */
   void commandClearList( char * pkt )
   {
-    if (pkt[0] != '0') 
+    if (pkt[0] != 0) 
     {
       Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
@@ -340,14 +334,7 @@ namespace PacketProcessor
       Serial.println("[INVALID_INBOUND_COMMAND]");
       return;
     }
-    
-    char parsedColorStr[19];
-    parsedColorStr[18] = 0;
-    
-    colorToString(color,parsedColorStr);
-    Serial.print("Read color str: ");
-    Serial.println(parsedColorStr);
- 
+
     ChargeManager::NotifyOfNewCarInfo(vID,pad,color);
   }
 }

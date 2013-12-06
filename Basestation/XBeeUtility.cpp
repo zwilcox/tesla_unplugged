@@ -143,9 +143,11 @@ namespace XBeeUtility
       }
       else
       {
-        //error. does not compute.
+        Serial.print("RX Invalid XBee Packet from: ");
+        Serial.print(address);
+        Serial.print(", :: ");
+        Serial.println(pkt->getData());
       }
-      
      /** 
       Serial.print("XBee Receive: ");
       Serial.print(pkt->getLength());
