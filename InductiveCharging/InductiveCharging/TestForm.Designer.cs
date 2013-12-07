@@ -51,6 +51,7 @@
             this.testPad3SensorLEDTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.testPad3SensorLEDOffButton = new System.Windows.Forms.Button();
             this.testPad3SensorLEDOnButton = new System.Windows.Forms.Button();
+            this.testPad3SensorCalibrateButton = new System.Windows.Forms.Button();
             this.testPad2FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.testPad2Label = new System.Windows.Forms.Label();
             this.testPad2OnOffTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -66,6 +67,7 @@
             this.testPad2SensorLEDTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.testPad2SensorLEDOffButton = new System.Windows.Forms.Button();
             this.testPad2SensorLEDOnButton = new System.Windows.Forms.Button();
+            this.testPad2SensorCalibrateButton = new System.Windows.Forms.Button();
             this.testPad1FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.testPad1Label = new System.Windows.Forms.Label();
             this.testPad1OnOffTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -81,6 +83,7 @@
             this.testPad1SensorLEDTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.testPad1SensorLEDOffButton = new System.Windows.Forms.Button();
             this.testPad1SensorLEDOnButton = new System.Windows.Forms.Button();
+            this.testPad1SensorCalibrateButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.testCar2FlowLayoutPanel = new System.Windows.Forms.Label();
@@ -103,6 +106,7 @@
             this.testCar2LEDRedFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.testCar2LEDRedLabel = new System.Windows.Forms.Label();
             this.testCar2LEDRedTextBox = new System.Windows.Forms.TextBox();
+            this.testCar2LEDSetValueButton = new System.Windows.Forms.Button();
             this.testCar1FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.testCar1Label = new System.Windows.Forms.Label();
             this.testCar1VoltageButton = new System.Windows.Forms.Button();
@@ -124,6 +128,7 @@
             this.testCar1LEDRedFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.testCar1LEDRedLabel = new System.Windows.Forms.Label();
             this.testCar1LEDRedTextBox = new System.Windows.Forms.TextBox();
+            this.testCar1LEDSetValueButton = new System.Windows.Forms.Button();
             this.testBaseTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.testBaseLabel = new System.Windows.Forms.Label();
@@ -138,11 +143,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.testFormCloseButton = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.testCar1LEDSetValueButton = new System.Windows.Forms.Button();
-            this.testCar2LEDSetValueButton = new System.Windows.Forms.Button();
-            this.testPad1SensorCalibrateButton = new System.Windows.Forms.Button();
-            this.testPad2SensorCalibrateButton = new System.Windows.Forms.Button();
-            this.testPad3SensorCalibrateButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.TestDatabaseFlowLayoutPanel.SuspendLayout();
             this.testPadsTableLayoutPanel.SuspendLayout();
@@ -223,6 +223,7 @@
             this.TestDBAddCarButton.TabIndex = 0;
             this.TestDBAddCarButton.Text = "Add Car to DB";
             this.TestDBAddCarButton.UseVisualStyleBackColor = true;
+            this.TestDBAddCarButton.Click += new System.EventHandler(this.TestDBAddCarButton_Click);
             // 
             // testDBRemoveCarButton
             // 
@@ -434,6 +435,17 @@
             this.testPad3SensorLEDOnButton.UseVisualStyleBackColor = true;
             this.testPad3SensorLEDOnButton.Click += new System.EventHandler(this.testPad3SensorLEDOnButton_Click);
             // 
+            // testPad3SensorCalibrateButton
+            // 
+            this.testPad3SensorCalibrateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.testPad3SensorCalibrateButton.Location = new System.Drawing.Point(43, 294);
+            this.testPad3SensorCalibrateButton.Name = "testPad3SensorCalibrateButton";
+            this.testPad3SensorCalibrateButton.Size = new System.Drawing.Size(75, 23);
+            this.testPad3SensorCalibrateButton.TabIndex = 14;
+            this.testPad3SensorCalibrateButton.Text = "Calibrate";
+            this.testPad3SensorCalibrateButton.UseVisualStyleBackColor = true;
+            this.testPad3SensorCalibrateButton.Click += new System.EventHandler(this.testPad3SensorCalibrateButton_Click);
+            // 
             // testPad2FlowLayoutPanel
             // 
             this.testPad2FlowLayoutPanel.Controls.Add(this.testPad2Label);
@@ -608,6 +620,17 @@
             this.testPad2SensorLEDOnButton.Text = "LED ON";
             this.testPad2SensorLEDOnButton.UseVisualStyleBackColor = true;
             this.testPad2SensorLEDOnButton.Click += new System.EventHandler(this.testPad2SensorLEDOnButton_Click);
+            // 
+            // testPad2SensorCalibrateButton
+            // 
+            this.testPad2SensorCalibrateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.testPad2SensorCalibrateButton.Location = new System.Drawing.Point(43, 294);
+            this.testPad2SensorCalibrateButton.Name = "testPad2SensorCalibrateButton";
+            this.testPad2SensorCalibrateButton.Size = new System.Drawing.Size(75, 23);
+            this.testPad2SensorCalibrateButton.TabIndex = 14;
+            this.testPad2SensorCalibrateButton.Text = "Calibrate";
+            this.testPad2SensorCalibrateButton.UseVisualStyleBackColor = true;
+            this.testPad2SensorCalibrateButton.Click += new System.EventHandler(this.testPad2SensorCalibrateButton_Click);
             // 
             // testPad1FlowLayoutPanel
             // 
@@ -784,6 +807,17 @@
             this.testPad1SensorLEDOnButton.Text = "LED ON";
             this.testPad1SensorLEDOnButton.UseVisualStyleBackColor = true;
             this.testPad1SensorLEDOnButton.Click += new System.EventHandler(this.testPad1SensorLEDOnButton_Click);
+            // 
+            // testPad1SensorCalibrateButton
+            // 
+            this.testPad1SensorCalibrateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.testPad1SensorCalibrateButton.Location = new System.Drawing.Point(43, 294);
+            this.testPad1SensorCalibrateButton.Name = "testPad1SensorCalibrateButton";
+            this.testPad1SensorCalibrateButton.Size = new System.Drawing.Size(75, 23);
+            this.testPad1SensorCalibrateButton.TabIndex = 13;
+            this.testPad1SensorCalibrateButton.Text = "Calibrate";
+            this.testPad1SensorCalibrateButton.UseVisualStyleBackColor = true;
+            this.testPad1SensorCalibrateButton.Click += new System.EventHandler(this.testPad1SensorCalibrateButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -1013,6 +1047,16 @@
             this.testCar2LEDRedTextBox.Size = new System.Drawing.Size(35, 20);
             this.testCar2LEDRedTextBox.TabIndex = 1;
             // 
+            // testCar2LEDSetValueButton
+            // 
+            this.testCar2LEDSetValueButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.testCar2LEDSetValueButton.Location = new System.Drawing.Point(47, 276);
+            this.testCar2LEDSetValueButton.Name = "testCar2LEDSetValueButton";
+            this.testCar2LEDSetValueButton.Size = new System.Drawing.Size(75, 23);
+            this.testCar2LEDSetValueButton.TabIndex = 17;
+            this.testCar2LEDSetValueButton.Text = "Set Value";
+            this.testCar2LEDSetValueButton.UseVisualStyleBackColor = true;
+            // 
             // testCar1FlowLayoutPanel
             // 
             this.testCar1FlowLayoutPanel.Controls.Add(this.testCar1Label);
@@ -1227,12 +1271,22 @@
             this.testCar1LEDRedTextBox.Size = new System.Drawing.Size(35, 20);
             this.testCar1LEDRedTextBox.TabIndex = 1;
             // 
+            // testCar1LEDSetValueButton
+            // 
+            this.testCar1LEDSetValueButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.testCar1LEDSetValueButton.Location = new System.Drawing.Point(47, 276);
+            this.testCar1LEDSetValueButton.Name = "testCar1LEDSetValueButton";
+            this.testCar1LEDSetValueButton.Size = new System.Drawing.Size(75, 23);
+            this.testCar1LEDSetValueButton.TabIndex = 16;
+            this.testCar1LEDSetValueButton.Text = "Set Value";
+            this.testCar1LEDSetValueButton.UseVisualStyleBackColor = true;
+            // 
             // testBaseTableLayoutPanel
             // 
             this.testBaseTableLayoutPanel.ColumnCount = 3;
             this.testBaseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.testBaseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
-            this.testBaseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.testBaseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.98795F));
+            this.testBaseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.87952F));
             this.testBaseTableLayoutPanel.Controls.Add(this.flowLayoutPanel2, 0, 0);
             this.testBaseTableLayoutPanel.Controls.Add(this.flowLayoutPanel3, 1, 0);
             this.testBaseTableLayoutPanel.Location = new System.Drawing.Point(357, 76);
@@ -1281,7 +1335,7 @@
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(168, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(160, 168);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(227, 168);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
             // label3
@@ -1304,14 +1358,14 @@
             this.testSerialMonitorTableLayoutPanel.Name = "testSerialMonitorTableLayoutPanel";
             this.testSerialMonitorTableLayoutPanel.RowCount = 1;
             this.testSerialMonitorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.testSerialMonitorTableLayoutPanel.Size = new System.Drawing.Size(156, 23);
+            this.testSerialMonitorTableLayoutPanel.Size = new System.Drawing.Size(215, 23);
             this.testSerialMonitorTableLayoutPanel.TabIndex = 6;
             // 
             // testSerialMonitorStopButton
             // 
             this.testSerialMonitorStopButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.testSerialMonitorStopButton.Enabled = false;
-            this.testSerialMonitorStopButton.Location = new System.Drawing.Point(91, 0);
+            this.testSerialMonitorStopButton.Location = new System.Drawing.Point(135, 0);
             this.testSerialMonitorStopButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.testSerialMonitorStopButton.Name = "testSerialMonitorStopButton";
             this.testSerialMonitorStopButton.Size = new System.Drawing.Size(52, 23);
@@ -1323,7 +1377,7 @@
             // testSerialMonitorStartButton
             // 
             this.testSerialMonitorStartButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.testSerialMonitorStartButton.Location = new System.Drawing.Point(13, 0);
+            this.testSerialMonitorStartButton.Location = new System.Drawing.Point(27, 0);
             this.testSerialMonitorStartButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.testSerialMonitorStartButton.Name = "testSerialMonitorStartButton";
             this.testSerialMonitorStartButton.Size = new System.Drawing.Size(52, 23);
@@ -1340,7 +1394,7 @@
             this.testSerialTextBox.Name = "testSerialTextBox";
             this.testSerialTextBox.ReadOnly = true;
             this.testSerialTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.testSerialTextBox.Size = new System.Drawing.Size(156, 119);
+            this.testSerialTextBox.Size = new System.Drawing.Size(215, 119);
             this.testSerialTextBox.TabIndex = 7;
             this.testSerialTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -1360,10 +1414,10 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(343, 50);
+            this.label1.Size = new System.Drawing.Size(320, 51);
             this.label1.TabIndex = 0;
             this.label1.Text = "System Testing";
             // 
@@ -1371,7 +1425,7 @@
             // 
             this.testFormCloseButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.testFormCloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.testFormCloseButton.Location = new System.Drawing.Point(399, 13);
+            this.testFormCloseButton.Location = new System.Drawing.Point(376, 14);
             this.testFormCloseButton.Margin = new System.Windows.Forms.Padding(50, 3, 3, 3);
             this.testFormCloseButton.Name = "testFormCloseButton";
             this.testFormCloseButton.Size = new System.Drawing.Size(75, 23);
@@ -1384,59 +1438,6 @@
             // 
             this.serialPort1.PortName = "COM6";
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-            // 
-            // testCar1LEDSetValueButton
-            // 
-            this.testCar1LEDSetValueButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.testCar1LEDSetValueButton.Location = new System.Drawing.Point(47, 276);
-            this.testCar1LEDSetValueButton.Name = "testCar1LEDSetValueButton";
-            this.testCar1LEDSetValueButton.Size = new System.Drawing.Size(75, 23);
-            this.testCar1LEDSetValueButton.TabIndex = 16;
-            this.testCar1LEDSetValueButton.Text = "Set Value";
-            this.testCar1LEDSetValueButton.UseVisualStyleBackColor = true;
-            // 
-            // testCar2LEDSetValueButton
-            // 
-            this.testCar2LEDSetValueButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.testCar2LEDSetValueButton.Location = new System.Drawing.Point(47, 276);
-            this.testCar2LEDSetValueButton.Name = "testCar2LEDSetValueButton";
-            this.testCar2LEDSetValueButton.Size = new System.Drawing.Size(75, 23);
-            this.testCar2LEDSetValueButton.TabIndex = 17;
-            this.testCar2LEDSetValueButton.Text = "Set Value";
-            this.testCar2LEDSetValueButton.UseVisualStyleBackColor = true;
-            // 
-            // testPad1SensorCalibrateButton
-            // 
-            this.testPad1SensorCalibrateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.testPad1SensorCalibrateButton.Location = new System.Drawing.Point(43, 294);
-            this.testPad1SensorCalibrateButton.Name = "testPad1SensorCalibrateButton";
-            this.testPad1SensorCalibrateButton.Size = new System.Drawing.Size(75, 23);
-            this.testPad1SensorCalibrateButton.TabIndex = 13;
-            this.testPad1SensorCalibrateButton.Text = "Calibrate";
-            this.testPad1SensorCalibrateButton.UseVisualStyleBackColor = true;
-            this.testPad1SensorCalibrateButton.Click += new System.EventHandler(this.testPad1SensorCalibrateButton_Click);
-            // 
-            // testPad2SensorCalibrateButton
-            // 
-            this.testPad2SensorCalibrateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.testPad2SensorCalibrateButton.Location = new System.Drawing.Point(43, 294);
-            this.testPad2SensorCalibrateButton.Name = "testPad2SensorCalibrateButton";
-            this.testPad2SensorCalibrateButton.Size = new System.Drawing.Size(75, 23);
-            this.testPad2SensorCalibrateButton.TabIndex = 14;
-            this.testPad2SensorCalibrateButton.Text = "Calibrate";
-            this.testPad2SensorCalibrateButton.UseVisualStyleBackColor = true;
-            this.testPad2SensorCalibrateButton.Click += new System.EventHandler(this.testPad2SensorCalibrateButton_Click);
-            // 
-            // testPad3SensorCalibrateButton
-            // 
-            this.testPad3SensorCalibrateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.testPad3SensorCalibrateButton.Location = new System.Drawing.Point(43, 294);
-            this.testPad3SensorCalibrateButton.Name = "testPad3SensorCalibrateButton";
-            this.testPad3SensorCalibrateButton.Size = new System.Drawing.Size(75, 23);
-            this.testPad3SensorCalibrateButton.TabIndex = 14;
-            this.testPad3SensorCalibrateButton.Text = "Calibrate";
-            this.testPad3SensorCalibrateButton.UseVisualStyleBackColor = true;
-            this.testPad3SensorCalibrateButton.Click += new System.EventHandler(this.testPad3SensorCalibrateButton_Click);
             // 
             // TestForm
             // 
@@ -1606,7 +1607,7 @@
         private System.Windows.Forms.TableLayoutPanel testSerialMonitorTableLayoutPanel;
         private System.Windows.Forms.Button testSerialMonitorStopButton;
         private System.Windows.Forms.Button testSerialMonitorStartButton;
-        private System.Windows.Forms.TextBox testSerialTextBox;
+        public System.Windows.Forms.TextBox testSerialTextBox;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button testFormCloseButton;
         private System.Windows.Forms.Button testCar2LEDSetValueButton;

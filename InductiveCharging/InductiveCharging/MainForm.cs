@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace InductiveCharging
 {
@@ -14,11 +15,15 @@ namespace InductiveCharging
     {
         public string megaComPort;
         private string[] portsList;
+        private ArrayList chargeSessions;
+        ArrayList cars;
+        DataManager dataManager;
 
         public MainForm()
         {
             InitializeComponent();
             getComPorts();
+            dataManager = new DataManager();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -29,7 +34,8 @@ namespace InductiveCharging
 
         private void systemTestsButton_Click(object sender, EventArgs e)
         {
-            TestForm tests = new TestForm();
+            // TODO: verify port is selected
+            TestForm tests = new TestForm(ref dataManager);
             tests.Show();
         }
 
@@ -57,6 +63,24 @@ namespace InductiveCharging
         {
             Properties.Settings.Default.selectedPort = portsComboBox.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            // TODO: Verify port selected
+            // TODO: Prompt to Calibrate Base Station Color Sensors
+            chargeSessions = new ArrayList();   // initialize charge sessions list
+            // TODO: populate cars list from database
+            // temp: generate list manually
+            cars.Add(new Car("car1", "1111"));
+            cars.Add(new Car("car2", "2222"));
+            cars.Add(new Car("car3", "3333"));
+            // Send list of authorized cars to Base Station
+            foreach (Car c in cars)
+            {
+                
+            }
+            
         }
     }
 }

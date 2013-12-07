@@ -13,11 +13,13 @@ namespace InductiveCharging
     public partial class TestForm : Form
     {
         string rxString;
+        DataManager manager;
 
-        public TestForm()
+        public TestForm(ref DataManager _manager)
         {
             InitializeComponent();
             serialPort1.PortName = Properties.Settings.Default.selectedPort;
+            manager = _manager;
         }
 
         private void displayText(object sender, EventArgs e)
@@ -69,7 +71,7 @@ namespace InductiveCharging
         {
             if (serialPort1.IsOpen)
             {
-                serialPort1.Close();
+                //serialPort1.Close();
                 testSerialMonitorStartButton.Enabled = true;
                 testSerialMonitorStopButton.Enabled = false;
                 testSerialTextBox.ReadOnly = true;
@@ -106,7 +108,7 @@ namespace InductiveCharging
 
         private void TestForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (serialPort1.IsOpen) serialPort1.Close();
+            //if (serialPort1.IsOpen) serialPort1.Close();
         }
 
 
@@ -324,8 +326,8 @@ namespace InductiveCharging
         {
             if (sendCommand("TC P2 1"))
             {
-                testPad1SensorLEDOnButton.Enabled = true;
-                testPad1SensorLEDOffButton.Enabled = false;
+                testPad1SensorLEDOnButton.Enabled = false;
+                testPad1SensorLEDOffButton.Enabled = true;
             }
             else
             {
@@ -455,8 +457,8 @@ namespace InductiveCharging
         {
             if (sendCommand("TC P3 1"))
             {
-                testPad1SensorLEDOnButton.Enabled = true;
-                testPad1SensorLEDOffButton.Enabled = false;
+                testPad1SensorLEDOnButton.Enabled = false;
+                testPad1SensorLEDOffButton.Enabled = true;
             }
             else
             {
@@ -496,6 +498,12 @@ namespace InductiveCharging
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result = MessageBox.Show(message, caption, buttons);
             }
+        }
+
+        private void TestDBAddCarButton_Click(object sender, EventArgs e)
+        {
+            RegisterNewCarForm regCarForm = new RegisterNewCarForm(ref manager);
+            regCarForm.Show();
         }
 
     }

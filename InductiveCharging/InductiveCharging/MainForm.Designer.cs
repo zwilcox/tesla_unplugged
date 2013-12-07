@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -135,7 +135,7 @@
             this.systemTestsButton.Name = "systemTestsButton";
             this.systemTestsButton.Size = new System.Drawing.Size(135, 36);
             this.systemTestsButton.TabIndex = 0;
-            this.systemTestsButton.Text = "System Tests";
+            this.systemTestsButton.Text = "Test Mode";
             this.systemTestsButton.UseVisualStyleBackColor = false;
             this.systemTestsButton.Click += new System.EventHandler(this.systemTestsButton_Click);
             // 
@@ -152,7 +152,7 @@
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.Location = new System.Drawing.Point(32, 29);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(130, 36);
+            this.exitButton.Size = new System.Drawing.Size(135, 36);
             this.exitButton.TabIndex = 0;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             // 
             // stopPanel
             // 
-            this.stopPanel.Controls.Add(this.stopButton);
+            this.stopPanel.Controls.Add(this.manualButton);
             this.stopPanel.Location = new System.Drawing.Point(3, 104);
             this.stopPanel.Name = "stopPanel";
             this.stopPanel.Size = new System.Drawing.Size(192, 95);
@@ -170,16 +170,16 @@
             // 
             this.stopButton.BackColor = System.Drawing.Color.Red;
             this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stopButton.Location = new System.Drawing.Point(36, 29);
+            this.stopButton.Location = new System.Drawing.Point(32, 29);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(121, 36);
+            this.stopButton.Size = new System.Drawing.Size(135, 36);
             this.stopButton.TabIndex = 0;
             this.stopButton.Text = "Stop System";
             this.stopButton.UseVisualStyleBackColor = false;
             // 
             // manualPanel
             // 
-            this.manualPanel.Controls.Add(this.manualButton);
+            this.manualPanel.Controls.Add(this.stopButton);
             this.manualPanel.Location = new System.Drawing.Point(201, 3);
             this.manualPanel.Name = "manualPanel";
             this.manualPanel.Size = new System.Drawing.Size(196, 95);
@@ -189,9 +189,9 @@
             // 
             this.manualButton.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.manualButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manualButton.Location = new System.Drawing.Point(32, 29);
+            this.manualButton.Location = new System.Drawing.Point(31, 29);
             this.manualButton.Name = "manualButton";
-            this.manualButton.Size = new System.Drawing.Size(130, 36);
+            this.manualButton.Size = new System.Drawing.Size(135, 36);
             this.manualButton.TabIndex = 0;
             this.manualButton.Text = "Manual Mode";
             this.manualButton.UseVisualStyleBackColor = false;
@@ -208,12 +208,13 @@
             // 
             this.startButton.BackColor = System.Drawing.Color.Lime;
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.Location = new System.Drawing.Point(36, 29);
+            this.startButton.Location = new System.Drawing.Point(31, 29);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(121, 36);
+            this.startButton.Size = new System.Drawing.Size(135, 36);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Start System";
             this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // flowLayoutPanel2
             // 
@@ -259,23 +260,23 @@
             // 
             // redChart
             // 
-            chartArea3.Area3DStyle.Enable3D = true;
-            chartArea3.Name = "ChartArea1";
-            this.redChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.redChart.Legends.Add(legend3);
+            chartArea2.Area3DStyle.Enable3D = true;
+            chartArea2.Name = "ChartArea1";
+            this.redChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.redChart.Legends.Add(legend2);
             this.redChart.Location = new System.Drawing.Point(3, 3);
             this.redChart.Name = "redChart";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Red Car";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Legend = "Legend1";
-            series6.Name = "Blue Car";
-            this.redChart.Series.Add(series5);
-            this.redChart.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Red Car";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Blue Car";
+            this.redChart.Series.Add(series3);
+            this.redChart.Series.Add(series4);
             this.redChart.Size = new System.Drawing.Size(619, 389);
             this.redChart.TabIndex = 0;
             this.redChart.Text = "redChart";
