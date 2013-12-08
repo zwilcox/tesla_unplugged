@@ -20,9 +20,9 @@ void printMemLeft()
 {  
   if(millis() >= nextMemPrint)
   { 
-    Serial.print("[MEM LEFT: ~");
+    Serial.print("MEM LEFT: ~");
     Serial.print(Utilities::get_free_memory());
-    Serial.print(" bytes ]");
+    Serial.print(" bytes");
     nextMemPrint = millis() + MEM_PRINT_INTERVAL;
   }
 }
