@@ -11,7 +11,7 @@ namespace InductiveCharging
     public class DataManager
     {
 
-        private SerialPort baseStationSerialPort = new SerialPort(Properties.Settings.Default.selectedPort);
+        public SerialPort baseStationSerialPort = new SerialPort(Properties.Settings.Default.selectedPort);
         string rxString;
         string command;
         TestForm testForm;
@@ -31,7 +31,7 @@ namespace InductiveCharging
         bool colorReqP3 = false;    // color request for pad 3
         bool colorCalP3 = false;    // color sensor calibrate request for pad 3
 
-        public void setTestForm(ref TestForm _testForm)
+        public void setTestForm(TestForm _testForm)
         {
             testForm = _testForm;
         }
@@ -46,28 +46,71 @@ namespace InductiveCharging
             }
         }
 
+
+        const int BUFF_SIZE = 256;
+        static char[] buff = new char[256];
+        static int bIndx = 0;
+        static bool readingPacket;
+
+
         public void baseStationSerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            rxString = baseStationSerialPort.ReadExisting();
+            int readChar = baseStationSerialPort.ReadByte();
+
+            if (readChar == '[')
+            {
+                bIndx = 0;
+                readingPacket = true;
+            }
+
+            else if (readingPacket && readChar == ']')
+            {
+                readingPacket = false;
+                buff[bIndx] = '\0';
+                processPacket(new string(buff));
+                bIndx = 0;
+            }
+
+            else if (readingPacket)
+            {
+                buff[bIndx++] = (char)readChar;
+            }
+
+            if (bIndx >= BUFF_SIZE - 1)
+            {
+                readingPacket = false;
+                bIndx = 0;
+            }
+        }
+
+        private void processPacket(string pkt)
+        {
+            rxString = pkt;
+
+            string[] args = pkt.Split(' ');
+            string cmd = args[0];
+
+            switch (cmd)
+            {
+                case "SC":
+                    //rxString = "Got a color back";
+                    break;
+                default:
+
+                    break;
+            }
+
+
             if (testForm != null)
             {
                 testForm.Invoke(new EventHandler(displayText));
             }
-
-            // parse the incoming data and do stuff with it
-            // TODO: all receive code
-
-            // split incoming string into individual sections
-            // splitString(rxString);
-
-            // parse for SendColor data
-            //if (
         }
 
         // add text to the serial monitor on the test form
         public void displayText(object sender, EventArgs e)
         {
-            testForm.testSerialTextBox.AppendText(rxString);
+            testForm.testSerialTextBox.AppendText(rxString + "\n");
         }
 
 
