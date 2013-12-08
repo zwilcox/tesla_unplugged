@@ -82,7 +82,6 @@ namespace SerialCommandPacketizer
     
     while ((readChar = Serial.read()) != -1)
     {
-     
       if( readChar == '[' )
       {
         bIndx = 0;
