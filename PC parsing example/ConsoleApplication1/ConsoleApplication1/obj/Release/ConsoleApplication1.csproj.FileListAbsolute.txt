@@ -1,0 +1,5 @@
+D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
