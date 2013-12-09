@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -41,9 +42,9 @@
             this.exitPanel = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.stopPanel = new System.Windows.Forms.Panel();
-            this.stopButton = new System.Windows.Forms.Button();
-            this.manualPanel = new System.Windows.Forms.Panel();
             this.manualButton = new System.Windows.Forms.Button();
+            this.manualPanel = new System.Windows.Forms.Panel();
+            this.stopButton = new System.Windows.Forms.Button();
             this.startPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,6 +52,7 @@
             this.portsComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.redChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.mainFlowLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -166,25 +168,6 @@
             this.stopPanel.Size = new System.Drawing.Size(192, 95);
             this.stopPanel.TabIndex = 2;
             // 
-            // stopButton
-            // 
-            this.stopButton.BackColor = System.Drawing.Color.Red;
-            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stopButton.Location = new System.Drawing.Point(32, 29);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(135, 36);
-            this.stopButton.TabIndex = 0;
-            this.stopButton.Text = "Stop System";
-            this.stopButton.UseVisualStyleBackColor = false;
-            // 
-            // manualPanel
-            // 
-            this.manualPanel.Controls.Add(this.stopButton);
-            this.manualPanel.Location = new System.Drawing.Point(201, 3);
-            this.manualPanel.Name = "manualPanel";
-            this.manualPanel.Size = new System.Drawing.Size(196, 95);
-            this.manualPanel.TabIndex = 2;
-            // 
             // manualButton
             // 
             this.manualButton.BackColor = System.Drawing.Color.DeepSkyBlue;
@@ -195,6 +178,25 @@
             this.manualButton.TabIndex = 0;
             this.manualButton.Text = "Manual Mode";
             this.manualButton.UseVisualStyleBackColor = false;
+            // 
+            // manualPanel
+            // 
+            this.manualPanel.Controls.Add(this.stopButton);
+            this.manualPanel.Location = new System.Drawing.Point(201, 3);
+            this.manualPanel.Name = "manualPanel";
+            this.manualPanel.Size = new System.Drawing.Size(196, 95);
+            this.manualPanel.TabIndex = 2;
+            // 
+            // stopButton
+            // 
+            this.stopButton.BackColor = System.Drawing.Color.Red;
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.Location = new System.Drawing.Point(32, 29);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(135, 36);
+            this.stopButton.TabIndex = 0;
+            this.stopButton.Text = "Stop System";
+            this.stopButton.UseVisualStyleBackColor = false;
             // 
             // startPanel
             // 
@@ -328,6 +330,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox portsComboBox;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 

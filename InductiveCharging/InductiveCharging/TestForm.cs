@@ -14,6 +14,10 @@ namespace InductiveCharging
     {
         string rxString;
         DataManager manager;
+        const int BUFF_SIZE = 256;
+        static char[] buff = new char[256];
+        static int bIndx = 0;
+        static bool readingPacket;
 
         public TestForm(ref DataManager _manager)
         {
@@ -27,7 +31,7 @@ namespace InductiveCharging
             testSerialTextBox.AppendText(rxString);
         }
 
-        // Send a single char as a command to the Arduino Mega via the USB serial port
+        // Send a string as a command to the Arduino Mega via the USB serial port
         private bool sendCommand(string cmd)
         {
             if (!serialPort1.IsOpen) return false;
@@ -95,11 +99,46 @@ namespace InductiveCharging
             
         }
 
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        //private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        //{
+        //    rxString = serialPort1.ReadExisting();
+        //    this.Invoke(new EventHandler(displayText));
+        //}
+
+        
+       private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            rxString = serialPort1.ReadExisting();
-            this.Invoke(new EventHandler(displayText));
+            int readChar;
+            while ((readChar = serialPort1.ReadByte()) != -1)
+            {
+                if (readChar == '[')
+                {
+                    bIndx = 0;
+                    readingPacket = true;
+                }
+
+                else if (readingPacket && readChar == ']')
+                {
+                    readingPacket = false;
+                    buff[bIndx] = '\0';
+                    processPacket(new string(buff));
+                    bIndx = 0;
+                }
+
+                else if (readingPacket)
+                {
+                    buff[bIndx++] = (char)readChar;
+                }
+
+                if (bIndx >= BUFF_SIZE - 1)
+                {
+                 readingPacket = false;
+                    bIndx = 0;
+                }
+            }
+            //this.Invoke(new EventHandler(displayText));
         }
+        
 
         private void testFormCloseButton_Click(object sender, EventArgs e)
         {
@@ -109,6 +148,27 @@ namespace InductiveCharging
         private void TestForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //if (serialPort1.IsOpen) serialPort1.Close();
+        }
+
+        // Parse through packets and call appropriate methods accordingly
+        private void processPacket(string pkt)
+        {
+            rxString = pkt;
+
+            string[] args = pkt.Split(' ');
+            string cmd = args[0];
+
+            switch (cmd)
+            {
+                case "SC":
+                    //rxString = "Got a color back";
+                    break;
+                default:
+
+                    break;
+            }
+            
+            this.Invoke(new EventHandler(displayText));
         }
 
 
