@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "ChargeSession.h"
 #define UPDATE_FREQUENCY 250
+#define AUTHORIZATION_TIMEOUT 1000
 
 ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) : 
                             chargePad(pad), vehicleID(vehicle->vID), _vehicle(vehicle)
@@ -12,7 +13,10 @@ ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) :
   padInfoUpdated = false;
   vehicleInfoUpdated = false;
   _vehicle->isInChargeSession = true;
-  nextUpdateMillis = millis() + UPDATE_FREQUENCY;
+  prevColorAuthorized = false;
+  uint32_t ms = millis();
+  nextUpdateMillis = ms + UPDATE_FREQUENCY;
+  nextAuthTimeout = ms + AUTHORIZATION_TIMEOUT;
 }
 
 ChargeSession::~ChargeSession()
@@ -96,4 +100,22 @@ bool ChargeSession::isPadInfoUpdated()
 bool ChargeSession::isVehicleInfoUpdated()
 {
   return (isvVoltageNew && isvCurrentNew);
+}
+
+void ChargeSession::updateLastAuthorizedTime()
+{
+  nextAuthTimeout = millis() + AUTHORIZATION_TIMEOUT;
+}
+
+bool ChargeSession::wasAuthorizedRecently()
+{
+  uint32_t ms = millis();
+  if (ms < nextAuthTimeout || ms < (nextAuthTimeout - AUTHORIZATION_TIMEOUT))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }

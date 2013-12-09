@@ -2,6 +2,7 @@
 #include "PadManager.h"
 #include "Pad.h"
 #include "PacketProcessor.h"
+#define AMBIENTTOLERANCE 150
 
 //pad1 pins
 #define CHARGEPADENABLE1  48
@@ -92,19 +93,17 @@ namespace PadManager
       case Pad1:
         pad1->calibrateColorSensor();
         do{
-          Serial.println("Waiting to read ambient:");
           P1Ambient = pad1->readColorSensor();
         }while (P1Ambient.red + P1Ambient.green + P1Ambient.blue < 100);//block while the box is still on the sensor,
-        delay(1000);                                                    //then wait a few sec for shadow of hand to move
+        delay(1500);                                                    //then wait a few sec for shadow of hand to move
         P1Ambient = pad1->readColorSensor();                            //then take ambient light reading.
-        PacketProcessor::commandGetColor("P1 ");
         return;
       case Pad2:
         pad2->calibrateColorSensor();
         do{
           P2Ambient = pad2->readColorSensor();
         }while (P2Ambient.red + P2Ambient.green + P2Ambient.blue < 100);//block while the box is still on the sensor,
-        delay(1000);                                                    //then wait a few sec for shadow of hand to move
+        delay(1500);                                                    //then wait a few sec for shadow of hand to move
         P2Ambient = pad2->readColorSensor();                            //then take ambient light reading.
         return;
       case Pad3:
@@ -112,7 +111,7 @@ namespace PadManager
         do{
           P3Ambient = pad3->readColorSensor();
         }while (P3Ambient.red + P3Ambient.green + P3Ambient.blue < 100);//block while the box is still on the sensor,
-        delay(1000);                                                    //then wait a few sec for shadow of hand to move
+        delay(1500);                                                    //then wait a few sec for shadow of hand to move
         P3Ambient = pad3->readColorSensor();                            //then take ambient light reading.
         return;
     }
@@ -220,16 +219,34 @@ namespace PadManager
     }
   }
   
-  RGBC getAmbientColor(tPadID pad)
-  {
+  bool isColorAmbient(tPadID pad, RGBC color)
+  { 
+    RGBC ambient;
     switch(pad)
     {
       case Pad1:
-        return P1Ambient;
+        ambient = P1Ambient;
+        break;
       case Pad2:
-        return P2Ambient;
+        ambient = P2Ambient;
+        break;
       case Pad3:
-        return P3Ambient;
+        ambient = P3Ambient;
+        break;
+    }
+    
+    if(     color.red - ambient.red     < AMBIENTTOLERANCE 
+        &&  ambient.red - color.red     < AMBIENTTOLERANCE 
+        &&  color.green - ambient.green < AMBIENTTOLERANCE 
+        &&  ambient.green - color.green < AMBIENTTOLERANCE
+        &&  color.blue - ambient.blue   < AMBIENTTOLERANCE 
+        && ambient.blue - color.blue    < AMBIENTTOLERANCE )
+    {
+      return true;
+    }
+    else
+    {
+      return false;
     }
   }
 };

@@ -20,7 +20,7 @@ class AuthorizedCar
   
   private:
     void updateRegistrationStatus();
-    bool colorIsNear(RGBC authorizedColor, RGBC color2, RGBC ambientColor);
+    bool colorIsNear(RGBC authorizedColor, RGBC color2);
     bool getAuthStr(RGBC color, char * str);
     
     RGBC Pad1AuthorizedColor;

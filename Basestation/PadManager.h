@@ -27,6 +27,7 @@ namespace PadManager
   float getPadCurrent ( tPadID pad );
   void setStrToPadID(tPadID pad, char * str );
   void updateAmbientReading (tPadID pad);
-  RGBC getAmbientColor(tPadID pad);
+  bool isColorAmbient(tPadID pad, RGBC color);
+  
 };
 

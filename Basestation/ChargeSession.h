@@ -11,7 +11,11 @@ class ChargeSession
 
     uint16_t vehicleID;
     PadManager::tPadID chargePad;    
-
+    bool prevColorAuthorized;
+    
+    void updateLastAuthorizedTime();
+    bool wasAuthorizedRecently();
+    
     void updateVehicleVoltage(float v);
     void updateVehicleCurrent(float c);
     
@@ -38,12 +42,13 @@ class ChargeSession
     bool isvCurrentNew;
     bool isvVoltageNew;
     bool vehicleInfoUpdated;    
-
+    
     float pCurrent;
     float pVoltage;
     bool ispCurrentNew;
     bool ispVoltageNew;
     bool padInfoUpdated;
     
+    uint32_t nextAuthTimeout;
     uint32_t nextUpdateMillis;
 };

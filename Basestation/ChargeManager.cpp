@@ -5,22 +5,6 @@
 #include "AuthorizedCar.h"
 #include "Utilities.h"
 
-
-//TEMPORARY FUNCTION REMOVE OR MOVE TO UTILITES AND REMOVE FROM PACKETPROCESSOR.CPP
-static void printColorString(PadManager::tPadID pad, RGBC color)
-{
-  
-  char colorStr[22];
-  colorStr[21] = 0;
-
-  PadManager::setStrToPadID(pad,colorStr);
-  sprintf(&colorStr[3],"R%04d G%04d B%04d ", color.red, color.green, color.blue);
-  SerialCommandPacketizer::sendOutboundPacket( SerialCommandPacketizer::SendColor, colorStr );
-
-}
-
-
-
 /**
  *  AuthorizedCar is a list of all the cars that have been registered and are authorized to charge.
  */
@@ -122,19 +106,24 @@ namespace ChargeManager
       
       AuthorizedCar * sessionCar = sessionToUpdate->getVehicleRef();
       RGBC color = PadManager::readColorSensor(sessionToUpdate->chargePad);
-      bool authorized = sessionCar->isColorAuthorized(sessionToUpdate->chargePad,color);
-      
-      if(!authorized)
-      {
+      bool newAuth = sessionCar->isColorAuthorized(sessionToUpdate->chargePad,color);
 
+      if (newAuth)
+          sessionToUpdate->updateLastAuthorizedTime();
+            
+      if((!sessionToUpdate->prevColorAuthorized && PadManager::isColorAmbient(sessionToUpdate->chargePad, color)) || !sessionToUpdate->wasAuthorizedRecently()) //if previous color was invalid and then the light returns to ambient, remove session.
+      {
         EndChargeSession(sessionToUpdate);
-        printColorString(sessionToUpdate->chargePad, color);
-        
+                
         iterator.removeCurrent(); //remove it from the list..
         
         delete sessionToUpdate; //delete charge session.
        
         continue; //keep looking at list objects, if there are any
+      }
+      else
+      {
+        sessionToUpdate->prevColorAuthorized = newAuth;
       }
 
       if(!sessionToUpdate->isPadInfoUpdated())
@@ -154,6 +143,7 @@ namespace ChargeManager
   /**
    * Reads colors from each pad and checks them against each car to detect if an authorized car is on a pad.
    * If an authorized car is on a pad, this function creates a new charge session and adds it to the list.
+   * This function only handles creating new charge sessions.
    */
   void checkForNewChargeSessions()
   {
@@ -163,6 +153,11 @@ namespace ChargeManager
     RGBC p2ColorRead = PadManager::readColorSensor(PadManager::Pad2);
     RGBC p3ColorRead = PadManager::readColorSensor(PadManager::Pad3);
 
+    bool shouldCheckPad1ForNewSession = !PadManager::isColorAmbient(PadManager::Pad1,p1ColorRead); //do not check for new session if color read is ambient.
+    bool shouldCheckPad2ForNewSession = !PadManager::isColorAmbient(PadManager::Pad2,p2ColorRead);
+    bool shouldCheckPad3ForNewSession = !PadManager::isColorAmbient(PadManager::Pad3,p3ColorRead);
+   
+    
     ListIterator<AuthorizedCar *> iterator(&AuthorizedCarList);
     
     AuthorizedCar * carToCheck;
@@ -177,58 +172,55 @@ namespace ChargeManager
         continue;
       }      
       
-      if (!isPad1InSession)
+      if (!isPad1InSession && shouldCheckPad1ForNewSession)
       {
-        if (carToCheck->isColorAuthorized(PadManager::Pad1,p1ColorRead)) 
+        if (carToCheck->isColorAuthorized(PadManager::Pad1, p1ColorRead)) 
         { 
           //create new charge session
           ChargeSession * newSession = new ChargeSession(PadManager::Pad1, carToCheck);
           ChargeSessionList.insert(newSession);
+          newSession->prevColorAuthorized = true;
           isPad1InSession = true;
           PadManager::setPadState(PadManager::Pad1,true);
           
           PadManager::setStrToPadID(newSession->chargePad,payload);
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
-          
-          printColorString(newSession->chargePad,p1ColorRead);
-          
+                    
           continue;
         }
       }
-      if (!isPad2InSession)
+      if (!isPad2InSession && shouldCheckPad2ForNewSession)
       {  
-        if (carToCheck->isColorAuthorized(PadManager::Pad2,p2ColorRead)) 
+        if (carToCheck->isColorAuthorized(PadManager::Pad2, p2ColorRead)) 
         {
           ChargeSession * newSession = new ChargeSession(PadManager::Pad2, carToCheck);
           ChargeSessionList.insert(newSession);
+          newSession->prevColorAuthorized = true;
           isPad2InSession = true;
           PadManager::setPadState(PadManager::Pad2,true);
           
           PadManager::setStrToPadID(newSession->chargePad,payload);
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
-          
-          printColorString(newSession->chargePad,p2ColorRead);
-          
+                    
           continue;
         }
       }
-      if (!isPad3InSession)
+      if (!isPad3InSession && shouldCheckPad3ForNewSession)
       {
-        if (carToCheck->isColorAuthorized(PadManager::Pad3,p3ColorRead)) 
+        if (carToCheck->isColorAuthorized(PadManager::Pad3, p3ColorRead)) 
         {
           
           ChargeSession * newSession = new ChargeSession(PadManager::Pad3, carToCheck);
           ChargeSessionList.insert(newSession);
+          newSession->prevColorAuthorized = true;
           isPad3InSession = true;
           PadManager::setPadState(PadManager::Pad3,true);
           
           PadManager::setStrToPadID(newSession->chargePad,payload);
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
-          
-          printColorString(newSession->chargePad,p3ColorRead);
           
           continue;
         }

@@ -170,7 +170,7 @@ namespace SerialCommandPacketizer
     Serial.print(cmdStr);
     Serial.print(" ");
     Serial.print(payload);
-    Serial.print(']'); 
+    Serial.println(']'); 
   }
   
 }

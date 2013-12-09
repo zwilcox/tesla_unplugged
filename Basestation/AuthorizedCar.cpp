@@ -1,7 +1,8 @@
 #include "AuthorizedCar.h"
-#define AMBIENTTOLERANCE 125
-#define MIN_THRESHOLD 80
 #include "Utilities.h"
+
+
+bool colorIsSaturated(RGBC color);
 
 AuthorizedCar::AuthorizedCar(uint16_t vehicleID) : vID(vehicleID)
 {
@@ -23,18 +24,18 @@ AuthorizedCar::~AuthorizedCar()
 
 bool AuthorizedCar::isColorAuthorized(PadManager::tPadID chargePad, RGBC color)
 {
-      switch(chargePad)
-      {
-        case PadManager::Pad1:
-          return colorIsNear(Pad1AuthorizedColor,color,PadManager::getAmbientColor(chargePad));
-          break;
-        case PadManager::Pad2:
-          return colorIsNear(Pad2AuthorizedColor,color,PadManager::getAmbientColor(chargePad));
-          break;
-        case PadManager::Pad3:
-          return colorIsNear(Pad3AuthorizedColor,color,PadManager::getAmbientColor(chargePad));
-          break;
-      }  
+  switch(chargePad)
+  {
+    case PadManager::Pad1:
+      return colorIsNear(Pad1AuthorizedColor,color);
+      break;
+    case PadManager::Pad2:
+      return colorIsNear(Pad2AuthorizedColor,color);
+      break;
+    case PadManager::Pad3:
+      return colorIsNear(Pad3AuthorizedColor,color);
+      break;
+  }  
 }
 
 void AuthorizedCar::setAuthorizedColor(RGBC color, PadManager::tPadID pad)
@@ -79,24 +80,12 @@ bool AuthorizedCar::isRegistrationComplete()
   return _registrationComplete;
 }
 
-bool AuthorizedCar::colorIsNear(RGBC authorizedColor, RGBC color2, RGBC ambientColor)
+bool AuthorizedCar::colorIsNear(RGBC authorizedColor, RGBC color2)
 { 
-  uint16_t prevMag = magnitude;
   magnitude = color2.red + color2.green + color2.blue;
 
   if (( magnitude ) < 300) //color not bright enough to be a car LED..
     return false;
-  
-  if (  !isInChargeSession                              //color is ambient reading, not this car's authorized color...
-        && color2.red - ambientColor.red < AMBIENTTOLERANCE 
-        && ambientColor.red - color2.red < AMBIENTTOLERANCE 
-        && color2.green - ambientColor.green < AMBIENTTOLERANCE 
-        && ambientColor.green - color2.green < AMBIENTTOLERANCE
-        && color2.blue - ambientColor.blue < AMBIENTTOLERANCE 
-        && ambientColor.blue - color2.blue < AMBIENTTOLERANCE )
-  {
-    return false;
-  }
   
   char AUTH[4];
   getAuthStr(authorizedColor,AUTH);
@@ -104,27 +93,12 @@ bool AuthorizedCar::colorIsNear(RGBC authorizedColor, RGBC color2, RGBC ambientC
   char CHECK[4];
   getAuthStr(color2,CHECK);
   
-  
   if (!strcmp(AUTH, CHECK))
     return true;
-  else if (isInChargeSession)  //else, if in charge session, check that the 1's match 
-  {                          //(sensor could be saturated, but still has car on it)
-    if(!strcmp(AUTH,"111") && prevMag < 1500)
-      return false; //if prev magnitude was less than 1500 but new reading is 111, assume the car left and now ambient light maxes sensor...
-    else if(AUTH[0] == '1' && CHECK[0] != '1')
-      return false;
-    else if(AUTH[1] == '1' && CHECK[1] != '1')
-      return false;
-    else if(AUTH[2] == '1' && CHECK[1] != '1')
-      return false;
-    else if(!strcmp(AUTH,"000"))
-      return false;
-    else
-      return true;
-  }
+  else if (colorIsSaturated(color2) && isInChargeSession) //in charge session and sensor maxes out...
+    return true;
   else
     return false;
-
 
 }
 
@@ -141,3 +115,10 @@ bool AuthorizedCar::getAuthStr(RGBC color, char * str)
   str[3] = 0;
 }
 
+bool colorIsSaturated(RGBC color)
+{
+  if (color.red > 930 && color.green > 930 && color.blue > 930)
+    return true;
+   
+  return false;
+}
