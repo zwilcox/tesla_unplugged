@@ -8,8 +8,8 @@ namespace InductiveCharging
 {
     public class Car
     {
-        string carID { get; set; }
-        string radioID { get; set; }
+        public string carID { get; set; }
+        public string radioID { get; set; }
         public PadColor pad1Color { get; set; }
         public PadColor pad2Color { get; set; }
         public PadColor pad3Color { get; set; }
@@ -18,6 +18,10 @@ namespace InductiveCharging
         {
             carID = _carID;
             radioID = _radioID;
+            pad1Color = new PadColor();
+            pad2Color = new PadColor();
+            pad3Color = new PadColor();
+
         }
     }
 }

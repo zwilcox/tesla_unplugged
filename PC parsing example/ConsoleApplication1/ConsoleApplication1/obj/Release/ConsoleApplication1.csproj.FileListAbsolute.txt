@@ -3,3 +3,6 @@ D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\Conso
 D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
 D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
 D:\Documents\Github\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
+C:\Users\biomed\Documents\GitHub\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+C:\Users\biomed\Documents\GitHub\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+C:\Users\biomed\Documents\GitHub\tesla_unplugged\PC parsing example\ConsoleApplication1\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb

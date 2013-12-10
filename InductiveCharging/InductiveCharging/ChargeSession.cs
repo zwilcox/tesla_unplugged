@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace InductiveCharging
 {
+
+    // Keeps track of ongoing charge sessions information
     class ChargeSession
     {
 
-        private string carID { get; set; }
-        private string sessionID { get; set; }
-        private string padID { get; set; }
-        private DateTime chargeBeginTime { get; set;}
+        public string radioID { get; set; }
+        public string sessionID { get; set; }
+        public string padID { get; set; }
+        public DateTime chargeBeginTime { get; set;}
 
     }
 }

@@ -46,6 +46,7 @@ namespace InductiveCharging
             else
             {
                 TestForm tests = new TestForm(ref dataManager);
+                dataManager.setTestForm(tests);
                 tests.Show();
             }
         }

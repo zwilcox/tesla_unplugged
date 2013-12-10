@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TestDatabaseFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -142,7 +141,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.testFormCloseButton = new System.Windows.Forms.Button();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.TestDatabaseFlowLayoutPanel.SuspendLayout();
             this.testPadsTableLayoutPanel.SuspendLayout();
@@ -602,6 +600,7 @@
             // testPad2SensorLEDOffButton
             // 
             this.testPad2SensorLEDOffButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.testPad2SensorLEDOffButton.Enabled = false;
             this.testPad2SensorLEDOffButton.Location = new System.Drawing.Point(86, 3);
             this.testPad2SensorLEDOffButton.Name = "testPad2SensorLEDOffButton";
             this.testPad2SensorLEDOffButton.Size = new System.Drawing.Size(62, 23);
@@ -1434,11 +1433,6 @@
             this.testFormCloseButton.UseVisualStyleBackColor = true;
             this.testFormCloseButton.Click += new System.EventHandler(this.testFormCloseButton_Click);
             // 
-            // serialPort1
-            // 
-            this.serialPort1.PortName = "COM6";
-            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1608,7 +1602,6 @@
         private System.Windows.Forms.Button testSerialMonitorStopButton;
         private System.Windows.Forms.Button testSerialMonitorStartButton;
         public System.Windows.Forms.TextBox testSerialTextBox;
-        private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button testFormCloseButton;
         private System.Windows.Forms.Button testCar2LEDSetValueButton;
         private System.Windows.Forms.Button testCar1LEDSetValueButton;

@@ -35,10 +35,10 @@
             this.radioIDLabel = new System.Windows.Forms.Label();
             this.radioIDTextBox = new System.Windows.Forms.TextBox();
             this.registerPadLabel = new System.Windows.Forms.Label();
-            this.registerCarButton = new System.Windows.Forms.Button();
-            this.registerPadMessageLabel = new System.Windows.Forms.Label();
-            this.registerCarCancelButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.registerCarButton = new System.Windows.Forms.Button();
+            this.registerCarCancelButton = new System.Windows.Forms.Button();
+            this.registerPadMessageLabel = new System.Windows.Forms.Label();
             this.registerNewFlowLayoutPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -121,6 +121,16 @@
             this.registerPadLabel.Text = "Enter Vehicle ID and Radio ID and click OK.";
             this.registerPadLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flowLayoutPanel2.Controls.Add(this.registerCarButton);
+            this.flowLayoutPanel2.Controls.Add(this.registerCarCancelButton);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 116);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(191, 29);
+            this.flowLayoutPanel2.TabIndex = 6;
+            // 
             // registerCarButton
             // 
             this.registerCarButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -132,17 +142,6 @@
             this.registerCarButton.UseVisualStyleBackColor = true;
             this.registerCarButton.Click += new System.EventHandler(this.registerColorButton_Click);
             // 
-            // registerPadMessageLabel
-            // 
-            this.registerPadMessageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.registerPadMessageLabel.AutoSize = true;
-            this.registerPadMessageLabel.Location = new System.Drawing.Point(46, 158);
-            this.registerPadMessageLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.registerPadMessageLabel.Name = "registerPadMessageLabel";
-            this.registerPadMessageLabel.Size = new System.Drawing.Size(105, 13);
-            this.registerPadMessageLabel.TabIndex = 2;
-            this.registerPadMessageLabel.Text = "This is for messages.";
-            // 
             // registerCarCancelButton
             // 
             this.registerCarCancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -153,16 +152,18 @@
             this.registerCarCancelButton.TabIndex = 5;
             this.registerCarCancelButton.Text = "Cancel";
             this.registerCarCancelButton.UseVisualStyleBackColor = true;
+            this.registerCarCancelButton.Click += new System.EventHandler(this.registerCarCancelButton_Click);
             // 
-            // flowLayoutPanel2
+            // registerPadMessageLabel
             // 
-            this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flowLayoutPanel2.Controls.Add(this.registerCarButton);
-            this.flowLayoutPanel2.Controls.Add(this.registerCarCancelButton);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 116);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(191, 29);
-            this.flowLayoutPanel2.TabIndex = 6;
+            this.registerPadMessageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.registerPadMessageLabel.AutoSize = true;
+            this.registerPadMessageLabel.Location = new System.Drawing.Point(46, 158);
+            this.registerPadMessageLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.registerPadMessageLabel.Name = "registerPadMessageLabel";
+            this.registerPadMessageLabel.Size = new System.Drawing.Size(105, 13);
+            this.registerPadMessageLabel.TabIndex = 2;
+            this.registerPadMessageLabel.Text = "This is for messages.";
             // 
             // RegisterNewCarForm
             // 

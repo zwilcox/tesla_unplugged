@@ -13,7 +13,7 @@ namespace InductiveCharging
     public partial class TestForm : Form
     {
         string rxString;
-        DataManager manager;
+        DataManager dataManager;
         const int BUFF_SIZE = 256;
         static char[] buff = new char[256];
         static int bIndx = 0;
@@ -22,8 +22,8 @@ namespace InductiveCharging
         public TestForm(ref DataManager _manager)
         {
             InitializeComponent();
-            serialPort1.PortName = Properties.Settings.Default.selectedPort;
-            manager = _manager;
+            //serialPort1.PortName = Properties.Settings.Default.selectedPort;
+            dataManager = _manager;
         }
 
         private void displayText(object sender, EventArgs e)
@@ -34,12 +34,11 @@ namespace InductiveCharging
         // Send a string as a command to the Arduino Mega via the USB serial port
         private bool sendCommand(string cmd)
         {
-            if (!serialPort1.IsOpen) return false;
+            //if (!serialPort1.IsOpen) return false;  // for use without the DataManager
+            if (!dataManager.sendCommand(cmd)) return false;
             else
             {
-                //char[] buff = new char[1];
-                //buff[0] = cmd;
-                serialPort1.Write("[" + cmd + " ]");
+                // serialPort1.Write("[" + cmd + " ]"); // for use without the DataManager
                 testSerialTextBox.AppendText("tx: [" + cmd + " ]\n");
                 return true;
             }
@@ -59,11 +58,9 @@ namespace InductiveCharging
 
         private void testSerialMonitorStartButton_Click(object sender, EventArgs e)
         {
-//            serialPort1.PortName = "COM6";
-//            serialPort1.BaudRate = 9600;
-
-            serialPort1.Open();
-            if (serialPort1.IsOpen)
+//            
+            // if (serialPort1.IsOpen)  // for use without DataManager
+            if (dataManager.baseStationSerialPort.IsOpen)
             {
                 testSerialMonitorStartButton.Enabled = false;
                 testSerialMonitorStopButton.Enabled = true;
@@ -73,7 +70,8 @@ namespace InductiveCharging
 
         private void testSerialMonitorStopButton_Click(object sender, EventArgs e)
         {
-            if (serialPort1.IsOpen)
+            // if (serialPort1.IsOpen)  // for use without DataManager
+            if (dataManager.baseStationSerialPort.IsOpen)
             {
                 //serialPort1.Close();
                 testSerialMonitorStartButton.Enabled = true;
@@ -106,38 +104,38 @@ namespace InductiveCharging
         //}
 
         
-       private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            int readChar;
-            while ((readChar = serialPort1.ReadByte()) != -1)
-            {
-                if (readChar == '[')
-                {
-                    bIndx = 0;
-                    readingPacket = true;
-                }
+       //private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+       // {
+       //     int readChar;
+       //     while ((readChar = serialPort1.ReadByte()) != -1)
+       //     {
+       //         if (readChar == '[')
+       //         {
+       //             bIndx = 0;
+       //             readingPacket = true;
+       //         }
 
-                else if (readingPacket && readChar == ']')
-                {
-                    readingPacket = false;
-                    buff[bIndx] = '\0';
-                    processPacket(new string(buff));
-                    bIndx = 0;
-                }
+       //         else if (readingPacket && readChar == ']')
+       //         {
+       //             readingPacket = false;
+       //             buff[bIndx] = '\0';
+       //             processPacket(new string(buff));
+       //             bIndx = 0;
+       //         }
 
-                else if (readingPacket)
-                {
-                    buff[bIndx++] = (char)readChar;
-                }
+       //         else if (readingPacket)
+       //         {
+       //             buff[bIndx++] = (char)readChar;
+       //         }
 
-                if (bIndx >= BUFF_SIZE - 1)
-                {
-                 readingPacket = false;
-                    bIndx = 0;
-                }
-            }
-            //this.Invoke(new EventHandler(displayText));
-        }
+       //         if (bIndx >= BUFF_SIZE - 1)
+       //         {
+       //          readingPacket = false;
+       //             bIndx = 0;
+       //         }
+       //     }
+       //     //this.Invoke(new EventHandler(displayText));
+       // }
         
 
         private void testFormCloseButton_Click(object sender, EventArgs e)
@@ -386,8 +384,8 @@ namespace InductiveCharging
         {
             if (sendCommand("TC P2 1"))
             {
-                testPad1SensorLEDOnButton.Enabled = false;
-                testPad1SensorLEDOffButton.Enabled = true;
+                testPad2SensorLEDOnButton.Enabled = false;
+                testPad2SensorLEDOffButton.Enabled = true;
             }
             else
             {
@@ -402,8 +400,8 @@ namespace InductiveCharging
         {
             if (sendCommand("TC P2 0"))
             {
-                testPad1SensorLEDOnButton.Enabled = true;
-                testPad1SensorLEDOffButton.Enabled = false;
+                testPad2SensorLEDOnButton.Enabled = true;
+                testPad2SensorLEDOffButton.Enabled = false;
             }
             else
             {
@@ -517,8 +515,8 @@ namespace InductiveCharging
         {
             if (sendCommand("TC P3 1"))
             {
-                testPad1SensorLEDOnButton.Enabled = false;
-                testPad1SensorLEDOffButton.Enabled = true;
+                testPad3SensorLEDOnButton.Enabled = false;
+                testPad3SensorLEDOffButton.Enabled = true;
             }
             else
             {
@@ -533,8 +531,8 @@ namespace InductiveCharging
         {
             if (sendCommand("TC P3 0"))
             {
-                testPad1SensorLEDOnButton.Enabled = true;
-                testPad1SensorLEDOffButton.Enabled = false;
+                testPad3SensorLEDOnButton.Enabled = true;
+                testPad3SensorLEDOffButton.Enabled = false;
             }
             else
             {
@@ -562,7 +560,7 @@ namespace InductiveCharging
 
         private void TestDBAddCarButton_Click(object sender, EventArgs e)
         {
-            RegisterNewCarForm regCarForm = new RegisterNewCarForm(ref manager);
+            RegisterNewCarForm regCarForm = new RegisterNewCarForm(ref dataManager);
             regCarForm.Show();
         }
 

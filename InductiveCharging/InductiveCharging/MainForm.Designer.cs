@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -53,6 +53,16 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.redChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.inductiveDataSet1 = new InductiveCharging.INDUCTIVEDataSet();
+            this.carsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.CarsTableAdapter();
+            this.chargeSessionsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.ChargeSessionsTableAdapter();
+            this.pad1AmpsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad1AmpsTableAdapter();
+            this.pad1VoltsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad1VoltsTableAdapter();
+            this.pad2AmpsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad2AmpsTableAdapter();
+            this.pad2VoltsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad2VoltsTableAdapter();
+            this.pad3AmpsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter();
+            this.pad3VoltsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter();
+            this.tableAdapterManager1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.TableAdapterManager();
             this.mainFlowLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -64,6 +74,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.redChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inductiveDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainFlowLayoutPanel
@@ -262,26 +273,76 @@
             // 
             // redChart
             // 
-            chartArea2.Area3DStyle.Enable3D = true;
-            chartArea2.Name = "ChartArea1";
-            this.redChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.redChart.Legends.Add(legend2);
+            chartArea4.Area3DStyle.Enable3D = true;
+            chartArea4.Name = "ChartArea1";
+            this.redChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.redChart.Legends.Add(legend4);
             this.redChart.Location = new System.Drawing.Point(3, 3);
             this.redChart.Name = "redChart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Red Car";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "Blue Car";
-            this.redChart.Series.Add(series3);
-            this.redChart.Series.Add(series4);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Legend = "Legend1";
+            series7.Name = "Red Car";
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "Blue Car";
+            this.redChart.Series.Add(series7);
+            this.redChart.Series.Add(series8);
             this.redChart.Size = new System.Drawing.Size(619, 389);
             this.redChart.TabIndex = 0;
             this.redChart.Text = "redChart";
+            // 
+            // inductiveDataSet1
+            // 
+            this.inductiveDataSet1.DataSetName = "INDUCTIVEDataSet";
+            this.inductiveDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // carsTableAdapter1
+            // 
+            this.carsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // chargeSessionsTableAdapter1
+            // 
+            this.chargeSessionsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pad1AmpsTableAdapter1
+            // 
+            this.pad1AmpsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pad1VoltsTableAdapter1
+            // 
+            this.pad1VoltsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pad2AmpsTableAdapter1
+            // 
+            this.pad2AmpsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pad2VoltsTableAdapter1
+            // 
+            this.pad2VoltsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pad3AmpsTableAdapter1
+            // 
+            this.pad3AmpsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pad3VoltsTableAdapter1
+            // 
+            this.pad3VoltsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager1
+            // 
+            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.CarsTableAdapter = null;
+            this.tableAdapterManager1.ChargeSessionsTableAdapter = null;
+            this.tableAdapterManager1.pad1AmpsTableAdapter = null;
+            this.tableAdapterManager1.pad1VoltsTableAdapter = this.pad1VoltsTableAdapter1;
+            this.tableAdapterManager1.pad2AmpsTableAdapter = this.pad2AmpsTableAdapter1;
+            this.tableAdapterManager1.pad2VoltsTableAdapter = this.pad2VoltsTableAdapter1;
+            this.tableAdapterManager1.pad3AmpsTableAdapter = this.pad3AmpsTableAdapter1;
+            this.tableAdapterManager1.pad3VoltsTableAdapter = this.pad3VoltsTableAdapter1;
+            this.tableAdapterManager1.UpdateOrder = InductiveCharging.INDUCTIVEDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // MainForm
             // 
@@ -305,6 +366,7 @@
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.redChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inductiveDataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -331,6 +393,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox portsComboBox;
         private System.IO.Ports.SerialPort serialPort1;
+        private INDUCTIVEDataSet inductiveDataSet1;
+        private INDUCTIVEDataSetTableAdapters.CarsTableAdapter carsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.ChargeSessionsTableAdapter chargeSessionsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.pad1AmpsTableAdapter pad1AmpsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.pad1VoltsTableAdapter pad1VoltsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.pad2AmpsTableAdapter pad2AmpsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.pad2VoltsTableAdapter pad2VoltsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter pad3AmpsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter pad3VoltsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
     }
 }
 
