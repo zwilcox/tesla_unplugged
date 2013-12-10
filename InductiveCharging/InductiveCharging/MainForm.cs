@@ -24,8 +24,7 @@ namespace InductiveCharging
         {
             InitializeComponent();
             getComPorts();
-            dataManager = new DataManager();
-            
+            dataManager = new DataManager(inductiveDataSet1, tableAdapterManager1);
         }
 
         // Exit the system and close the application
@@ -38,6 +37,14 @@ namespace InductiveCharging
         // Start the System in Test Mode
         private void systemTestsButton_Click(object sender, EventArgs e)
         {
+            if (tableAdapterManager1.CarsTableAdapter == null)
+            {
+                if (MessageBox.Show("Could not connect to database. Please check connection and restart program.", "Error", MessageBoxButtons.OK) == System.Windows.Forms.DialogResult.OK)
+                {
+                    return;
+                }
+            }
+
             if (Properties.Settings.Default.selectedPort == "")
             {
                 MessageBox.Show("Please select a serial port for the Base Station.", "Port Selection Error", MessageBoxButtons.OK);
@@ -85,7 +92,14 @@ namespace InductiveCharging
         // Start the main automated system
         private void startButton_Click(object sender, EventArgs e)
         {
-            
+            if (tableAdapterManager1.CarsTableAdapter == null)
+            {
+                if (MessageBox.Show("Could not connect to database. Please check connection and restart program.", "Error", MessageBoxButtons.OK) == System.Windows.Forms.DialogResult.OK)
+                {
+                    return;
+                }
+            }
+
             if (Properties.Settings.Default.selectedPort == "")
             {
                 MessageBox.Show("Please select a serial port for the Base Station.", "Port Selection Error", MessageBoxButtons.OK);

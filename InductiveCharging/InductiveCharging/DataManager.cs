@@ -47,7 +47,17 @@ namespace InductiveCharging
         public delegate void ColorReceivedEventHandler();
         public event ColorReceivedEventHandler colorChangedEvent;
 
-        public DataManager()
+        private INDUCTIVEDataSetTableAdapters.CarsTableAdapter carsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.ChargeSessionsTableAdapter chargeSessionsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.pad1AmpsTableAdapter pad1AmpsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.pad1VoltsTableAdapter pad1VoltsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.pad2AmpsTableAdapter pad2AmpsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.pad2VoltsTableAdapter pad2VoltsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter pad3AmpsTableAdapter;
+        private INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter pad3VoltsTableAdapter;
+        private INDUCTIVEDataSet dataSet;
+
+        public DataManager(INDUCTIVEDataSet data, INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager )
         {
             //TODO: initialize authorizedVehicleIDs list
             baseStationSerialPort = new SerialPort(Properties.Settings.Default.selectedPort);
@@ -56,6 +66,17 @@ namespace InductiveCharging
                 baseStationSerialPort.Open();
             }
             else MessageBox.Show("Serial Port Error.", "Error", MessageBoxButtons.OK);
+
+            carsTableAdapter = tableAdapterManager.CarsTableAdapter;
+            chargeSessionsTableAdapter = tableAdapterManager.ChargeSessionsTableAdapter;
+
+            dataSet = data;
+            pad1AmpsTableAdapter = tableAdapterManager.pad1AmpsTableAdapter;
+            pad1VoltsTableAdapter = tableAdapterManager.pad1VoltsTableAdapter;
+            pad2AmpsTableAdapter = tableAdapterManager.pad2AmpsTableAdapter;
+            pad2VoltsTableAdapter = tableAdapterManager.pad2VoltsTableAdapter;
+            pad3AmpsTableAdapter = tableAdapterManager.pad3AmpsTableAdapter;
+            pad3VoltsTableAdapter = tableAdapterManager.pad3VoltsTableAdapter;
 
             baseStationSerialPort.DataReceived += baseStationSerialPort_DataReceived;
         }
@@ -90,8 +111,66 @@ namespace InductiveCharging
         public void carRegistrationComplete()
         {
             isRegistering = false;
-            authorizedVehicles.Add(newCar);
-            sendAuthorizedCarInfo(newCar);
+         
+            
+            //authorizedVehicles.Add(newCar);
+            
+            
+            if(addCarToDB(newCar));
+                sendAuthorizedCarInfo(newCar);
+
+            populateAuthorizedCarsList();
+        }
+
+        private bool addCarToDB(Car newCar)
+        {
+            carsTableAdapter.Insert(
+                newCar.carID,
+                DateTime.Now,
+                newCar.pad1Color.red,
+                newCar.pad1Color.green,
+                newCar.pad1Color.blue,
+                newCar.pad2Color.red,
+                newCar.pad2Color.green,
+                newCar.pad2Color.blue,
+                newCar.pad3Color.red,
+                newCar.pad3Color.green,
+                newCar.pad3Color.blue,
+                true);
+
+            try
+            {
+                carsTableAdapter.Update(dataSet);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void populateAuthorizedCarsList()
+        {
+            authorizedVehicles.Clear();
+
+            System.Data.DataTable t = carsTableAdapter.GetCars();
+            
+            foreach (System.Data.DataRow r in t.Rows)
+            {
+                Car newCar = new Car(r["carNumber"].ToString(), r["carID"].ToString());
+
+                newCar.pad1Color.red = r["pad1Red"].ToString();
+                newCar.pad1Color.green = r["pad1Green"].ToString();
+                newCar.pad1Color.blue = r["pad1Blue"].ToString();
+                newCar.pad2Color.red = r["pad2Red"].ToString();
+                newCar.pad2Color.green = r["pad2Green"].ToString();
+                newCar.pad2Color.blue = r["pad2Blue"].ToString();
+                newCar.pad3Color.red = r["pad3Red"].ToString();
+                newCar.pad3Color.green = r["pad3Green"].ToString();
+                newCar.pad3Color.blue = r["pad3Blue"].ToString();
+
+                authorizedVehicles.Add(newCar);
+            }
         }
 
         private void sendAuthorizedCarInfo(Car newCar)
