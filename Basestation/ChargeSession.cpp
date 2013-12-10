@@ -1,7 +1,8 @@
 #include <Arduino.h>
 #include "ChargeSession.h"
 #define UPDATE_FREQUENCY 250
-#define AUTHORIZATION_TIMEOUT 1000
+#define COLOR_AUTHORIZATION_TIMEOUT 1000
+#define RADIO_AUTHORIZATION_TIMEOUT 1000
 
 ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) : 
                             chargePad(pad), vehicleID(vehicle->vID), _vehicle(vehicle)
@@ -16,7 +17,8 @@ ChargeSession::ChargeSession(PadManager::tPadID pad, AuthorizedCar * vehicle) :
   prevColorAuthorized = false;
   uint32_t ms = millis();
   nextUpdateMillis = ms + UPDATE_FREQUENCY;
-  nextAuthTimeout = ms + AUTHORIZATION_TIMEOUT;
+  nextColorAuthTimeout = ms + COLOR_AUTHORIZATION_TIMEOUT;
+  nextRadioAuthTimeout = ms + RADIO_AUTHORIZATION_TIMEOUT;
 }
 
 ChargeSession::~ChargeSession()
@@ -33,12 +35,14 @@ void ChargeSession::updateVehicleVoltage(float v)
 {
   vVoltage = v;
   isvVoltageNew = true;
+  nextRadioAuthTimeout = millis() + RADIO_AUTHORIZATION_TIMEOUT;
 }
 
 void ChargeSession::updateVehicleCurrent(float c)
 {
   vCurrent = c;
   isvCurrentNew = true;
+  nextRadioAuthTimeout = millis() + RADIO_AUTHORIZATION_TIMEOUT;
 }
   
 void ChargeSession::updatePadVoltage(float v)
@@ -57,7 +61,7 @@ bool ChargeSession::shouldSendInfo()
 {
   uint32_t elapsed = millis();
   
-  if (elapsed >= nextUpdateMillis || elapsed < (nextUpdateMillis - UPDATE_FREQUENCY))
+  if (elapsed >= nextUpdateMillis)
   {
     nextUpdateMillis = elapsed + UPDATE_FREQUENCY;
     return true;
@@ -104,13 +108,13 @@ bool ChargeSession::isVehicleInfoUpdated()
 
 void ChargeSession::updateLastAuthorizedTime()
 {
-  nextAuthTimeout = millis() + AUTHORIZATION_TIMEOUT;
+  nextColorAuthTimeout = millis() + COLOR_AUTHORIZATION_TIMEOUT;
 }
 
 bool ChargeSession::wasAuthorizedRecently()
 {
   uint32_t ms = millis();
-  if (ms < nextAuthTimeout || ms < (nextAuthTimeout - AUTHORIZATION_TIMEOUT))
+  if (ms < nextColorAuthTimeout && ms < nextRadioAuthTimeout)
   {
     return true;
   }

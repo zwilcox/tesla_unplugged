@@ -49,6 +49,7 @@ class ChargeSession
     bool ispVoltageNew;
     bool padInfoUpdated;
     
-    uint32_t nextAuthTimeout;
+    uint32_t nextColorAuthTimeout;
+    uint32_t nextRadioAuthTimeout;
     uint32_t nextUpdateMillis;
 };
