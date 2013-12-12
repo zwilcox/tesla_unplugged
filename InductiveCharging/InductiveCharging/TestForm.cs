@@ -39,7 +39,7 @@ namespace InductiveCharging
             else
             {
                 // serialPort1.Write("[" + cmd + " ]"); // for use without the DataManager
-                testSerialTextBox.AppendText("tx: [" + cmd + " ]\n");
+                //testSerialTextBox.AppendText("tx: [" + cmd + " ]\n");
                 return true;
             }
         }

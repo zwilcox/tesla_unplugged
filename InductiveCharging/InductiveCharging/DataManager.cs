@@ -23,6 +23,8 @@ namespace InductiveCharging
         Car newCar;
         public bool isRegistering = false;
 
+        int chargeSessionID = 0;
+
         // These bools are set true if the following request has been made to the base station
         // They are set false once a reply has been seen
         public bool voltReqP1 = false;     // voltage request for pad 1
@@ -86,6 +88,16 @@ namespace InductiveCharging
             testForm = _testForm;
         }
 
+        public bool openComPort()
+        {
+            if (!baseStationSerialPort.IsOpen)
+            {
+                baseStationSerialPort.Open();
+                return true;
+            }
+            else return false;
+        }
+
         public bool sendCommand(string cmd)
         {
             if (!baseStationSerialPort.IsOpen) return false;
@@ -111,12 +123,9 @@ namespace InductiveCharging
         public void carRegistrationComplete()
         {
             isRegistering = false;
-         
-            
-            //authorizedVehicles.Add(newCar);
             
             
-            if(addCarToDB(newCar));
+            if(addCarToDB(newCar))
                 sendAuthorizedCarInfo(newCar);
 
             populateAuthorizedCarsList();
@@ -140,7 +149,7 @@ namespace InductiveCharging
 
             try
             {
-                carsTableAdapter.Update(dataSet);
+                carsTableAdapter.Update(dataSet);    // send it to the database
                 return true;
             }
             catch
@@ -482,9 +491,12 @@ namespace InductiveCharging
                 newSession.radioID = vehicleRadioID;
                 newSession.padID = padID;
                 newSession.chargeBeginTime = DateTime.Now;
-                newSession.sessionID = currentSessions.Count.ToString();
+                newSession.sessionID = "" + chargeSessionID++;
                 currentSessions.Add(newSession);
-                
+
+                chargeSessionsTableAdapter.Insert(newSession.radioID, newSession.padID, newSession.chargeBeginTime, newSession.chargeBeginTime);
+                chargeSessionsTableAdapter.Update(dataSet);
+
                 return true;
             }
 
@@ -496,6 +508,7 @@ namespace InductiveCharging
         //probably need to do stuff in database too.
         private bool processChargeEndPacket(string[] args)
         {
+            DateTime endTime = DateTime.Now;
             if (args[1].Length != 2 || args[2].Length != 4)
                 return false;
 
@@ -513,8 +526,22 @@ namespace InductiveCharging
                     {
                         Console.WriteLine("CHARGE SESSION: End for vehicle " + vehicleRadioID + " on pad " + padID + ".");
                         currentSessions.Remove(s);
+
+                        System.Data.DataRow[] rows = dataSet.Tables["chargeSessionsTable"].Select("carID = '" + vehicleRadioID + "', startTime = " + s.chargeBeginTime.ToString());
+
+                        foreach (System.Data.DataRow r in rows)
+                        {
+                            if (r["endTime"] == r["startTime"])
+                            {
+                                r["endTime"] = endTime;
+                            }
+                        }
+
+                        chargeSessionsTableAdapter.Update(dataSet);
+
                         return true;
                     }
+
                 }
 
                 Console.WriteLine("Not in charge session " + vehicleRadioID + " on pad " + padID + ".");

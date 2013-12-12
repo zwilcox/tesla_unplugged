@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             this.exitPanel = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.stopPanel = new System.Windows.Forms.Panel();
-            this.manualButton = new System.Windows.Forms.Button();
+            this.monitorButton = new System.Windows.Forms.Button();
             this.manualPanel = new System.Windows.Forms.Panel();
             this.stopButton = new System.Windows.Forms.Button();
             this.startPanel = new System.Windows.Forms.Panel();
@@ -146,7 +146,7 @@
             this.systemTestsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.systemTestsButton.Location = new System.Drawing.Point(31, 29);
             this.systemTestsButton.Name = "systemTestsButton";
-            this.systemTestsButton.Size = new System.Drawing.Size(135, 36);
+            this.systemTestsButton.Size = new System.Drawing.Size(141, 36);
             this.systemTestsButton.TabIndex = 0;
             this.systemTestsButton.Text = "Test Mode";
             this.systemTestsButton.UseVisualStyleBackColor = false;
@@ -173,22 +173,23 @@
             // 
             // stopPanel
             // 
-            this.stopPanel.Controls.Add(this.manualButton);
+            this.stopPanel.Controls.Add(this.monitorButton);
             this.stopPanel.Location = new System.Drawing.Point(3, 104);
             this.stopPanel.Name = "stopPanel";
             this.stopPanel.Size = new System.Drawing.Size(192, 95);
             this.stopPanel.TabIndex = 2;
             // 
-            // manualButton
+            // monitorButton
             // 
-            this.manualButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.manualButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manualButton.Location = new System.Drawing.Point(31, 29);
-            this.manualButton.Name = "manualButton";
-            this.manualButton.Size = new System.Drawing.Size(135, 36);
-            this.manualButton.TabIndex = 0;
-            this.manualButton.Text = "Manual Mode";
-            this.manualButton.UseVisualStyleBackColor = false;
+            this.monitorButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.monitorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monitorButton.Location = new System.Drawing.Point(31, 29);
+            this.monitorButton.Name = "monitorButton";
+            this.monitorButton.Size = new System.Drawing.Size(141, 36);
+            this.monitorButton.TabIndex = 0;
+            this.monitorButton.Text = "Monitor System";
+            this.monitorButton.UseVisualStyleBackColor = false;
+            this.monitorButton.Click += new System.EventHandler(this.monitorButton_Click);
             // 
             // manualPanel
             // 
@@ -223,7 +224,7 @@
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.Location = new System.Drawing.Point(31, 29);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(135, 36);
+            this.startButton.Size = new System.Drawing.Size(141, 36);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Start System";
             this.startButton.UseVisualStyleBackColor = false;
@@ -273,23 +274,23 @@
             // 
             // redChart
             // 
-            chartArea4.Area3DStyle.Enable3D = true;
-            chartArea4.Name = "ChartArea1";
-            this.redChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.redChart.Legends.Add(legend4);
+            chartArea2.Area3DStyle.Enable3D = true;
+            chartArea2.Name = "ChartArea1";
+            this.redChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.redChart.Legends.Add(legend2);
             this.redChart.Location = new System.Drawing.Point(3, 3);
             this.redChart.Name = "redChart";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend1";
-            series7.Name = "Red Car";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend1";
-            series8.Name = "Blue Car";
-            this.redChart.Series.Add(series7);
-            this.redChart.Series.Add(series8);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Red Car";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Blue Car";
+            this.redChart.Series.Add(series3);
+            this.redChart.Series.Add(series4);
             this.redChart.Size = new System.Drawing.Size(619, 389);
             this.redChart.TabIndex = 0;
             this.redChart.Text = "redChart";
@@ -334,9 +335,9 @@
             // tableAdapterManager1
             // 
             this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager1.CarsTableAdapter = null;
-            this.tableAdapterManager1.ChargeSessionsTableAdapter = null;
-            this.tableAdapterManager1.pad1AmpsTableAdapter = null;
+            this.tableAdapterManager1.CarsTableAdapter = this.carsTableAdapter1;
+            this.tableAdapterManager1.ChargeSessionsTableAdapter = this.chargeSessionsTableAdapter1;
+            this.tableAdapterManager1.pad1AmpsTableAdapter = this.pad1AmpsTableAdapter1;
             this.tableAdapterManager1.pad1VoltsTableAdapter = this.pad1VoltsTableAdapter1;
             this.tableAdapterManager1.pad2AmpsTableAdapter = this.pad2AmpsTableAdapter1;
             this.tableAdapterManager1.pad2VoltsTableAdapter = this.pad2VoltsTableAdapter1;
@@ -377,7 +378,6 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart redChart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button systemTestsButton;
@@ -386,23 +386,24 @@
         private System.Windows.Forms.Panel stopPanel;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Panel manualPanel;
-        private System.Windows.Forms.Button manualButton;
+        private System.Windows.Forms.Button monitorButton;
         private System.Windows.Forms.Panel startPanel;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox portsComboBox;
         private System.IO.Ports.SerialPort serialPort1;
-        private INDUCTIVEDataSet inductiveDataSet1;
-        private INDUCTIVEDataSetTableAdapters.CarsTableAdapter carsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.ChargeSessionsTableAdapter chargeSessionsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.pad1AmpsTableAdapter pad1AmpsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.pad1VoltsTableAdapter pad1VoltsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.pad2AmpsTableAdapter pad2AmpsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.pad2VoltsTableAdapter pad2VoltsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter pad3AmpsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter pad3VoltsTableAdapter1;
-        private INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
+        public INDUCTIVEDataSet inductiveDataSet1;
+        public INDUCTIVEDataSetTableAdapters.CarsTableAdapter carsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.ChargeSessionsTableAdapter chargeSessionsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.pad1AmpsTableAdapter pad1AmpsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.pad1VoltsTableAdapter pad1VoltsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.pad2AmpsTableAdapter pad2AmpsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.pad2VoltsTableAdapter pad2VoltsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter pad3AmpsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter pad3VoltsTableAdapter1;
+        public INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
+        public System.Windows.Forms.DataVisualization.Charting.Chart redChart;
     }
 }
 

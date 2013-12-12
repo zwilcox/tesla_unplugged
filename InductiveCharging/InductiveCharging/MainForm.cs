@@ -45,6 +45,8 @@ namespace InductiveCharging
                 }
             }
 
+            
+
             if (Properties.Settings.Default.selectedPort == "")
             {
                 MessageBox.Show("Please select a serial port for the Base Station.", "Port Selection Error", MessageBoxButtons.OK);
@@ -92,6 +94,12 @@ namespace InductiveCharging
         // Start the main automated system
         private void startButton_Click(object sender, EventArgs e)
         {
+            if (!dataManager.openComPort())
+            {
+                MessageBox.Show("Could not open communication port to Base Station.", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
             if (tableAdapterManager1.CarsTableAdapter == null)
             {
                 if (MessageBox.Show("Could not connect to database. Please check connection and restart program.", "Error", MessageBoxButtons.OK) == System.Windows.Forms.DialogResult.OK)
@@ -100,6 +108,7 @@ namespace InductiveCharging
                 }
             }
 
+            
             if (Properties.Settings.Default.selectedPort == "")
             {
                 MessageBox.Show("Please select a serial port for the Base Station.", "Port Selection Error", MessageBoxButtons.OK);
@@ -136,6 +145,12 @@ namespace InductiveCharging
                 serialPort1.Write("[" + cmd + " ]");
                 return true;
             }
+        }
+
+        private void monitorButton_Click(object sender, EventArgs e)
+        {
+            MonitoringForm monitorForm = new MonitoringForm();
+            monitorForm.Show();
         }
 
     }
