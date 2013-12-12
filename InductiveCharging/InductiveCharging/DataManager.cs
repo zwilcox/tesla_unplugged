@@ -120,11 +120,16 @@ namespace InductiveCharging
             isRegistering = true;
         }
 
+        public void registeringCancel()
+        {
+            newCar = null;
+            isRegistering = false;
+        }
+
         public void carRegistrationComplete()
         {
             isRegistering = false;
-            
-            
+
             if(addCarToDB(newCar))
                 sendAuthorizedCarInfo(newCar);
 
@@ -133,29 +138,58 @@ namespace InductiveCharging
 
         private bool addCarToDB(Car newCar)
         {
-            carsTableAdapter.Insert(
-                newCar.carID,
-                DateTime.Now,
-                newCar.pad1Color.red,
-                newCar.pad1Color.green,
-                newCar.pad1Color.blue,
-                newCar.pad2Color.red,
-                newCar.pad2Color.green,
-                newCar.pad2Color.blue,
-                newCar.pad3Color.red,
-                newCar.pad3Color.green,
-                newCar.pad3Color.blue,
-                true);
+            System.Data.DataTable t = carsTableAdapter.GetDataByCar(newCar.carID);
 
-            try
+            if (t.Rows.Count != 0)
             {
-                carsTableAdapter.Update(dataSet);    // send it to the database
-                return true;
+                t.Rows[0]["pad1Red"] = newCar.pad1Color.red;
+                t.Rows[0]["pad1Green"] = newCar.pad1Color.green;
+                t.Rows[0]["pad1Blue"] = newCar.pad1Color.blue;
+                t.Rows[0]["pad2Red"] = newCar.pad2Color.red;
+                t.Rows[0]["pad2Green"] = newCar.pad2Color.green;
+                t.Rows[0]["pad2Blue"] = newCar.pad2Color.blue;
+                t.Rows[0]["pad3Red"] = newCar.pad3Color.red;
+                t.Rows[0]["pad3Green"] = newCar.pad3Color.green;
+                t.Rows[0]["pad3Blue"] = newCar.pad3Color.blue;
+
+                try
+                {
+                    carsTableAdapter.Update(dataSet);    // send it to the database
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            catch
+            else //does not exist in database yet.
             {
-                return false;
+                carsTableAdapter.Insert(
+                    newCar.carID,
+                    DateTime.Now,
+                    newCar.pad1Color.red,
+                    newCar.pad1Color.green,
+                    newCar.pad1Color.blue,
+                    newCar.pad2Color.red,
+                    newCar.pad2Color.green,
+                    newCar.pad2Color.blue,
+                    newCar.pad3Color.red,
+                    newCar.pad3Color.green,
+                    newCar.pad3Color.blue,
+                    true);
+
+                try
+                {
+                    carsTableAdapter.Update(dataSet);    // send it to the database
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
+
+
         }
 
         private void populateAuthorizedCarsList()
@@ -166,8 +200,7 @@ namespace InductiveCharging
             
             foreach (System.Data.DataRow r in t.Rows)
             {
-                Car newCar = new Car(r["carNumber"].ToString(), r["carID"].ToString());
-
+                Car newCar = new Car(r["carID"].ToString()); //carID is actually RADIO ID
                 newCar.pad1Color.red = r["pad1Red"].ToString();
                 newCar.pad1Color.green = r["pad1Green"].ToString();
                 newCar.pad1Color.blue = r["pad1Blue"].ToString();
@@ -184,9 +217,9 @@ namespace InductiveCharging
 
         private void sendAuthorizedCarInfo(Car newCar)
         {
-            string P1color = "[IC P1 " + newCar.radioID + " R" + newCar.pad1Color.red + " G" + newCar.pad1Color.green + " B" + newCar.pad1Color.blue + " ]";
-            string P2color = "[IC P2 " + newCar.radioID + " R" + newCar.pad2Color.red + " G" + newCar.pad2Color.green + " B" + newCar.pad2Color.blue + " ]";
-            string P3color = "[IC P3 " + newCar.radioID + " R" + newCar.pad3Color.red + " G" + newCar.pad3Color.green + " B" + newCar.pad3Color.blue + " ]";
+            string P1color = "[IC P1 " + newCar.carID + " R" + newCar.pad1Color.red + " G" + newCar.pad1Color.green + " B" + newCar.pad1Color.blue + " ]";
+            string P2color = "[IC P2 " + newCar.carID + " R" + newCar.pad2Color.red + " G" + newCar.pad2Color.green + " B" + newCar.pad2Color.blue + " ]";
+            string P3color = "[IC P3 " + newCar.carID + " R" + newCar.pad3Color.red + " G" + newCar.pad3Color.green + " B" + newCar.pad3Color.blue + " ]";
             baseStationSerialPort.Write(P1color);
             baseStationSerialPort.Write(P2color);
             baseStationSerialPort.Write(P3color);
@@ -367,6 +400,7 @@ namespace InductiveCharging
                 return false;
             }
             float voltage;
+            DateTime time = DateTime.Now;
 
             try
             {
@@ -386,6 +420,35 @@ namespace InductiveCharging
                 {
                     //TODO do stuff with parsed info.
                     //got information about pad voltage for a CURRENT CHARGE SESSION.
+                    switch (ID)
+                    {
+                        case "P1":
+                            pad1VoltsTableAdapter.Insert(ID, time, voltage);
+                            try
+                            {
+                                pad1VoltsTableAdapter.Update(dataSet);
+                            }
+                            catch { }
+                            break;
+                        case "P2":
+                            pad2VoltsTableAdapter.Insert(ID, time, voltage);
+                            try
+                            {
+                                pad2VoltsTableAdapter.Update(dataSet);
+                            }
+                            catch { }
+                            break;
+                        case "P3":
+                            pad3VoltsTableAdapter.Insert(ID, time, voltage);
+                            try 
+                            {
+                                pad3VoltsTableAdapter.Update(dataSet);
+                            }
+                            catch { }
+                            break;
+                        default:
+                            break;
+                    }
                     Console.WriteLine("CHARGE SESSION: voltage read " + voltage + " from pad: " + ID);
                 }
                 else
@@ -423,6 +486,7 @@ namespace InductiveCharging
                 return false;
 
             float amps;
+            DateTime time = DateTime.Now;
 
             try
             {
@@ -441,7 +505,37 @@ namespace InductiveCharging
                 if (padIsInChargeSession(ID))
                 {
                     //TODO do stuff with parsed info.
-                    //got information about pad voltage. FOR A CURRENT CHARGE SESSION
+                    //got information about pad current. FOR A CURRENT CHARGE SESSION
+                    switch (ID)
+                    {
+                        case "P1":
+                            pad1AmpsTableAdapter.Insert(ID, time, amps);
+                            try
+                            {
+                                pad1AmpsTableAdapter.Update(dataSet);
+                            }
+                            catch { }
+                            break;
+                        case "P2":
+                            pad2AmpsTableAdapter.Insert(ID, time, amps);
+                            try
+                            {
+                                pad2AmpsTableAdapter.Update(dataSet);
+                            }
+                            catch { }
+                            break;
+                        case "P3":
+                            pad3AmpsTableAdapter.Insert(ID, time, amps);
+                            try
+                            {
+                                pad3AmpsTableAdapter.Update(dataSet);
+                            }
+                            catch { }
+                            break;
+                        default:
+                            break;
+                    }
+                    
                     Console.WriteLine("CHARGE SESSION: current read " + amps + " from pad: " + ID);
                 }
                 else
@@ -527,9 +621,9 @@ namespace InductiveCharging
                         Console.WriteLine("CHARGE SESSION: End for vehicle " + vehicleRadioID + " on pad " + padID + ".");
                         currentSessions.Remove(s);
 
-                        System.Data.DataRow[] rows = dataSet.Tables["chargeSessionsTable"].Select("carID = '" + vehicleRadioID + "', startTime = " + s.chargeBeginTime.ToString());
+                        System.Data.DataTable t = chargeSessionsTableAdapter.GetDataBySession(s.radioID);// dataSet.Tables["ChargeSessions"].Select("carID = '" + vehicleRadioID + "', padID = " + s.padID);
 
-                        foreach (System.Data.DataRow r in rows)
+                        foreach (System.Data.DataRow r in t.Rows)
                         {
                             if (r["endTime"] == r["startTime"])
                             {
@@ -569,7 +663,7 @@ namespace InductiveCharging
         public bool isValidVehicleRadioID(string ID)
         {
             foreach (Car carToCheck in authorizedVehicles)
-                if (carToCheck.radioID == ID)
+                if (carToCheck.carID == ID)
                     return true;
 
             return false;

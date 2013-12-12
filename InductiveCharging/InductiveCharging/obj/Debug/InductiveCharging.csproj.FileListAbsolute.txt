@@ -21,3 +21,4 @@ C:\Users\biomed\Documents\GitHub\tesla_unplugged\InductiveCharging\InductiveChar
 C:\Users\biomed\Documents\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.RegisterNewCarForm.resources
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.RegisterNewCarForm.resources
 C:\Users\biomed\Documents\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.MonitoringForm.resources
+\\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.MonitoringForm.resources

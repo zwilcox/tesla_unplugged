@@ -59,27 +59,6 @@ namespace InductiveCharging
                 // reset message
                 registerPadMessageLabel.Text = "";
 
-                // Check vehicle ID
-                if (vehicleIDTextBox.Text != "")
-                {
-                    if (!isHEX(vehicleIDTextBox.Text))
-                    {
-                        registerPadMessageLabel.ForeColor = Color.Red;
-                        registerPadMessageLabel.Text = "Vehicle ID must be a HEX value.";
-                        return;
-                    }
-
-                    if (isInDB(vehicleIDTextBox.Text))
-                    {
-                        registerPadMessageLabel.Text = "The vehicle ID entered already exists in the database.";
-                    }
-                }
-                else 
-                {
-                    registerPadMessageLabel.Text = "Invalid vehicle ID.";
-                    return;
-                }
-                
                 // Check radio ID
                 if (radioIDTextBox.Text != "")
                 {
@@ -97,7 +76,7 @@ namespace InductiveCharging
                 }
                 
 
-                newCar = new Car(vehicleIDTextBox.Text, radioIDTextBox.Text);
+                newCar = new Car(radioIDTextBox.Text);
                 dataManager.registeringCar(ref newCar);
                 registerPadMessageLabel.ForeColor = Color.Blue;
                 registerPadMessageLabel.Text = "Vehicle ID and Radio ID successfully verified.";

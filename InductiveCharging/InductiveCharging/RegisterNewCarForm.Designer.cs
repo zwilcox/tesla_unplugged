@@ -30,8 +30,6 @@
         {
             this.registerNewFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.vehicleIDLabel = new System.Windows.Forms.Label();
-            this.vehicleIDTextBox = new System.Windows.Forms.TextBox();
             this.radioIDLabel = new System.Windows.Forms.Label();
             this.radioIDTextBox = new System.Windows.Forms.TextBox();
             this.registerPadLabel = new System.Windows.Forms.Label();
@@ -60,39 +58,17 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flowLayoutPanel1.Controls.Add(this.vehicleIDLabel);
-            this.flowLayoutPanel1.Controls.Add(this.vehicleIDTextBox);
             this.flowLayoutPanel1.Controls.Add(this.radioIDLabel);
             this.flowLayoutPanel1.Controls.Add(this.radioIDTextBox);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 57);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 25);
             this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // vehicleIDLabel
-            // 
-            this.vehicleIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.vehicleIDLabel.AutoSize = true;
-            this.vehicleIDLabel.Location = new System.Drawing.Point(3, 8);
-            this.vehicleIDLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.vehicleIDLabel.Name = "vehicleIDLabel";
-            this.vehicleIDLabel.Size = new System.Drawing.Size(65, 13);
-            this.vehicleIDLabel.TabIndex = 3;
-            this.vehicleIDLabel.Text = "Vehicle ID:  ";
-            // 
-            // vehicleIDTextBox
-            // 
-            this.vehicleIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.vehicleIDTextBox.Location = new System.Drawing.Point(77, 3);
-            this.vehicleIDTextBox.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
-            this.vehicleIDTextBox.Name = "vehicleIDTextBox";
-            this.vehicleIDTextBox.Size = new System.Drawing.Size(93, 20);
-            this.vehicleIDTextBox.TabIndex = 4;
             // 
             // radioIDLabel
             // 
             this.radioIDLabel.AutoSize = true;
-            this.radioIDLabel.Location = new System.Drawing.Point(3, 32);
+            this.radioIDLabel.Location = new System.Drawing.Point(3, 6);
             this.radioIDLabel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             this.radioIDLabel.Name = "radioIDLabel";
             this.radioIDLabel.Size = new System.Drawing.Size(58, 13);
@@ -102,7 +78,7 @@
             // radioIDTextBox
             // 
             this.radioIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioIDTextBox.Location = new System.Drawing.Point(77, 29);
+            this.radioIDTextBox.Location = new System.Drawing.Point(77, 3);
             this.radioIDTextBox.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
             this.radioIDTextBox.Name = "radioIDTextBox";
             this.radioIDTextBox.Size = new System.Drawing.Size(93, 20);
@@ -113,7 +89,7 @@
             this.registerPadLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.registerPadLabel.AutoSize = true;
             this.registerPadLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerPadLabel.Location = new System.Drawing.Point(15, 73);
+            this.registerPadLabel.Location = new System.Drawing.Point(15, 41);
             this.registerPadLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.registerPadLabel.Name = "registerPadLabel";
             this.registerPadLabel.Size = new System.Drawing.Size(167, 40);
@@ -126,7 +102,7 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flowLayoutPanel2.Controls.Add(this.registerCarButton);
             this.flowLayoutPanel2.Controls.Add(this.registerCarCancelButton);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 116);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 84);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(191, 29);
             this.flowLayoutPanel2.TabIndex = 6;
@@ -158,7 +134,7 @@
             // 
             this.registerPadMessageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.registerPadMessageLabel.AutoSize = true;
-            this.registerPadMessageLabel.Location = new System.Drawing.Point(46, 158);
+            this.registerPadMessageLabel.Location = new System.Drawing.Point(46, 126);
             this.registerPadMessageLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.registerPadMessageLabel.Name = "registerPadMessageLabel";
             this.registerPadMessageLabel.Size = new System.Drawing.Size(105, 13);
@@ -189,8 +165,6 @@
         private System.Windows.Forms.Button registerCarButton;
         private System.Windows.Forms.Label registerPadMessageLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label vehicleIDLabel;
-        private System.Windows.Forms.TextBox vehicleIDTextBox;
         private System.Windows.Forms.Label radioIDLabel;
         private System.Windows.Forms.TextBox radioIDTextBox;
         private System.Windows.Forms.Button registerCarCancelButton;

@@ -46,7 +46,6 @@ namespace InductiveCharging
 
         
 
-
         private void testFormCloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -54,7 +53,7 @@ namespace InductiveCharging
 
         private void TestForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (serialPort1.IsOpen) serialPort1.Close();
+            dataManager.registeringCancel();
         }
 
         // Parse through packets and call appropriate methods accordingly

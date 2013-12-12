@@ -2,7 +2,7 @@
 #include "PadManager.h"
 #include "Pad.h"
 #include "PacketProcessor.h"
-#define AMBIENTTOLERANCE 150
+#define AMBIENTTOLERANCE 225
 
 //pad1 pins
 #define CHARGEPADENABLE1  48

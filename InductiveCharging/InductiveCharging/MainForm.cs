@@ -43,9 +43,7 @@ namespace InductiveCharging
                 {
                     return;
                 }
-            }
-
-            
+            }            
 
             if (Properties.Settings.Default.selectedPort == "")
             {
@@ -123,9 +121,9 @@ namespace InductiveCharging
 
                 // TODO: populate cars list from database
                 // temp: generate list manually
-                cars.Add(new Car("car1", "1111"));
-                cars.Add(new Car("car2", "2222"));
-                cars.Add(new Car("car3", "3333"));
+                cars.Add(new Car("1111"));
+                cars.Add(new Car("2222"));
+                cars.Add(new Car("3333"));
                 // Send list of authorized cars to Base Station
                 foreach (Car c in cars)
                 {

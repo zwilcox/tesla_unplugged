@@ -29,7 +29,7 @@ void ChargePad::calibrateColorSensor( void )
   colorSensor->init();
   colorSensor->ledOn();
   colorSensor->calibrate();
-  //colorSensor->calibrate();
+  colorSensor->calibrate();
   (ledState) ? colorSensor->ledOn() : colorSensor->ledOff();
 }
 
