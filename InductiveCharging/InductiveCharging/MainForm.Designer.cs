@@ -63,6 +63,8 @@
             this.pad3AmpsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter();
             this.pad3VoltsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter();
             this.tableAdapterManager1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.TableAdapterManager();
+            this.carAmpsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.carAmpsTableAdapter();
+            this.carVoltsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.carVoltsTableAdapter();
             this.mainFlowLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -209,6 +211,7 @@
             this.stopButton.TabIndex = 0;
             this.stopButton.Text = "Stop System";
             this.stopButton.UseVisualStyleBackColor = false;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // startPanel
             // 
@@ -335,7 +338,9 @@
             // tableAdapterManager1
             // 
             this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.carAmpsTableAdapter = this.carAmpsTableAdapter1;
             this.tableAdapterManager1.CarsTableAdapter = this.carsTableAdapter1;
+            this.tableAdapterManager1.carVoltsTableAdapter = this.carVoltsTableAdapter1;
             this.tableAdapterManager1.ChargeSessionsTableAdapter = this.chargeSessionsTableAdapter1;
             this.tableAdapterManager1.pad1AmpsTableAdapter = this.pad1AmpsTableAdapter1;
             this.tableAdapterManager1.pad1VoltsTableAdapter = this.pad1VoltsTableAdapter1;
@@ -344,6 +349,14 @@
             this.tableAdapterManager1.pad3AmpsTableAdapter = this.pad3AmpsTableAdapter1;
             this.tableAdapterManager1.pad3VoltsTableAdapter = this.pad3VoltsTableAdapter1;
             this.tableAdapterManager1.UpdateOrder = InductiveCharging.INDUCTIVEDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // carAmpsTableAdapter1
+            // 
+            this.carAmpsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // carVoltsTableAdapter1
+            // 
+            this.carVoltsTableAdapter1.ClearBeforeFill = true;
             // 
             // MainForm
             // 
@@ -404,6 +417,8 @@
         public INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter pad3VoltsTableAdapter1;
         public INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
         public System.Windows.Forms.DataVisualization.Charting.Chart redChart;
+        private INDUCTIVEDataSetTableAdapters.carAmpsTableAdapter carAmpsTableAdapter1;
+        private INDUCTIVEDataSetTableAdapters.carVoltsTableAdapter carVoltsTableAdapter1;
     }
 }
 

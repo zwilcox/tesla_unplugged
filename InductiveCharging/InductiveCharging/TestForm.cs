@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -474,22 +475,31 @@ namespace InductiveCharging
 
         private void testDBListCarsButton_Click(object sender, EventArgs e)
         {
-
+            CarsListForm carsListForm = new CarsListForm();
+            ArrayList carsList = dataManager.listCars();
+            carsListForm.carsListBox.DataSource = carsList;
+            carsListForm.Show();
         }
 
         private void authorizeCarButton_Click(object sender, EventArgs e)
         {
-
+            if (dataManager.isValidVehicleRadioID(authCarTextBox.Text))
+            {
+                dataManager.toggleCarAuthorization(true, authCarTextBox.Text);
+            }
         }
 
         private void deauthorizeCarButton_Click(object sender, EventArgs e)
         {
-
+            if (dataManager.isValidVehicleRadioID(authCarTextBox.Text))
+            {
+                dataManager.toggleCarAuthorization(false, authCarTextBox.Text);
+            }
         }
 
         private void clearCarListButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
 

@@ -145,10 +145,19 @@ namespace InductiveCharging
             }
         }
 
+        // 
         private void monitorButton_Click(object sender, EventArgs e)
         {
             MonitoringForm monitorForm = new MonitoringForm();
             monitorForm.Show();
+        }
+
+        // Turn everything off and stop system
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            dataManager.clearAuthCarsList();
+            dataManager.turnAllPadsOff();
+
         }
 
     }
