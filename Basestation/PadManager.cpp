@@ -243,6 +243,7 @@ namespace PadManager
         && ambient.blue - color.blue    < AMBIENTTOLERANCE )
     {
       return true;
+      Serial.println("color is ambient.");
     }
     else
     {

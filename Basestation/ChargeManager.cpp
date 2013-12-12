@@ -19,6 +19,10 @@ static bool isPad1InSession;
 static bool isPad2InSession;
 static bool isPad3InSession;
 
+static bool pad1WasAmbient;
+static bool pad2WasAmbient;
+static bool pad3WasAmbient;
+
 static void CancelChargeSessions();
 static void EndChargeSession(ChargeSession * sessionToEnd );
 static AuthorizedCar * getCarFromChargeSession(ChargeSession * session);
@@ -31,6 +35,9 @@ namespace ChargeManager
     isPad1InSession = false;
     isPad2InSession = false;
     isPad3InSession = false;
+    pad1WasAmbient = true;
+    pad2WasAmbient = true;
+    pad3WasAmbient = true;
   }
 
   /**
@@ -107,11 +114,12 @@ namespace ChargeManager
       AuthorizedCar * sessionCar = sessionToUpdate->getVehicleRef();
       RGBC color = PadManager::readColorSensor(sessionToUpdate->chargePad);
       bool newAuth = sessionCar->isColorAuthorized(sessionToUpdate->chargePad,color);
-
+      bool isColorAmbient = PadManager::isColorAmbient(sessionToUpdate->chargePad, color);
+      
       if (newAuth)
           sessionToUpdate->updateLastAuthorizedTime();
             
-      if((!sessionToUpdate->prevColorAuthorized && PadManager::isColorAmbient(sessionToUpdate->chargePad, color)) || !sessionToUpdate->wasAuthorizedRecently()) //if previous color was invalid and then the light returns to ambient, remove session.
+      if((!sessionToUpdate->prevColorAuthorized && isColorAmbient) || !sessionToUpdate->wasAuthorizedRecently()) //if previous color was invalid and then the light returns to ambient, remove session.
       {
         EndChargeSession(sessionToUpdate);
                 
@@ -153,10 +161,20 @@ namespace ChargeManager
     RGBC p2ColorRead = PadManager::readColorSensor(PadManager::Pad2);
     RGBC p3ColorRead = PadManager::readColorSensor(PadManager::Pad3);
 
-    bool shouldCheckPad1ForNewSession = !PadManager::isColorAmbient(PadManager::Pad1,p1ColorRead); //do not check for new session if color read is ambient.
-    bool shouldCheckPad2ForNewSession = !PadManager::isColorAmbient(PadManager::Pad2,p2ColorRead);
-    bool shouldCheckPad3ForNewSession = !PadManager::isColorAmbient(PadManager::Pad3,p3ColorRead);
-   
+    
+    if (PadManager::isColorAmbient(PadManager::Pad1,p1ColorRead))
+    {
+      pad1WasAmbient = true;
+    }
+    if (PadManager::isColorAmbient(PadManager::Pad2,p2ColorRead))
+    {
+      pad2WasAmbient = true;
+    }
+    if (PadManager::isColorAmbient(PadManager::Pad3,p3ColorRead))
+    {
+      pad3WasAmbient = true;
+    }
+
     
     ListIterator<AuthorizedCar *> iterator(&AuthorizedCarList);
     
@@ -172,7 +190,7 @@ namespace ChargeManager
         continue;
       }      
       
-      if (!isPad1InSession && shouldCheckPad1ForNewSession)
+      if (!isPad1InSession && pad1WasAmbient)
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad1, p1ColorRead)) 
         { 
@@ -187,10 +205,12 @@ namespace ChargeManager
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
                     
+          pad1WasAmbient = false;
+                    
           continue;
         }
       }
-      if (!isPad2InSession && shouldCheckPad2ForNewSession)
+      if (!isPad2InSession && pad2WasAmbient)
       {  
         if (carToCheck->isColorAuthorized(PadManager::Pad2, p2ColorRead)) 
         {
@@ -203,11 +223,13 @@ namespace ChargeManager
           PadManager::setStrToPadID(newSession->chargePad,payload);
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
-                    
+                  
+          pad2WasAmbient = false;
+                  
           continue;
         }
       }
-      if (!isPad3InSession && shouldCheckPad3ForNewSession)
+      if (!isPad3InSession && pad3WasAmbient)
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad3, p3ColorRead)) 
         {
@@ -221,6 +243,8 @@ namespace ChargeManager
           PadManager::setStrToPadID(newSession->chargePad,payload);
           sprintf(&payload[3],"%04X ", carToCheck->vID);
           SerialCommandPacketizer::sendOutboundPacket(SerialCommandPacketizer::ChargeBegin, payload);
+          
+          pad3WasAmbient = false;
           
           continue;
         }
