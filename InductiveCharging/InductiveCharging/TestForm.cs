@@ -45,98 +45,7 @@ namespace InductiveCharging
         }
 
         
-        // Send Command to Arduino Mega on Base Station to send back its ID
-        private void testBaseCommButton_Click(object sender, EventArgs e)
-        {
-            // TODO
-            //if (!serialPort1.IsOpen)
-            //{
-            //    serialPort1.Open();
-            //}
-            //serialPort1.WriteLine("5");
-        }
 
-        private void testSerialMonitorStartButton_Click(object sender, EventArgs e)
-        {
-//            
-            // if (serialPort1.IsOpen)  // for use without DataManager
-            if (dataManager.baseStationSerialPort.IsOpen)
-            {
-                testSerialMonitorStartButton.Enabled = false;
-                testSerialMonitorStopButton.Enabled = true;
-                testSerialTextBox.ReadOnly = false;
-            }
-        }
-
-        private void testSerialMonitorStopButton_Click(object sender, EventArgs e)
-        {
-            // if (serialPort1.IsOpen)  // for use without DataManager
-            if (dataManager.baseStationSerialPort.IsOpen)
-            {
-                //serialPort1.Close();
-                testSerialMonitorStartButton.Enabled = true;
-                testSerialMonitorStopButton.Enabled = false;
-                testSerialTextBox.ReadOnly = true;
-            }
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (!serialPort1.IsOpen) return;
-            //else
-            //{
-            //    char[] buff = new char[1];
-            //    buff[0] = e.KeyChar;
-            //    serialPort1.Write(buff, 0, 1);
-            //    e.Handled = true;
-            //}
-            if (sendCommand("" + e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            
-        }
-
-        //private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        //{
-        //    rxString = serialPort1.ReadExisting();
-        //    this.Invoke(new EventHandler(displayText));
-        //}
-
-        
-       //private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-       // {
-       //     int readChar;
-       //     while ((readChar = serialPort1.ReadByte()) != -1)
-       //     {
-       //         if (readChar == '[')
-       //         {
-       //             bIndx = 0;
-       //             readingPacket = true;
-       //         }
-
-       //         else if (readingPacket && readChar == ']')
-       //         {
-       //             readingPacket = false;
-       //             buff[bIndx] = '\0';
-       //             processPacket(new string(buff));
-       //             bIndx = 0;
-       //         }
-
-       //         else if (readingPacket)
-       //         {
-       //             buff[bIndx++] = (char)readChar;
-       //         }
-
-       //         if (bIndx >= BUFF_SIZE - 1)
-       //         {
-       //          readingPacket = false;
-       //             bIndx = 0;
-       //         }
-       //     }
-       //     //this.Invoke(new EventHandler(displayText));
-       // }
-        
 
         private void testFormCloseButton_Click(object sender, EventArgs e)
         {
@@ -563,6 +472,27 @@ namespace InductiveCharging
             RegisterNewCarForm regCarForm = new RegisterNewCarForm(ref dataManager);
             regCarForm.Show();
         }
+
+        private void testDBListCarsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void authorizeCarButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deauthorizeCarButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearCarListButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
