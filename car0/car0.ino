@@ -40,7 +40,6 @@ void setup()
   // enable global interrupts
  attachInterrupt(0, pin2ISR, FALLING);
 
-//set up button
   Serial.begin(9600);
   Serial.println("Finished Setup");
 }
