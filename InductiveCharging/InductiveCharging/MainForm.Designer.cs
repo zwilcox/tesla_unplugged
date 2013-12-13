@@ -33,6 +33,14 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -51,7 +59,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.portsComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.redChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.sessionsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.session1Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.session2Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.session3Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.inductiveDataSet1 = new InductiveCharging.INDUCTIVEDataSet();
             this.carsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.CarsTableAdapter();
@@ -65,6 +78,9 @@
             this.tableAdapterManager1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.TableAdapterManager();
             this.carAmpsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.carAmpsTableAdapter();
             this.carVoltsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.carVoltsTableAdapter();
+            this.chargeSession1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chargeSession2BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chargeSession3BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainFlowLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -75,8 +91,15 @@
             this.startPanel.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.redChart)).BeginInit();
+            this.sessionsTableLayoutPanel.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.session1Chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.session2Chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.session3Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inductiveDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargeSession1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargeSession2BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargeSession3BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainFlowLayoutPanel
@@ -84,31 +107,31 @@
             this.mainFlowLayoutPanel.Controls.Add(this.tableLayoutPanel1);
             this.mainFlowLayoutPanel.Location = new System.Drawing.Point(12, 12);
             this.mainFlowLayoutPanel.Name = "mainFlowLayoutPanel";
-            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1037, 401);
+            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(996, 559);
             this.mainFlowLayoutPanel.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.3617F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.6383F));
-            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.12195F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.87805F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1034, 398);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(993, 556);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // titleLabel
             // 
-            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(61, 0);
+            this.titleLabel.Location = new System.Drawing.Point(61, 23);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(283, 37);
             this.titleLabel.TabIndex = 0;
@@ -116,6 +139,7 @@
             // 
             // tableLayoutPanel
             // 
+            this.tableLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.65517F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.34483F));
@@ -125,7 +149,7 @@
             this.tableLayoutPanel.Controls.Add(this.manualPanel, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.startPanel, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.flowLayoutPanel2, 1, 2);
-            this.tableLayoutPanel.Location = new System.Drawing.Point(3, 63);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(3, 164);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 3;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -203,7 +227,7 @@
             // 
             // stopButton
             // 
-            this.stopButton.BackColor = System.Drawing.Color.Red;
+            this.stopButton.BackColor = System.Drawing.Color.LightGray;
             this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopButton.Location = new System.Drawing.Point(32, 29);
             this.stopButton.Name = "stopButton";
@@ -268,35 +292,129 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.redChart);
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flowLayoutPanel1.Controls.Add(this.sessionsTableLayoutPanel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(409, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(622, 392);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(590, 550);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // redChart
+            // sessionsTableLayoutPanel
             // 
-            chartArea1.Area3DStyle.Enable3D = true;
+            this.sessionsTableLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.sessionsTableLayoutPanel.ColumnCount = 1;
+            this.sessionsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.sessionsTableLayoutPanel.Controls.Add(this.flowLayoutPanel3, 0, 0);
+            this.sessionsTableLayoutPanel.Controls.Add(this.session1Chart, 0, 1);
+            this.sessionsTableLayoutPanel.Controls.Add(this.session2Chart, 0, 2);
+            this.sessionsTableLayoutPanel.Controls.Add(this.session3Chart, 0, 3);
+            this.sessionsTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.sessionsTableLayoutPanel.Name = "sessionsTableLayoutPanel";
+            this.sessionsTableLayoutPanel.RowCount = 4;
+            this.sessionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.sessionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.sessionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.sessionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.sessionsTableLayoutPanel.Size = new System.Drawing.Size(581, 550);
+            this.sessionsTableLayoutPanel.TabIndex = 0;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flowLayoutPanel3.Controls.Add(this.label2);
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(159, 11);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(263, 32);
+            this.flowLayoutPanel3.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(256, 26);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Current Charge Sessions";
+            // 
+            // session1Chart
+            // 
+            chartArea1.AxisX.Title = "time";
+            chartArea1.AxisY.Title = "Watts";
             chartArea1.Name = "ChartArea1";
-            this.redChart.ChartAreas.Add(chartArea1);
+            this.session1Chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.redChart.Legends.Add(legend1);
-            this.redChart.Location = new System.Drawing.Point(3, 3);
-            this.redChart.Name = "redChart";
+            this.session1Chart.Legends.Add(legend1);
+            this.session1Chart.Location = new System.Drawing.Point(3, 58);
+            this.session1Chart.Name = "session1Chart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
-            series1.Name = "Red Car";
+            series1.Name = "Car";
+            series1.XValueMember = "carTimestamp";
+            series1.YValueMembers = "carPower";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
-            series2.Name = "Blue Car";
-            this.redChart.Series.Add(series1);
-            this.redChart.Series.Add(series2);
-            this.redChart.Size = new System.Drawing.Size(619, 389);
-            this.redChart.TabIndex = 0;
-            this.redChart.Text = "redChart";
+            series2.Name = "Pad 1";
+            series2.XValueMember = "padTimestamp";
+            series2.YValueMembers = "padPower";
+            this.session1Chart.Series.Add(series1);
+            this.session1Chart.Series.Add(series2);
+            this.session1Chart.Size = new System.Drawing.Size(575, 159);
+            this.session1Chart.TabIndex = 1;
+            this.session1Chart.Text = "session1Chart";
+            // 
+            // session2Chart
+            // 
+            chartArea2.AxisX.Title = "time";
+            chartArea2.AxisY.Title = "Watts";
+            chartArea2.Name = "ChartArea1";
+            this.session2Chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.session2Chart.Legends.Add(legend2);
+            this.session2Chart.Location = new System.Drawing.Point(3, 223);
+            this.session2Chart.Name = "session2Chart";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Car";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Pad 2";
+            this.session2Chart.Series.Add(series3);
+            this.session2Chart.Series.Add(series4);
+            this.session2Chart.Size = new System.Drawing.Size(575, 159);
+            this.session2Chart.TabIndex = 2;
+            this.session2Chart.Text = "session2Chart";
+            // 
+            // session3Chart
+            // 
+            chartArea3.AxisX.Title = "time";
+            chartArea3.AxisY.Title = "Watts";
+            chartArea3.Name = "ChartArea1";
+            this.session3Chart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.session3Chart.Legends.Add(legend3);
+            this.session3Chart.Location = new System.Drawing.Point(3, 388);
+            this.session3Chart.Name = "session3Chart";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "Car";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "Legend1";
+            series6.Name = "Pad 3";
+            this.session3Chart.Series.Add(series5);
+            this.session3Chart.Series.Add(series6);
+            this.session3Chart.Size = new System.Drawing.Size(575, 159);
+            this.session3Chart.TabIndex = 3;
+            this.session3Chart.Text = "session3Chart";
             // 
             // inductiveDataSet1
             // 
@@ -362,7 +480,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 425);
+            this.ClientSize = new System.Drawing.Size(1020, 583);
             this.Controls.Add(this.mainFlowLayoutPanel);
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -379,8 +497,16 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.redChart)).EndInit();
+            this.sessionsTableLayoutPanel.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.session1Chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.session2Chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.session3Chart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inductiveDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargeSession1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargeSession2BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargeSession3BindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -416,9 +542,17 @@
         public INDUCTIVEDataSetTableAdapters.pad3AmpsTableAdapter pad3AmpsTableAdapter1;
         public INDUCTIVEDataSetTableAdapters.pad3VoltsTableAdapter pad3VoltsTableAdapter1;
         public INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
-        public System.Windows.Forms.DataVisualization.Charting.Chart redChart;
         private INDUCTIVEDataSetTableAdapters.carAmpsTableAdapter carAmpsTableAdapter1;
         private INDUCTIVEDataSetTableAdapters.carVoltsTableAdapter carVoltsTableAdapter1;
+        private System.Windows.Forms.TableLayoutPanel sessionsTableLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart session1Chart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart session2Chart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart session3Chart;
+        private System.Windows.Forms.BindingSource chargeSession1BindingSource;
+        private System.Windows.Forms.BindingSource chargeSession2BindingSource;
+        private System.Windows.Forms.BindingSource chargeSession3BindingSource;
     }
 }
 

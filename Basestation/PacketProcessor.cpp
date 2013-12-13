@@ -272,12 +272,6 @@ namespace PacketProcessor
    */
   void commandClearList( char * pkt )
   {
-    if (pkt[0] != 0) 
-    {
-      Serial.println("[INVALID_INBOUND_COMMAND]");
-      return;
-    }
-    
     ChargeManager::ClearAuthorizedCarList();
   }
   

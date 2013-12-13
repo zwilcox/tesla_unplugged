@@ -15,22 +15,86 @@ namespace InductiveCharging
     {
         public string megaComPort;
         private string[] portsList;
-        private ArrayList chargeSessions;
-        ArrayList cars;
         DataManager dataManager;
-        
+
 
         public MainForm()
         {
             InitializeComponent();
             getComPorts();
             dataManager = new DataManager(inductiveDataSet1, tableAdapterManager1);
+            this.FormClosing += MainForm_FormClosing;
+
+            dataManager.currentSession1.TableNewRow += updateChargeSessionDataTable1;
+            dataManager.currentSession2.TableNewRow += updateChargeSessionDataTable2;
+            dataManager.currentSession3.TableNewRow += updateChargeSessionDataTable3;
+            dataManager.currentSession1.TableCleared += updateChargeSessionDataTable1;
+            dataManager.currentSession2.TableCleared += updateChargeSessionDataTable2;
+            dataManager.currentSession3.TableCleared += updateChargeSessionDataTable3;
+
+            session1Chart.DataSource = dataManager.currentSession1;
+
+            session1Chart.Series["Car"].XValueMember = "carTimestamp";
+            session1Chart.Series["Car"].YValueMembers = "carPower";
+            session1Chart.Series["Pad 1"].XValueMember = "padTimestamp";
+            session1Chart.Series["Pad 1"].YValueMembers = "padPower";
+            //session1Chart.ChartAreas[0].AxisX.
+
+            session2Chart.DataSource = dataManager.currentSession2;
+
+            session2Chart.Series["Car"].XValueMember = "carTimestamp";
+            session2Chart.Series["Car"].YValueMembers = "carPower";
+            session2Chart.Series["Pad 2"].XValueMember = "padTimestamp";
+            session2Chart.Series["Pad 2"].YValueMembers = "padPower";
+
+            session3Chart.DataSource = dataManager.currentSession3;
+
+            session3Chart.Series["Car"].XValueMember = "carTimestamp";
+            session3Chart.Series["Car"].YValueMembers = "carPower";
+            session3Chart.Series["Pad 3"].XValueMember = "padTimestamp";
+            session3Chart.Series["Pad 3"].YValueMembers = "padPower";
+
+            session2Chart.DataBind();
+            session3Chart.DataBind();
+            session1Chart.DataBind();
+
+        }
+
+        private void updateChargeSessionDataTable1(object sender, EventArgs e)
+        {
+            this.Invoke(new EventHandler(updateChart1));
+        }
+
+        private void updateChart1(object sender, EventArgs e)
+        {
+            session1Chart.DataBind();
+        }
+
+        private void updateChargeSessionDataTable2(object sender, EventArgs e)
+        {
+            this.Invoke(new EventHandler(updateChart2));
+        }
+
+        private void updateChart2(object sender, EventArgs e)
+        {
+            session2Chart.DataBind();
+        }
+
+        private void updateChargeSessionDataTable3(object sender, EventArgs e)
+        {
+            this.Invoke(new EventHandler(updateChart3));
+        }
+
+        private void updateChart3(object sender, EventArgs e)
+        {
+            session3Chart.DataBind();
         }
 
         // Exit the system and close the application
         private void exitButton_Click(object sender, EventArgs e)
         {
-            // TODO: turn off all charging pads
+            dataManager.clearBSAuthCarsList();
+            dataManager.turnAllPadsOff();
             this.Close();
         }
 
@@ -98,15 +162,6 @@ namespace InductiveCharging
                 return;
             }
 
-            if (tableAdapterManager1.CarsTableAdapter == null)
-            {
-                if (MessageBox.Show("Could not connect to database. Please check connection and restart program.", "Error", MessageBoxButtons.OK) == System.Windows.Forms.DialogResult.OK)
-                {
-                    return;
-                }
-            }
-
-            
             if (Properties.Settings.Default.selectedPort == "")
             {
                 MessageBox.Show("Please select a serial port for the Base Station.", "Port Selection Error", MessageBoxButtons.OK);
@@ -114,20 +169,27 @@ namespace InductiveCharging
             }
             else
             {
-                // TODO: Prompt to Calibrate Base Station Color Sensors
-
-
-                chargeSessions = new ArrayList();   // initialize charge sessions list
-
-                // TODO: populate cars list from database
-                // temp: generate list manually
-                cars.Add(new Car("1111"));
-                cars.Add(new Car("2222"));
-                cars.Add(new Car("3333"));
-                // Send list of authorized cars to Base Station
-                foreach (Car c in cars)
+                // Prompt to Calibrate Base Station Color Sensors
+                if (Properties.Settings.Default.checkForCal && !Properties.Settings.Default.isCalibrated)
+                {
+                    MessageBox.Show("Please calibrate Base Station before starting system.", "Calibration Needed", MessageBoxButtons.OK);
+                }
+                else
                 {
 
+                    // populate cars list from database
+                    dataManager.populateAuthorizedCarsList();
+
+                    // Send list of cars to Base Station
+                    dataManager.clearBSAuthCarsList();
+                    dataManager.sendAuthCarsToBaseStation();
+                    
+                    // Disable start button and enable stop button
+                    startButton.Enabled = false;
+                    startButton.BackColor = Color.LightGray;
+                    stopButton.Enabled = true;
+                    stopButton.BackColor = Color.Red;
+                    
                 }
             }
         }
@@ -148,16 +210,26 @@ namespace InductiveCharging
         // 
         private void monitorButton_Click(object sender, EventArgs e)
         {
-            MonitoringForm monitorForm = new MonitoringForm();
+            MonitoringForm monitorForm = new MonitoringForm(inductiveDataSet1, tableAdapterManager1);
             monitorForm.Show();
         }
 
         // Turn everything off and stop system
         private void stopButton_Click(object sender, EventArgs e)
         {
-            dataManager.clearAuthCarsList();
+            dataManager.clearBSAuthCarsList();
             dataManager.turnAllPadsOff();
+            startButton.Enabled = true;
+            startButton.BackColor = Color.Lime;
+            stopButton.Enabled = false;
+            stopButton.BackColor = Color.LightGray;
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dataManager.clearBSAuthCarsList();
+            dataManager.turnAllPadsOff();
         }
 
     }

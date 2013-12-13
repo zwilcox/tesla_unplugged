@@ -161,20 +161,39 @@ namespace ChargeManager
     RGBC p2ColorRead = PadManager::readColorSensor(PadManager::Pad2);
     RGBC p3ColorRead = PadManager::readColorSensor(PadManager::Pad3);
 
+    bool shouldCheckP1 = false;
+    bool shouldCheckP2 = false;
+    bool shouldCheckP3 = false;
     
     if (PadManager::isColorAmbient(PadManager::Pad1,p1ColorRead))
     {
       pad1WasAmbient = true;
+      shouldCheckP1 = false;
     }
+    else
+    {
+      shouldCheckP1 = true;
+    }
+    
     if (PadManager::isColorAmbient(PadManager::Pad2,p2ColorRead))
     {
       pad2WasAmbient = true;
+      shouldCheckP2 = false;
     }
+    else
+    {
+      shouldCheckP2 = true;
+    }
+    
     if (PadManager::isColorAmbient(PadManager::Pad3,p3ColorRead))
     {
       pad3WasAmbient = true;
+      shouldCheckP3 = false;
     }
-
+    else
+    {
+      shouldCheckP3 = true;
+    }
     
     ListIterator<AuthorizedCar *> iterator(&AuthorizedCarList);
     
@@ -190,7 +209,7 @@ namespace ChargeManager
         continue;
       }      
       
-      if (!isPad1InSession && pad1WasAmbient)
+      if (!isPad1InSession && pad1WasAmbient && shouldCheckP1)
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad1, p1ColorRead)) 
         { 
@@ -210,7 +229,7 @@ namespace ChargeManager
           continue;
         }
       }
-      if (!isPad2InSession && pad2WasAmbient)
+      if (!isPad2InSession && pad2WasAmbient && shouldCheckP2)
       {  
         if (carToCheck->isColorAuthorized(PadManager::Pad2, p2ColorRead)) 
         {
@@ -229,7 +248,7 @@ namespace ChargeManager
           continue;
         }
       }
-      if (!isPad3InSession && pad3WasAmbient)
+      if (!isPad3InSession && pad3WasAmbient && shouldCheckP3)
       {
         if (carToCheck->isColorAuthorized(PadManager::Pad3, p3ColorRead)) 
         {

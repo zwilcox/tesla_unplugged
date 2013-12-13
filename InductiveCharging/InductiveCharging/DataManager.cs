@@ -23,7 +23,15 @@ namespace InductiveCharging
         public ArrayList authorizedVehicles = new ArrayList();
         Car newCar;
         public bool isRegistering = false;
+        public bool isCalPad1 = false;
+        public bool isCalPad2 = false;
+        public bool isCalPad3 = false;
 
+
+        public INDUCTIVEDataSet.chargeSession1DataTable currentSession1;
+        public INDUCTIVEDataSet.chargeSession2DataTable currentSession2;
+        public INDUCTIVEDataSet.chargeSession3DataTable currentSession3;
+        
         int chargeSessionID = 0;
 
         // These bools are set true if the following request has been made to the base station
@@ -85,6 +93,10 @@ namespace InductiveCharging
             carAmpsTableAdapter = tableAdapterManager.carAmpsTableAdapter;
             carVoltsTableAdapter = tableAdapterManager.carVoltsTableAdapter;
 
+            currentSession1 = new INDUCTIVEDataSet.chargeSession1DataTable();
+            currentSession2 = new INDUCTIVEDataSet.chargeSession2DataTable();
+            currentSession3 = new INDUCTIVEDataSet.chargeSession3DataTable();
+
             baseStationSerialPort.DataReceived += baseStationSerialPort_DataReceived;
         }
 
@@ -95,12 +107,19 @@ namespace InductiveCharging
 
         public bool openComPort()
         {
-            if (!baseStationSerialPort.IsOpen)
+            if (baseStationSerialPort.IsOpen)
             {
-                baseStationSerialPort.Open();
                 return true;
             }
-            else return false;
+            else
+            {
+                try
+                {
+                    baseStationSerialPort.Open();
+                    return true;
+                }
+                catch { return false; }
+            }
         }
 
         public bool sendCommand(string cmd)
@@ -110,7 +129,8 @@ namespace InductiveCharging
             {
                 cmdString = "[" + cmd + " ]";
                 baseStationSerialPort.Write(cmdString);
-                if (testForm != null)
+               
+                if ((testForm != null) && testForm.IsHandleCreated)
                 {
                     testForm.Invoke(new EventHandler(displayText));
                 }
@@ -135,8 +155,7 @@ namespace InductiveCharging
         {
             isRegistering = false;
 
-            if(addCarToDB(newCar))
-                sendAuthorizedCarInfo(newCar);
+            addCarToDB(newCar);
 
             populateAuthorizedCarsList();
         }
@@ -144,12 +163,13 @@ namespace InductiveCharging
         private bool addCarToDB(Car newCar)
         {
             INDUCTIVEDataSet.CarsDataTable table = carsTableAdapter.GetDataByCar(newCar.carID);
-            
-            //System.Data.DataTable t = carsTableAdapter.GetDataByCar(newCar.carID);
+
+            long time = DateTime.Now.Ticks;
 
             if (table.Rows.Count != 0)
             {
-                carsTableAdapter.Update(newCar.carID,
+                carsTableAdapter.UpdateAuthorizationColors(
+                    newCar.carID,
                     newCar.pad1Color.red,
                     newCar.pad1Color.green,
                     newCar.pad1Color.blue,
@@ -175,7 +195,7 @@ namespace InductiveCharging
             {
                 carsTableAdapter.Insert(
                     newCar.carID,
-                    DateTime.Now,
+                    time,
                     newCar.pad1Color.red,
                     newCar.pad1Color.green,
                     newCar.pad1Color.blue,
@@ -201,7 +221,7 @@ namespace InductiveCharging
 
         }
 
-        private void populateAuthorizedCarsList()
+        public void populateAuthorizedCarsList()
         {
             authorizedVehicles.Clear();
 
@@ -259,7 +279,7 @@ namespace InductiveCharging
                     readingPacket = false;
                     buff[bIndx] = '\0';
                     cmdString = new string(buff, 0, bIndx) + "\n";
-                    if (testForm != null)
+                    if (testForm != null && testForm.IsHandleCreated)
                     {
                         testForm.Invoke(new EventHandler(displayText));
                     }
@@ -400,6 +420,8 @@ namespace InductiveCharging
         //  voltage from a car when in charge session.
         private bool processVoltageInfoPacket(string[] args)
         {
+            ChargeSession session;
+            float pow = 0;
             if ((args[1].Length != 2 && args[1].Length != 4) || args[2].Length != 6)
             {
                 return false;
@@ -409,7 +431,7 @@ namespace InductiveCharging
                 return false;
             }
             float voltage;
-            DateTime time = DateTime.Now;
+            long time = DateTime.Now.Ticks;
 
             try
             {
@@ -425,7 +447,8 @@ namespace InductiveCharging
 
             if (isValidPadID(ID))
             {
-                if(padIsInChargeSession(ID))
+                session = getActiveChargeSessionByPad(ID);
+                if(session != null)
                 {
                     //TODO do stuff with parsed info.
                     //got information about pad voltage for a CURRENT CHARGE SESSION.
@@ -438,6 +461,17 @@ namespace InductiveCharging
                                 pad1VoltsTableAdapter.Update(dataSet);
                             }
                             catch { }
+
+                            pow = session.padPower.addVoltageRead(voltage);
+                            if (pow != float.MaxValue)
+                            {
+                                DataRow r = currentSession1.NewRow();
+                                r["padPower"] = pow;
+                                r["padTimestamp"] = time;
+                                //r["carPower"] = null;
+                                //r["carTimeStamp"] = null;
+                                currentSession1.Rows.Add(r);
+                            }
                             break;
                         case "P2":
                             pad2VoltsTableAdapter.Insert(ID, time, voltage);
@@ -446,6 +480,17 @@ namespace InductiveCharging
                                 pad2VoltsTableAdapter.Update(dataSet);
                             }
                             catch { }
+
+                            pow = session.padPower.addVoltageRead(voltage);
+                            if (pow != float.MaxValue)
+                            {
+                                DataRow r = currentSession2.NewRow();
+                                r["padPower"] = pow;
+                                r["padTimestamp"] = time;
+                                //r["carPower"] = DBNull;
+                                //r["carTimeStamp"] = DBNull;
+                                currentSession2.Rows.Add(r);
+                            }
                             break;
                         case "P3":
                             pad3VoltsTableAdapter.Insert(ID, time, voltage);
@@ -454,6 +499,17 @@ namespace InductiveCharging
                                 pad3VoltsTableAdapter.Update(dataSet);
                             }
                             catch { }
+
+                            pow = session.padPower.addVoltageRead(voltage);
+                            if (pow != float.MaxValue)
+                            {
+                                DataRow r = currentSession3.NewRow();
+                                r["padPower"] = pow;
+                                r["padTimestamp"] = time;
+                                //r["carPower"] = DBNull;
+                                //r["carTimeStamp"] = DBNull;
+                                currentSession3.Rows.Add(r);
+                            }
                             break;
                         default:
                             break;
@@ -468,9 +524,51 @@ namespace InductiveCharging
                 }
                 return true;
             }
-            if (isValidVehicleRadioID(ID) && vehicleIsInChargeSession(ID))
+
+            session = getActiveChargeSessionByCar(ID);
+            if (isValidVehicleRadioID(ID) && session != null)
             {
-                carVoltsTableAdapter.Insert(ID, voltage, time);
+                carVoltsTableAdapter.Insert(ID, time, voltage);
+
+                pow = 0;
+                pow = session.carPower.addVoltageRead(voltage);
+                switch (session.padID)
+                {
+                    case "P1":
+                        if (pow != float.MaxValue)
+                        {
+                            DataRow r = currentSession1.NewRow();
+                            //r["padPower"] = DBNull;
+                            //r["padTimestamp"] = DBNull;
+                            r["carPower"] = pow;
+                            r["carTimeStamp"] = time;
+                            currentSession1.Rows.Add(r);
+                        }
+                        break;
+                    case "P2":
+                        if (pow != float.MaxValue)
+                        {
+                            DataRow r = currentSession2.NewRow();
+                            //r["padPower"] = DBNull;
+                            //r["padTimestamp"] = DBNull;
+                            r["carPower"] = pow;
+                            r["carTimeStamp"] = time;
+                            currentSession2.Rows.Add(r);
+                        }
+                        break;
+                    case "P3":
+                        if (pow != float.MaxValue)
+                        {
+                            DataRow r = currentSession3.NewRow();
+                            //r["padPower"] = DBNull;
+                            //r["padTimestamp"] = DBNull;
+                            r["carPower"] = pow;
+                            r["carTimeStamp"] = time;
+                            currentSession3.Rows.Add(r);
+                        }
+                        break;
+                }
+                
                 try
                 {
                     carVoltsTableAdapter.Update(dataSet);
@@ -492,6 +590,7 @@ namespace InductiveCharging
         //  current from a car when in charge session.
         private bool processCurrentInfoPacket(string[] args)
         {
+            ChargeSession session;
             if ((args[1].Length != 2 && args[1].Length != 4) || args[2].Length != 6) //valid length of 2 or 4 for args1 length (vehicle or pad id)
                 return false;
 
@@ -499,7 +598,7 @@ namespace InductiveCharging
                 return false;
 
             float amps;
-            DateTime time = DateTime.Now;
+            long time = DateTime.Now.Ticks;
 
             try
             {
@@ -512,10 +611,13 @@ namespace InductiveCharging
             }
 
             string ID = args[1];
+            float pow = 0;
+
 
             if (isValidPadID(ID))
             {
-                if (padIsInChargeSession(ID))
+                session = getActiveChargeSessionByPad(ID);
+                if (session != null)
                 {
                     //TODO do stuff with parsed info.
                     //got information about pad current. FOR A CURRENT CHARGE SESSION
@@ -523,6 +625,16 @@ namespace InductiveCharging
                     {
                         case "P1":
                             pad1AmpsTableAdapter.Insert(ID, time, amps);
+                            pow = session.padPower.addCurrentRead(amps);
+                            if (pow != float.MaxValue)
+                            {
+                                DataRow r = currentSession1.NewRow();
+                                r["padPower"] = pow;
+                                r["padTimestamp"] = time;
+                                //r["carPower"] = DBNull;
+                                //r["carTimeStamp"] = DBNull;
+                                currentSession1.Rows.Add(r);
+                            }
                             try
                             {
                                 pad1AmpsTableAdapter.Update(dataSet);
@@ -531,6 +643,15 @@ namespace InductiveCharging
                             break;
                         case "P2":
                             pad2AmpsTableAdapter.Insert(ID, time, amps);
+                            if (pow != float.MaxValue)
+                            {
+                                DataRow r = currentSession2.NewRow();
+                                r["padPower"] = pow;
+                                r["padTimestamp"] = time;
+                                //r["carPower"] = DBNull;
+                                //r["carTimeStamp"] = DBNull;
+                                currentSession2.Rows.Add(r);
+                            }
                             try
                             {
                                 pad2AmpsTableAdapter.Update(dataSet);
@@ -539,6 +660,15 @@ namespace InductiveCharging
                             break;
                         case "P3":
                             pad3AmpsTableAdapter.Insert(ID, time, amps);
+                            if (pow != float.MaxValue)
+                            {
+                                DataRow r = currentSession3.NewRow();
+                                r["padPower"] = pow;
+                                r["padTimestamp"] = time;
+                                //r["carPower"] = DBNull;
+                                //r["carTimeStamp"] = DBNull;
+                                currentSession3.Rows.Add(r);
+                            }
                             try
                             {
                                 pad3AmpsTableAdapter.Update(dataSet);
@@ -547,10 +677,10 @@ namespace InductiveCharging
                             break;
 
                         default:
-                            break;
+                            return false;
                     }
-                    
-                    Console.WriteLine("CHARGE SESSION: current read " + amps + " from pad: " + ID);
+
+
                 }
                 else
                 {
@@ -561,9 +691,50 @@ namespace InductiveCharging
                 return true;
             }
 
-            if (isValidVehicleRadioID(ID) && vehicleIsInChargeSession(ID))
+            //else is a vehicle ID
+            session = getActiveChargeSessionByCar(ID);
+            if (isValidVehicleRadioID(ID) && session != null)
             {
-                carAmpsTableAdapter.Insert(ID, amps, time);
+                pow = 0;
+                carAmpsTableAdapter.Insert(ID, time, amps);
+                pow = session.carPower.addCurrentRead(amps);
+                switch (session.padID)
+                {
+                    case "P1":
+                        if (pow != float.MaxValue)
+                        {
+                            DataRow r = currentSession1.NewRow();
+                            //r["padPower"] = DBNull;
+                            //r["padTimestamp"] = DBNull;
+                            r["carPower"] = pow;
+                            r["carTimeStamp"] = time;
+                            currentSession1.Rows.Add(r);
+                        }
+                        break;
+                    case "P2":
+                        if (pow != float.MaxValue)
+                        {
+                            DataRow r = currentSession2.NewRow();
+                            //r["padPower"] = DBNull;
+                            //r["padTimestamp"] = DBNull;
+                            r["carPower"] = pow;
+                            r["carTimeStamp"] = time;
+                            currentSession2.Rows.Add(r);
+                        }
+                        break;
+                    case "P3":
+                        if (pow != float.MaxValue)
+                        {
+                            DataRow r = currentSession3.NewRow();
+                            //r["padPower"] = DBNull;
+                            //r["padTimestamp"] = DBNull;
+                            r["carPower"] = pow;
+                            r["carTimeStamp"] = time;
+                            currentSession3.Rows.Add(r);
+                        }
+                        break;
+                }
+
                 try
                 {
                     carAmpsTableAdapter.Update(dataSet);
@@ -603,7 +774,7 @@ namespace InductiveCharging
                 ChargeSession newSession = new ChargeSession();
                 newSession.radioID = vehicleRadioID;
                 newSession.padID = padID;
-                newSession.chargeBeginTime = DateTime.Now;
+                newSession.chargeBeginTime = DateTime.Now.Ticks;
                 newSession.sessionID = "" + chargeSessionID++;
                 currentSessions.Add(newSession);
 
@@ -621,7 +792,7 @@ namespace InductiveCharging
         //probably need to do stuff in database too.
         private bool processChargeEndPacket(string[] args)
         {
-            DateTime endTime = DateTime.Now;
+            long  endTime = DateTime.Now.Ticks;
             if (args[1].Length != 2 || args[2].Length != 4)
                 return false;
 
@@ -639,9 +810,22 @@ namespace InductiveCharging
                     {
                         Console.WriteLine("CHARGE SESSION: End for vehicle " + vehicleRadioID + " on pad " + padID + ".");
                         currentSessions.Remove(s);
+
+                        switch (s.padID)
+                        {
+                            case "P1":
+                                currentSession1.Clear();
+                                break;
+                            case "P2":
+                                currentSession2.Clear();
+                                break;
+                            case "P3":
+                                currentSession3.Clear();
+                                break;
+                        }
                         try
                         {
-                            chargeSessionsTableAdapter.UpdateEndTime(endTime, s.padID, s.radioID, s.chargeBeginTime);
+                            chargeSessionsTableAdapter.UpdateEndTime(s.radioID, s.padID, s.chargeBeginTime, endTime);
                             //chargeSessionsTableAdapter.UpdateEndTime(s.radioID, s.padID, s.chargeBeginTime, endTime);// dataSet.Tables["ChargeSessions"].Select("carID = '" + vehicleRadioID + "', padID = " + s.padID);
                             return true;
                         }
@@ -681,22 +865,22 @@ namespace InductiveCharging
             return false;
         }
 
-        public bool vehicleIsInChargeSession(string ID)
+        private ChargeSession getActiveChargeSessionByCar(string carID)
         {
             foreach (ChargeSession session in currentSessions)
-                if (session.radioID == ID)
-                    return true;
+                if (session.radioID == carID)
+                    return session;
 
-            return false;
+            return null;
         }
 
-        public bool padIsInChargeSession(string ID)
+        private ChargeSession getActiveChargeSessionByPad(string padID)
         {
             foreach (ChargeSession session in currentSessions)
-                if (session.padID == ID)
-                    return true;
+                if (session.padID == padID)
+                    return session;
 
-            return false;
+            return null;
         }
 
 
@@ -1056,9 +1240,17 @@ namespace InductiveCharging
         }
 
         // Sends the command to clear the authorized cars list to the Base Station
-        public void clearAuthCarsList()
+        public void clearBSAuthCarsList()
         {
             sendCommand("CL");
+        }
+
+        public void sendAuthCarsToBaseStation()
+        {
+            foreach (Car car in authorizedVehicles)
+            {
+                sendAuthorizedCarInfo(car);
+            }
         }
         
         // Turns on all charging pads

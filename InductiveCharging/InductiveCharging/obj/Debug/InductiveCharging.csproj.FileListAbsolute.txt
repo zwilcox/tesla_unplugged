@@ -1,7 +1,6 @@
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\bin\Debug\InductiveCharging.exe.config
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\bin\Debug\InductiveCharging.exe
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\bin\Debug\InductiveCharging.pdb
-\\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.csprojResolveAssemblyReference.cache
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.MainForm.resources
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.Properties.Resources.resources
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.TestForm.resources
@@ -23,3 +22,4 @@ C:\Users\biomed\Documents\GitHub\tesla_unplugged\InductiveCharging\InductiveChar
 C:\Users\biomed\Documents\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.MonitoringForm.resources
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.MonitoringForm.resources
 \\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.CarsListForm.resources
+\\wannsee\Users\u0587273\Desktop\GitHub\tesla_unplugged\InductiveCharging\InductiveCharging\obj\Debug\InductiveCharging.csprojResolveAssemblyReference.cache

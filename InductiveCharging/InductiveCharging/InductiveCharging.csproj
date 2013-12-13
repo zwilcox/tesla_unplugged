@@ -55,6 +55,7 @@
       <DependentUpon>CarsListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ChargeSession.cs" />
+    <Compile Include="PowerAverager.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="INDUCTIVEDataSet.cs">
       <DependentUpon>INDUCTIVEDataSet.xsd</DependentUpon>

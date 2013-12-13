@@ -44,6 +44,12 @@ namespace InductiveCharging {
         
         private carVoltsDataTable tablecarVolts;
         
+        private chargeSession1DataTable tablechargeSession1;
+        
+        private chargeSession2DataTable tablechargeSession2;
+        
+        private chargeSession3DataTable tablechargeSession3;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -101,6 +107,15 @@ namespace InductiveCharging {
                 }
                 if ((ds.Tables["carVolts"] != null)) {
                     base.Tables.Add(new carVoltsDataTable(ds.Tables["carVolts"]));
+                }
+                if ((ds.Tables["chargeSession1"] != null)) {
+                    base.Tables.Add(new chargeSession1DataTable(ds.Tables["chargeSession1"]));
+                }
+                if ((ds.Tables["chargeSession2"] != null)) {
+                    base.Tables.Add(new chargeSession2DataTable(ds.Tables["chargeSession2"]));
+                }
+                if ((ds.Tables["chargeSession3"] != null)) {
+                    base.Tables.Add(new chargeSession3DataTable(ds.Tables["chargeSession3"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -222,6 +237,36 @@ namespace InductiveCharging {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public chargeSession1DataTable chargeSession1 {
+            get {
+                return this.tablechargeSession1;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public chargeSession2DataTable chargeSession2 {
+            get {
+                return this.tablechargeSession2;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public chargeSession3DataTable chargeSession3 {
+            get {
+                return this.tablechargeSession3;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -317,6 +362,15 @@ namespace InductiveCharging {
                 if ((ds.Tables["carVolts"] != null)) {
                     base.Tables.Add(new carVoltsDataTable(ds.Tables["carVolts"]));
                 }
+                if ((ds.Tables["chargeSession1"] != null)) {
+                    base.Tables.Add(new chargeSession1DataTable(ds.Tables["chargeSession1"]));
+                }
+                if ((ds.Tables["chargeSession2"] != null)) {
+                    base.Tables.Add(new chargeSession2DataTable(ds.Tables["chargeSession2"]));
+                }
+                if ((ds.Tables["chargeSession3"] != null)) {
+                    base.Tables.Add(new chargeSession3DataTable(ds.Tables["chargeSession3"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -410,6 +464,24 @@ namespace InductiveCharging {
                     this.tablecarVolts.InitVars();
                 }
             }
+            this.tablechargeSession1 = ((chargeSession1DataTable)(base.Tables["chargeSession1"]));
+            if ((initTable == true)) {
+                if ((this.tablechargeSession1 != null)) {
+                    this.tablechargeSession1.InitVars();
+                }
+            }
+            this.tablechargeSession2 = ((chargeSession2DataTable)(base.Tables["chargeSession2"]));
+            if ((initTable == true)) {
+                if ((this.tablechargeSession2 != null)) {
+                    this.tablechargeSession2.InitVars();
+                }
+            }
+            this.tablechargeSession3 = ((chargeSession3DataTable)(base.Tables["chargeSession3"]));
+            if ((initTable == true)) {
+                if ((this.tablechargeSession3 != null)) {
+                    this.tablechargeSession3.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -440,6 +512,12 @@ namespace InductiveCharging {
             base.Tables.Add(this.tablecarAmps);
             this.tablecarVolts = new carVoltsDataTable();
             base.Tables.Add(this.tablecarVolts);
+            this.tablechargeSession1 = new chargeSession1DataTable();
+            base.Tables.Add(this.tablechargeSession1);
+            this.tablechargeSession2 = new chargeSession2DataTable();
+            base.Tables.Add(this.tablechargeSession2);
+            this.tablechargeSession3 = new chargeSession3DataTable();
+            base.Tables.Add(this.tablechargeSession3);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -499,6 +577,24 @@ namespace InductiveCharging {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializecarVolts() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializechargeSession1() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializechargeSession2() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializechargeSession3() {
             return false;
         }
         
@@ -586,6 +682,15 @@ namespace InductiveCharging {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void carVoltsRowChangeEventHandler(object sender, carVoltsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void chargeSession1RowChangeEventHandler(object sender, chargeSession1RowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void chargeSession2RowChangeEventHandler(object sender, chargeSession2RowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void chargeSession3RowChangeEventHandler(object sender, chargeSession3RowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -794,7 +899,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CarsRow AddCarsRow(string carID, System.DateTime dateAdded, string pad1Red, string pad1Green, string pad1Blue, string pad2Red, string pad2Green, string pad2Blue, string pad3Red, string pad3Green, string pad3Blue, bool authorized) {
+            public CarsRow AddCarsRow(string carID, long dateAdded, string pad1Red, string pad1Green, string pad1Blue, string pad2Red, string pad2Green, string pad2Blue, string pad3Red, string pad3Green, string pad3Blue, bool authorized) {
                 CarsRow rowCarsRow = ((CarsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -854,7 +959,7 @@ namespace InductiveCharging {
                 base.Columns.Add(this.columncarNumber);
                 this.columncarID = new global::System.Data.DataColumn("carID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncarID);
-                this.columndateAdded = new global::System.Data.DataColumn("dateAdded", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columndateAdded = new global::System.Data.DataColumn("dateAdded", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndateAdded);
                 this.columnpad1Red = new global::System.Data.DataColumn("pad1Red", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpad1Red);
@@ -1025,8 +1130,6 @@ namespace InductiveCharging {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ChargeSessionsDataTable : global::System.Data.TypedTableBase<ChargeSessionsRow> {
             
-            private global::System.Data.DataColumn columnsessionID;
-            
             private global::System.Data.DataColumn columncarID;
             
             private global::System.Data.DataColumn columnpadID;
@@ -1066,14 +1169,6 @@ namespace InductiveCharging {
             protected ChargeSessionsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn sessionIDColumn {
-                get {
-                    return this.columnsessionID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1145,10 +1240,9 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ChargeSessionsRow AddChargeSessionsRow(string carID, string padID, System.DateTime startTime, System.DateTime endTime) {
+            public ChargeSessionsRow AddChargeSessionsRow(string carID, string padID, long startTime, long endTime) {
                 ChargeSessionsRow rowChargeSessionsRow = ((ChargeSessionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         carID,
                         padID,
                         startTime,
@@ -1175,7 +1269,6 @@ namespace InductiveCharging {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnsessionID = base.Columns["sessionID"];
                 this.columncarID = base.Columns["carID"];
                 this.columnpadID = base.Columns["padID"];
                 this.columnstartTime = base.Columns["startTime"];
@@ -1185,21 +1278,14 @@ namespace InductiveCharging {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnsessionID = new global::System.Data.DataColumn("sessionID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsessionID);
                 this.columncarID = new global::System.Data.DataColumn("carID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncarID);
                 this.columnpadID = new global::System.Data.DataColumn("padID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpadID);
-                this.columnstartTime = new global::System.Data.DataColumn("startTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnstartTime = new global::System.Data.DataColumn("startTime", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstartTime);
-                this.columnendTime = new global::System.Data.DataColumn("endTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnendTime = new global::System.Data.DataColumn("endTime", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnendTime);
-                this.columnsessionID.AutoIncrement = true;
-                this.columnsessionID.AutoIncrementSeed = -1;
-                this.columnsessionID.AutoIncrementStep = -1;
-                this.columnsessionID.AllowDBNull = false;
-                this.columnsessionID.ReadOnly = true;
                 this.columncarID.MaxLength = 1073741823;
                 this.columnpadID.MaxLength = 1073741823;
             }
@@ -1435,7 +1521,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public pad1AmpsRow Addpad1AmpsRow(string radioID, System.DateTime timeStamp, double amps) {
+            public pad1AmpsRow Addpad1AmpsRow(string radioID, long timeStamp, double amps) {
                 pad1AmpsRow rowpad1AmpsRow = ((pad1AmpsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         radioID,
@@ -1473,7 +1559,7 @@ namespace InductiveCharging {
             private void InitClass() {
                 this.columnradioID = new global::System.Data.DataColumn("radioID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnradioID);
-                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeStamp);
                 this.columnamps = new global::System.Data.DataColumn("amps", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnamps);
@@ -1711,7 +1797,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public pad1VoltsRow Addpad1VoltsRow(string radioID, System.DateTime timeStamp, double volts) {
+            public pad1VoltsRow Addpad1VoltsRow(string radioID, long timeStamp, double volts) {
                 pad1VoltsRow rowpad1VoltsRow = ((pad1VoltsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         radioID,
@@ -1749,7 +1835,7 @@ namespace InductiveCharging {
             private void InitClass() {
                 this.columnradioID = new global::System.Data.DataColumn("radioID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnradioID);
-                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeStamp);
                 this.columnvolts = new global::System.Data.DataColumn("volts", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvolts);
@@ -1987,7 +2073,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public pad2AmpsRow Addpad2AmpsRow(string radioID, System.DateTime timeStamp, double amps) {
+            public pad2AmpsRow Addpad2AmpsRow(string radioID, long timeStamp, double amps) {
                 pad2AmpsRow rowpad2AmpsRow = ((pad2AmpsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         radioID,
@@ -2025,7 +2111,7 @@ namespace InductiveCharging {
             private void InitClass() {
                 this.columnradioID = new global::System.Data.DataColumn("radioID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnradioID);
-                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeStamp);
                 this.columnamps = new global::System.Data.DataColumn("amps", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnamps);
@@ -2263,7 +2349,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public pad2VoltsRow Addpad2VoltsRow(string radioID, System.DateTime timeStamp, double volts) {
+            public pad2VoltsRow Addpad2VoltsRow(string radioID, long timeStamp, double volts) {
                 pad2VoltsRow rowpad2VoltsRow = ((pad2VoltsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         radioID,
@@ -2301,7 +2387,7 @@ namespace InductiveCharging {
             private void InitClass() {
                 this.columnradioID = new global::System.Data.DataColumn("radioID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnradioID);
-                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeStamp);
                 this.columnvolts = new global::System.Data.DataColumn("volts", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvolts);
@@ -2539,7 +2625,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public pad3AmpsRow Addpad3AmpsRow(string radioID, System.DateTime timestamp, double amps) {
+            public pad3AmpsRow Addpad3AmpsRow(string radioID, long timestamp, double amps) {
                 pad3AmpsRow rowpad3AmpsRow = ((pad3AmpsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         radioID,
@@ -2577,7 +2663,7 @@ namespace InductiveCharging {
             private void InitClass() {
                 this.columnradioID = new global::System.Data.DataColumn("radioID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnradioID);
-                this.columntimestamp = new global::System.Data.DataColumn("timestamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimestamp = new global::System.Data.DataColumn("timestamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimestamp);
                 this.columnamps = new global::System.Data.DataColumn("amps", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnamps);
@@ -2815,7 +2901,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public pad3VoltsRow Addpad3VoltsRow(string radioID, System.DateTime timestamp, double volts) {
+            public pad3VoltsRow Addpad3VoltsRow(string radioID, long timestamp, double volts) {
                 pad3VoltsRow rowpad3VoltsRow = ((pad3VoltsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         radioID,
@@ -2853,7 +2939,7 @@ namespace InductiveCharging {
             private void InitClass() {
                 this.columnradioID = new global::System.Data.DataColumn("radioID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnradioID);
-                this.columntimestamp = new global::System.Data.DataColumn("timestamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimestamp = new global::System.Data.DataColumn("timestamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimestamp);
                 this.columnvolts = new global::System.Data.DataColumn("volts", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvolts);
@@ -3091,7 +3177,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public carAmpsRow AddcarAmpsRow(string CarID, double amps, System.DateTime timeStamp) {
+            public carAmpsRow AddcarAmpsRow(string CarID, double amps, long timeStamp) {
                 carAmpsRow rowcarAmpsRow = ((carAmpsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CarID,
@@ -3131,7 +3217,7 @@ namespace InductiveCharging {
                 base.Columns.Add(this.columnCarID);
                 this.columnamps = new global::System.Data.DataColumn("amps", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnamps);
-                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeStamp);
                 this.columnCarID.MaxLength = 10;
             }
@@ -3367,7 +3453,7 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public carVoltsRow AddcarVoltsRow(string CarID, double volts, System.DateTime timeStamp) {
+            public carVoltsRow AddcarVoltsRow(string CarID, double volts, long timeStamp) {
                 carVoltsRow rowcarVoltsRow = ((carVoltsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CarID,
@@ -3407,7 +3493,7 @@ namespace InductiveCharging {
                 base.Columns.Add(this.columnCarID);
                 this.columnvolts = new global::System.Data.DataColumn("volts", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvolts);
-                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntimeStamp = new global::System.Data.DataColumn("timeStamp", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeStamp);
                 this.columnCarID.MaxLength = 10;
             }
@@ -3537,6 +3623,873 @@ namespace InductiveCharging {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class chargeSession1DataTable : global::System.Data.TypedTableBase<chargeSession1Row> {
+            
+            private global::System.Data.DataColumn columncarTimestamp;
+            
+            private global::System.Data.DataColumn columncarPower;
+            
+            private global::System.Data.DataColumn columnpadPower;
+            
+            private global::System.Data.DataColumn columnpadTimestamp;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession1DataTable() {
+                this.TableName = "chargeSession1";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal chargeSession1DataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected chargeSession1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn carTimestampColumn {
+                get {
+                    return this.columncarTimestamp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn carPowerColumn {
+                get {
+                    return this.columncarPower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn padPowerColumn {
+                get {
+                    return this.columnpadPower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn padTimestampColumn {
+                get {
+                    return this.columnpadTimestamp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession1Row this[int index] {
+                get {
+                    return ((chargeSession1Row)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession1RowChangeEventHandler chargeSession1RowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession1RowChangeEventHandler chargeSession1RowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession1RowChangeEventHandler chargeSession1RowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession1RowChangeEventHandler chargeSession1RowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddchargeSession1Row(chargeSession1Row row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession1Row AddchargeSession1Row(long carTimestamp, double carPower, double padPower, long padTimestamp) {
+                chargeSession1Row rowchargeSession1Row = ((chargeSession1Row)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        carTimestamp,
+                        carPower,
+                        padPower,
+                        padTimestamp};
+                rowchargeSession1Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowchargeSession1Row);
+                return rowchargeSession1Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                chargeSession1DataTable cln = ((chargeSession1DataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new chargeSession1DataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columncarTimestamp = base.Columns["carTimestamp"];
+                this.columncarPower = base.Columns["carPower"];
+                this.columnpadPower = base.Columns["padPower"];
+                this.columnpadTimestamp = base.Columns["padTimestamp"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columncarTimestamp = new global::System.Data.DataColumn("carTimestamp", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncarTimestamp);
+                this.columncarPower = new global::System.Data.DataColumn("carPower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncarPower);
+                this.columnpadPower = new global::System.Data.DataColumn("padPower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpadPower);
+                this.columnpadTimestamp = new global::System.Data.DataColumn("padTimestamp", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpadTimestamp);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession1Row NewchargeSession1Row() {
+                return ((chargeSession1Row)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new chargeSession1Row(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(chargeSession1Row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.chargeSession1RowChanged != null)) {
+                    this.chargeSession1RowChanged(this, new chargeSession1RowChangeEvent(((chargeSession1Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.chargeSession1RowChanging != null)) {
+                    this.chargeSession1RowChanging(this, new chargeSession1RowChangeEvent(((chargeSession1Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.chargeSession1RowDeleted != null)) {
+                    this.chargeSession1RowDeleted(this, new chargeSession1RowChangeEvent(((chargeSession1Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.chargeSession1RowDeleting != null)) {
+                    this.chargeSession1RowDeleting(this, new chargeSession1RowChangeEvent(((chargeSession1Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovechargeSession1Row(chargeSession1Row row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                INDUCTIVEDataSet ds = new INDUCTIVEDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "chargeSession1DataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class chargeSession2DataTable : global::System.Data.TypedTableBase<chargeSession2Row> {
+            
+            private global::System.Data.DataColumn columncarTimestamp;
+            
+            private global::System.Data.DataColumn columncarPower;
+            
+            private global::System.Data.DataColumn columnpadPower;
+            
+            private global::System.Data.DataColumn columnpadTimestamp;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession2DataTable() {
+                this.TableName = "chargeSession2";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal chargeSession2DataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected chargeSession2DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn carTimestampColumn {
+                get {
+                    return this.columncarTimestamp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn carPowerColumn {
+                get {
+                    return this.columncarPower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn padPowerColumn {
+                get {
+                    return this.columnpadPower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn padTimestampColumn {
+                get {
+                    return this.columnpadTimestamp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession2Row this[int index] {
+                get {
+                    return ((chargeSession2Row)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession2RowChangeEventHandler chargeSession2RowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession2RowChangeEventHandler chargeSession2RowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession2RowChangeEventHandler chargeSession2RowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession2RowChangeEventHandler chargeSession2RowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddchargeSession2Row(chargeSession2Row row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession2Row AddchargeSession2Row(long carTimestamp, double carPower, double padPower, long padTimestamp) {
+                chargeSession2Row rowchargeSession2Row = ((chargeSession2Row)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        carTimestamp,
+                        carPower,
+                        padPower,
+                        padTimestamp};
+                rowchargeSession2Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowchargeSession2Row);
+                return rowchargeSession2Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                chargeSession2DataTable cln = ((chargeSession2DataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new chargeSession2DataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columncarTimestamp = base.Columns["carTimestamp"];
+                this.columncarPower = base.Columns["carPower"];
+                this.columnpadPower = base.Columns["padPower"];
+                this.columnpadTimestamp = base.Columns["padTimestamp"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columncarTimestamp = new global::System.Data.DataColumn("carTimestamp", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncarTimestamp);
+                this.columncarPower = new global::System.Data.DataColumn("carPower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncarPower);
+                this.columnpadPower = new global::System.Data.DataColumn("padPower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpadPower);
+                this.columnpadTimestamp = new global::System.Data.DataColumn("padTimestamp", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpadTimestamp);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession2Row NewchargeSession2Row() {
+                return ((chargeSession2Row)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new chargeSession2Row(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(chargeSession2Row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.chargeSession2RowChanged != null)) {
+                    this.chargeSession2RowChanged(this, new chargeSession2RowChangeEvent(((chargeSession2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.chargeSession2RowChanging != null)) {
+                    this.chargeSession2RowChanging(this, new chargeSession2RowChangeEvent(((chargeSession2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.chargeSession2RowDeleted != null)) {
+                    this.chargeSession2RowDeleted(this, new chargeSession2RowChangeEvent(((chargeSession2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.chargeSession2RowDeleting != null)) {
+                    this.chargeSession2RowDeleting(this, new chargeSession2RowChangeEvent(((chargeSession2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovechargeSession2Row(chargeSession2Row row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                INDUCTIVEDataSet ds = new INDUCTIVEDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "chargeSession2DataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class chargeSession3DataTable : global::System.Data.TypedTableBase<chargeSession3Row> {
+            
+            private global::System.Data.DataColumn columncarTimestamp;
+            
+            private global::System.Data.DataColumn columncarPower;
+            
+            private global::System.Data.DataColumn columnpadPower;
+            
+            private global::System.Data.DataColumn columnpadTimestamp;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession3DataTable() {
+                this.TableName = "chargeSession3";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal chargeSession3DataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected chargeSession3DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn carTimestampColumn {
+                get {
+                    return this.columncarTimestamp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn carPowerColumn {
+                get {
+                    return this.columncarPower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn padPowerColumn {
+                get {
+                    return this.columnpadPower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn padTimestampColumn {
+                get {
+                    return this.columnpadTimestamp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession3Row this[int index] {
+                get {
+                    return ((chargeSession3Row)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession3RowChangeEventHandler chargeSession3RowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession3RowChangeEventHandler chargeSession3RowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession3RowChangeEventHandler chargeSession3RowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event chargeSession3RowChangeEventHandler chargeSession3RowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddchargeSession3Row(chargeSession3Row row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession3Row AddchargeSession3Row(ulong carTimestamp, double carPower, double padPower, long padTimestamp) {
+                chargeSession3Row rowchargeSession3Row = ((chargeSession3Row)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        carTimestamp,
+                        carPower,
+                        padPower,
+                        padTimestamp};
+                rowchargeSession3Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowchargeSession3Row);
+                return rowchargeSession3Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                chargeSession3DataTable cln = ((chargeSession3DataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new chargeSession3DataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columncarTimestamp = base.Columns["carTimestamp"];
+                this.columncarPower = base.Columns["carPower"];
+                this.columnpadPower = base.Columns["padPower"];
+                this.columnpadTimestamp = base.Columns["padTimestamp"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columncarTimestamp = new global::System.Data.DataColumn("carTimestamp", typeof(ulong), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncarTimestamp);
+                this.columncarPower = new global::System.Data.DataColumn("carPower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncarPower);
+                this.columnpadPower = new global::System.Data.DataColumn("padPower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpadPower);
+                this.columnpadTimestamp = new global::System.Data.DataColumn("padTimestamp", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpadTimestamp);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession3Row NewchargeSession3Row() {
+                return ((chargeSession3Row)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new chargeSession3Row(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(chargeSession3Row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.chargeSession3RowChanged != null)) {
+                    this.chargeSession3RowChanged(this, new chargeSession3RowChangeEvent(((chargeSession3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.chargeSession3RowChanging != null)) {
+                    this.chargeSession3RowChanging(this, new chargeSession3RowChangeEvent(((chargeSession3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.chargeSession3RowDeleted != null)) {
+                    this.chargeSession3RowDeleted(this, new chargeSession3RowChangeEvent(((chargeSession3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.chargeSession3RowDeleting != null)) {
+                    this.chargeSession3RowDeleting(this, new chargeSession3RowChangeEvent(((chargeSession3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovechargeSession3Row(chargeSession3Row row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                INDUCTIVEDataSet ds = new INDUCTIVEDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "chargeSession3DataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class CarsRow : global::System.Data.DataRow {
@@ -3579,10 +4532,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime dateAdded {
+            public long dateAdded {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableCars.dateAddedColumn]));
+                        return ((long)(this[this.tableCars.dateAddedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'dateAdded\' in table \'Cars\' is DBNull.", e);
@@ -3897,17 +4850,6 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int sessionID {
-                get {
-                    return ((int)(this[this.tableChargeSessions.sessionIDColumn]));
-                }
-                set {
-                    this[this.tableChargeSessions.sessionIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string carID {
                 get {
                     try {
@@ -3940,10 +4882,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime startTime {
+            public long startTime {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableChargeSessions.startTimeColumn]));
+                        return ((long)(this[this.tableChargeSessions.startTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'startTime\' in table \'ChargeSessions\' is DBNull.", e);
@@ -3956,10 +4898,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime endTime {
+            public long endTime {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableChargeSessions.endTimeColumn]));
+                        return ((long)(this[this.tableChargeSessions.endTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'endTime\' in table \'ChargeSessions\' is DBNull.", e);
@@ -4051,10 +4993,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timeStamp {
+            public long timeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablepad1Amps.timeStampColumn]));
+                        return ((long)(this[this.tablepad1Amps.timeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timeStamp\' in table \'pad1Amps\' is DBNull.", e);
@@ -4150,10 +5092,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timeStamp {
+            public long timeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablepad1Volts.timeStampColumn]));
+                        return ((long)(this[this.tablepad1Volts.timeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timeStamp\' in table \'pad1Volts\' is DBNull.", e);
@@ -4249,10 +5191,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timeStamp {
+            public long timeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablepad2Amps.timeStampColumn]));
+                        return ((long)(this[this.tablepad2Amps.timeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timeStamp\' in table \'pad2Amps\' is DBNull.", e);
@@ -4348,10 +5290,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timeStamp {
+            public long timeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablepad2Volts.timeStampColumn]));
+                        return ((long)(this[this.tablepad2Volts.timeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timeStamp\' in table \'pad2Volts\' is DBNull.", e);
@@ -4447,10 +5389,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timestamp {
+            public long timestamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablepad3Amps.timestampColumn]));
+                        return ((long)(this[this.tablepad3Amps.timestampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timestamp\' in table \'pad3Amps\' is DBNull.", e);
@@ -4546,10 +5488,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timestamp {
+            public long timestamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablepad3Volts.timestampColumn]));
+                        return ((long)(this[this.tablepad3Volts.timestampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timestamp\' in table \'pad3Volts\' is DBNull.", e);
@@ -4661,10 +5603,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timeStamp {
+            public long timeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablecarAmps.timeStampColumn]));
+                        return ((long)(this[this.tablecarAmps.timeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timeStamp\' in table \'carAmps\' is DBNull.", e);
@@ -4760,10 +5702,10 @@ namespace InductiveCharging {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime timeStamp {
+            public long timeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablecarVolts.timeStampColumn]));
+                        return ((long)(this[this.tablecarVolts.timeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'timeStamp\' in table \'carVolts\' is DBNull.", e);
@@ -4808,6 +5750,387 @@ namespace InductiveCharging {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SettimeStampNull() {
                 this[this.tablecarVolts.timeStampColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class chargeSession1Row : global::System.Data.DataRow {
+            
+            private chargeSession1DataTable tablechargeSession1;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal chargeSession1Row(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablechargeSession1 = ((chargeSession1DataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long carTimestamp {
+                get {
+                    try {
+                        return ((long)(this[this.tablechargeSession1.carTimestampColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'carTimestamp\' in table \'chargeSession1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession1.carTimestampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double carPower {
+                get {
+                    try {
+                        return ((double)(this[this.tablechargeSession1.carPowerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'carPower\' in table \'chargeSession1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession1.carPowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double padPower {
+                get {
+                    try {
+                        return ((double)(this[this.tablechargeSession1.padPowerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'padPower\' in table \'chargeSession1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession1.padPowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long padTimestamp {
+                get {
+                    try {
+                        return ((long)(this[this.tablechargeSession1.padTimestampColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'padTimestamp\' in table \'chargeSession1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession1.padTimestampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscarTimestampNull() {
+                return this.IsNull(this.tablechargeSession1.carTimestampColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcarTimestampNull() {
+                this[this.tablechargeSession1.carTimestampColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscarPowerNull() {
+                return this.IsNull(this.tablechargeSession1.carPowerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcarPowerNull() {
+                this[this.tablechargeSession1.carPowerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspadPowerNull() {
+                return this.IsNull(this.tablechargeSession1.padPowerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpadPowerNull() {
+                this[this.tablechargeSession1.padPowerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspadTimestampNull() {
+                return this.IsNull(this.tablechargeSession1.padTimestampColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpadTimestampNull() {
+                this[this.tablechargeSession1.padTimestampColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class chargeSession2Row : global::System.Data.DataRow {
+            
+            private chargeSession2DataTable tablechargeSession2;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal chargeSession2Row(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablechargeSession2 = ((chargeSession2DataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long carTimestamp {
+                get {
+                    try {
+                        return ((long)(this[this.tablechargeSession2.carTimestampColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'carTimestamp\' in table \'chargeSession2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession2.carTimestampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double carPower {
+                get {
+                    try {
+                        return ((double)(this[this.tablechargeSession2.carPowerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'carPower\' in table \'chargeSession2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession2.carPowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double padPower {
+                get {
+                    try {
+                        return ((double)(this[this.tablechargeSession2.padPowerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'padPower\' in table \'chargeSession2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession2.padPowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long padTimestamp {
+                get {
+                    try {
+                        return ((long)(this[this.tablechargeSession2.padTimestampColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'padTimestamp\' in table \'chargeSession2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession2.padTimestampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscarTimestampNull() {
+                return this.IsNull(this.tablechargeSession2.carTimestampColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcarTimestampNull() {
+                this[this.tablechargeSession2.carTimestampColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscarPowerNull() {
+                return this.IsNull(this.tablechargeSession2.carPowerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcarPowerNull() {
+                this[this.tablechargeSession2.carPowerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspadPowerNull() {
+                return this.IsNull(this.tablechargeSession2.padPowerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpadPowerNull() {
+                this[this.tablechargeSession2.padPowerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspadTimestampNull() {
+                return this.IsNull(this.tablechargeSession2.padTimestampColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpadTimestampNull() {
+                this[this.tablechargeSession2.padTimestampColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class chargeSession3Row : global::System.Data.DataRow {
+            
+            private chargeSession3DataTable tablechargeSession3;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal chargeSession3Row(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablechargeSession3 = ((chargeSession3DataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ulong carTimestamp {
+                get {
+                    try {
+                        return ((ulong)(this[this.tablechargeSession3.carTimestampColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'carTimestamp\' in table \'chargeSession3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession3.carTimestampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double carPower {
+                get {
+                    try {
+                        return ((double)(this[this.tablechargeSession3.carPowerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'carPower\' in table \'chargeSession3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession3.carPowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double padPower {
+                get {
+                    try {
+                        return ((double)(this[this.tablechargeSession3.padPowerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'padPower\' in table \'chargeSession3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession3.padPowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long padTimestamp {
+                get {
+                    try {
+                        return ((long)(this[this.tablechargeSession3.padTimestampColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'padTimestamp\' in table \'chargeSession3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablechargeSession3.padTimestampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscarTimestampNull() {
+                return this.IsNull(this.tablechargeSession3.carTimestampColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcarTimestampNull() {
+                this[this.tablechargeSession3.carTimestampColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscarPowerNull() {
+                return this.IsNull(this.tablechargeSession3.carPowerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcarPowerNull() {
+                this[this.tablechargeSession3.carPowerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspadPowerNull() {
+                return this.IsNull(this.tablechargeSession3.padPowerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpadPowerNull() {
+                this[this.tablechargeSession3.padPowerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspadTimestampNull() {
+                return this.IsNull(this.tablechargeSession3.padTimestampColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpadTimestampNull() {
+                this[this.tablechargeSession3.padTimestampColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5150,6 +6473,108 @@ namespace InductiveCharging {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class chargeSession1RowChangeEvent : global::System.EventArgs {
+            
+            private chargeSession1Row eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession1RowChangeEvent(chargeSession1Row row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession1Row Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class chargeSession2RowChangeEvent : global::System.EventArgs {
+            
+            private chargeSession2Row eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession2RowChangeEvent(chargeSession2Row row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession2Row Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class chargeSession3RowChangeEvent : global::System.EventArgs {
+            
+            private chargeSession3Row eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession3RowChangeEvent(chargeSession3Row row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public chargeSession3Row Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace InductiveCharging.INDUCTIVEDataSetTableAdapters {
@@ -5290,17 +6715,12 @@ namespace InductiveCharging.INDUCTIVEDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("pad3Blue", "pad3Blue");
             tableMapping.ColumnMappings.Add("authorized", "authorized");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM Cars\r\nWHERE        (carID LIKE @carID)";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@carID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Cars] ([carID], [dateAdded], [pad1Red], [pad1Green], [pad1Blue], [pad2Red], [pad2Green], [pad2Blue], [pad3Red], [pad3Green], [pad3Blue], [authorized]) VALUES (@carID, @dateAdded, @pad1Red, @pad1Green, @pad1Blue, @pad2Red, @pad2Green, @pad2Blue, @pad3Red, @pad3Green, @pad3Blue, @authorized)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@carID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dateAdded", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dateAdded", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dateAdded", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dateAdded", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pad1Red", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pad1Green", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pad1Blue", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5311,24 +6731,6 @@ namespace InductiveCharging.INDUCTIVEDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pad3Green", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pad3Blue", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@authorized", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "authorized", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE       Cars
-SET                pad1Red = @P1R, pad1Green = @P1G, pad1Blue = @P1B, pad2Red = @P2R, pad2Green = @P2G, pad2Blue = @P2B, pad3Red = @P3R, pad3Green = @P3G, 
-                         pad3Blue = @P3B, authorized = @AUTH
-WHERE        (carID LIKE @CARID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P1R", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P1G", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P1B", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P2R", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad2Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P2G", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad2Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P2B", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad2Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P3R", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P3G", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P3B", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTH", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "authorized", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5341,7 +6743,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT carNumber, carID, dateAdded, pad1Red, pad1Green, pad1Blue, pad2Red, pad2Gr" +
@@ -5366,6 +6768,24 @@ WHERE        (carID LIKE @CARID)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTH", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "authorized", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"UPDATE       Cars
+SET                pad1Red = @P1R, pad1Green = @P1G, pad1Blue = @P1B, pad2Red = @P2R, pad2Green = @P2G, pad2Blue = @P2B, pad3Red = @P3R, pad3Green = @P3G, 
+                         pad3Blue = @P3B, authorized = @AUTH
+WHERE        (carID LIKE @CARID)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P1R", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P1G", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P1B", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad1Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P2R", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad2Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P2G", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad2Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P2B", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad2Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P3R", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Red", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P3G", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Green", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P3B", global::System.Data.SqlDbType.NChar, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pad3Blue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTH", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "authorized", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5471,35 +6891,8 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string carID) {
-            if ((carID == null)) {
-                this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(carID));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string carID, global::System.Nullable<global::System.DateTime> dateAdded, string pad1Red, string pad1Green, string pad1Blue, string pad2Red, string pad2Green, string pad2Blue, string pad3Red, string pad3Green, string pad3Blue, bool authorized) {
+        public virtual int Insert(string carID, global::System.Nullable<long> dateAdded, string pad1Red, string pad1Green, string pad1Blue, string pad2Red, string pad2Green, string pad2Blue, string pad3Red, string pad3Green, string pad3Blue, bool authorized) {
             if ((carID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -5507,7 +6900,7 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(carID));
             }
             if ((dateAdded.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(dateAdded.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(dateAdded.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -5586,88 +6979,6 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string CARID, string P1R, string P1G, string P1B, string P2R, string P2G, string P2B, string P3R, string P3G, string P3B, bool AUTH) {
-            if ((CARID == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(CARID));
-            }
-            if ((P1R == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(P1R));
-            }
-            if ((P1G == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(P1G));
-            }
-            if ((P1B == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(P1B));
-            }
-            if ((P2R == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(P2R));
-            }
-            if ((P2G == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(P2G));
-            }
-            if ((P2B == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(P2B));
-            }
-            if ((P3R == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(P3R));
-            }
-            if ((P3G == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(P3G));
-            }
-            if ((P3B == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(P3B));
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(AUTH));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateAuth(bool AUTH, string CARID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
@@ -5678,6 +6989,90 @@ WHERE        (carID LIKE @CARID)";
             else {
                 command.Parameters[1].Value = ((string)(CARID));
             }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateAuthorizationColors(string CARID, string P1R, string P1G, string P1B, string P2R, string P2G, string P2B, string P3R, string P3G, string P3B, bool AUTH) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            if ((CARID == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((P1R == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(P1R));
+            }
+            if ((P1G == null)) {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[2].Value = ((string)(P1G));
+            }
+            if ((P1B == null)) {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(P1B));
+            }
+            if ((P2R == null)) {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[4].Value = ((string)(P2R));
+            }
+            if ((P2G == null)) {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[5].Value = ((string)(P2G));
+            }
+            if ((P2B == null)) {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[6].Value = ((string)(P2B));
+            }
+            if ((P3R == null)) {
+                command.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[7].Value = ((string)(P3R));
+            }
+            if ((P3G == null)) {
+                command.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[8].Value = ((string)(P3G));
+            }
+            if ((P3B == null)) {
+                command.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[9].Value = ((string)(P3B));
+            }
+            command.Parameters[10].Value = ((bool)(AUTH));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5817,7 +7212,6 @@ WHERE        (carID LIKE @CARID)";
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ChargeSessions";
-            tableMapping.ColumnMappings.Add("sessionID", "sessionID");
             tableMapping.ColumnMappings.Add("carID", "carID");
             tableMapping.ColumnMappings.Add("padID", "padID");
             tableMapping.ColumnMappings.Add("startTime", "startTime");
@@ -5830,17 +7224,17 @@ WHERE        (carID LIKE @CARID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@carID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@padID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "padID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startTime", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endTime", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE       ChargeSessions\r\nSET                endTime = @ENDTIME\r\nWHERE        " +
-                "(carID LIKE @CARID) AND (padID LIKE @PADID) AND (startTime LIKE @STARTTIME)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE       chargeSessions\r\nSET                endTime = @ENDTIME\r\nWHERE        " +
+                "(carID LIKE @CARID) AND (startTime LIKE @STARTTIME) AND (padID LIKE @PADID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "endTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "endTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PADID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "padID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5856,24 +7250,24 @@ WHERE        (carID LIKE @CARID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT sessionID, carID, padID, startTime, endTime FROM dbo.ChargeSessions";
+            this._commandCollection[0].CommandText = "SELECT carID, padID, startTime, endTime FROM dbo.ChargeSessions";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT carID, endTime, padID, sessionID, startTime FROM ChargeSessions WHERE (car" +
-                "ID LIKE @CARID) AND (startTime LIKE endTime) AND (padID LIKE @PADID)";
+            this._commandCollection[1].CommandText = "SELECT carID, endTime, padID, startTime FROM chargeSessions WHERE (carID LIKE @CA" +
+                "RID) AND (startTime LIKE endTime) AND (padID LIKE @PADID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PADID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "padID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "UPDATE       ChargeSessions\r\nSET                endTime = @ENDTIME\r\nWHERE        " +
-                "(padID LIKE @PADID) AND (carID LIKE @CARID) AND (startTime LIKE @STARTTIME)";
+            this._commandCollection[2].CommandText = "UPDATE       chargeSessions\r\nSET                endTime = @ENDTIME\r\nWHERE        " +
+                "(carID LIKE @CARID) AND (startTime LIKE @STARTTIME) AND (padID LIKE @PADID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "endTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PADID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "padID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PADID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "padID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "startTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "endTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5981,7 +7375,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string carID, string padID, global::System.Nullable<global::System.DateTime> startTime, global::System.Nullable<global::System.DateTime> endTime) {
+        public virtual int Insert(string carID, string padID, global::System.Nullable<long> startTime, global::System.Nullable<long> endTime) {
             if ((carID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -5995,13 +7389,13 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(padID));
             }
             if ((startTime.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(startTime.Value));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((long)(startTime.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((endTime.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(endTime.Value));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((long)(endTime.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
@@ -6026,9 +7420,9 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> ENDTIME, string CARID, string PADID, global::System.Nullable<global::System.DateTime> STARTTIME) {
+        public virtual int Update(global::System.Nullable<long> ENDTIME, string CARID, global::System.Nullable<long> STARTTIME, string PADID) {
             if ((ENDTIME.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(ENDTIME.Value));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(ENDTIME.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -6039,17 +7433,17 @@ WHERE        (carID LIKE @CARID)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(CARID));
             }
-            if ((PADID == null)) {
+            if ((STARTTIME.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((long)(STARTTIME.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(PADID));
-            }
-            if ((STARTTIME.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(STARTTIME.Value));
-            }
-            else {
+            if ((PADID == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(PADID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6070,13 +7464,14 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object UpdateEndTime(global::System.Nullable<global::System.DateTime> ENDTIME, string PADID, string CARID, global::System.Nullable<global::System.DateTime> STARTTIME) {
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateEndTime(string CARID, string PADID, global::System.Nullable<long> STARTTIME, global::System.Nullable<long> ENDTIME) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            if ((ENDTIME.HasValue == true)) {
-                command.Parameters[0].Value = ((System.DateTime)(ENDTIME.Value));
+            if ((CARID == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[0].Value = global::System.DBNull.Value;
+                command.Parameters[0].Value = ((string)(CARID));
             }
             if ((PADID == null)) {
                 command.Parameters[1].Value = global::System.DBNull.Value;
@@ -6084,14 +7479,14 @@ WHERE        (carID LIKE @CARID)";
             else {
                 command.Parameters[1].Value = ((string)(PADID));
             }
-            if ((CARID == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
+            if ((STARTTIME.HasValue == true)) {
+                command.Parameters[2].Value = ((long)(STARTTIME.Value));
             }
             else {
-                command.Parameters[2].Value = ((string)(CARID));
+                command.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((STARTTIME.HasValue == true)) {
-                command.Parameters[3].Value = ((System.DateTime)(STARTTIME.Value));
+            if ((ENDTIME.HasValue == true)) {
+                command.Parameters[3].Value = ((long)(ENDTIME.Value));
             }
             else {
                 command.Parameters[3].Value = global::System.DBNull.Value;
@@ -6101,22 +7496,16 @@ WHERE        (carID LIKE @CARID)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            object returnValue;
+            int returnValue;
             try {
-                returnValue = command.ExecuteScalar();
+                returnValue = command.ExecuteNonQuery();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            if (((returnValue == null) 
-                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return null;
-            }
-            else {
-                return ((object)(returnValue));
-            }
+            return returnValue;
         }
     }
     
@@ -6242,17 +7631,17 @@ WHERE        (carID LIKE @CARID)";
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "pad1Amps";
             tableMapping.ColumnMappings.Add("radioID", "radioID");
-            tableMapping.ColumnMappings.Add("timeStamp", "timeStamp");
-            tableMapping.ColumnMappings.Add("amps", "amps");
+            tableMapping.ColumnMappings.Add("amps", "timeStamp");
+            tableMapping.ColumnMappings.Add("timeStamp", "amps");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[pad1Amps] ([radioID], [timeStamp], [amps]) VALUES (@radioID, @" +
-                "timeStamp, @amps)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO pad1Amps\r\n                         (radioID, timeStamp, amps)\r\nVALUES" +
+                "        (@radioID,@timeStamp,@amps)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6265,11 +7654,18 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT radioID, timeStamp, amps FROM dbo.pad1Amps";
+            this._commandCollection[0].CommandText = "SELECT radioID, timeStamp, amps FROM pad1Amps";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        radioID, timeStamp, amps\r\nFROM            pad1Amps\r\nWHERE        (r" +
+                "adioID LIKE @CARID) AND (timeStamp >= @SESSIONSTART)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6291,6 +7687,54 @@ WHERE        (carID LIKE @CARID)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual INDUCTIVEDataSet.pad1AmpsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            INDUCTIVEDataSet.pad1AmpsDataTable dataTable = new INDUCTIVEDataSet.pad1AmpsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.pad1AmpsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.pad1AmpsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             INDUCTIVEDataSet.pad1AmpsDataTable dataTable = new INDUCTIVEDataSet.pad1AmpsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -6329,7 +7773,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string radioID, global::System.Nullable<global::System.DateTime> timeStamp, global::System.Nullable<double> amps) {
+        public virtual int Insert(string radioID, global::System.Nullable<long> timeStamp, global::System.Nullable<double> amps) {
             if ((radioID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -6337,7 +7781,7 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(radioID));
             }
             if ((timeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(timeStamp.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -6496,7 +7940,7 @@ WHERE        (carID LIKE @CARID)";
                 " @timeStamp, @volts)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@volts", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "volts", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6510,11 +7954,18 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT radioID, timeStamp, volts FROM dbo.pad1Volts";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        radioID, timeStamp, volts\r\nFROM            pad1Volts\r\nWHERE        " +
+                "(radioID LIKE @CARID) AND (timeStamp >= @SESSIONSTART)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6536,6 +7987,54 @@ WHERE        (carID LIKE @CARID)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual INDUCTIVEDataSet.pad1VoltsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            INDUCTIVEDataSet.pad1VoltsDataTable dataTable = new INDUCTIVEDataSet.pad1VoltsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.pad1VoltsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.pad1VoltsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             INDUCTIVEDataSet.pad1VoltsDataTable dataTable = new INDUCTIVEDataSet.pad1VoltsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -6574,7 +8073,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string radioID, global::System.Nullable<global::System.DateTime> timeStamp, global::System.Nullable<double> volts) {
+        public virtual int Insert(string radioID, global::System.Nullable<long> timeStamp, global::System.Nullable<double> volts) {
             if ((radioID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -6582,7 +8081,7 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(radioID));
             }
             if ((timeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(timeStamp.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -6732,17 +8231,16 @@ WHERE        (carID LIKE @CARID)";
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "pad2Amps";
             tableMapping.ColumnMappings.Add("radioID", "radioID");
-            tableMapping.ColumnMappings.Add("timeStamp", "timeStamp");
             tableMapping.ColumnMappings.Add("amps", "amps");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[pad2Amps] ([radioID], [timeStamp], [amps]) VALUES (@radioID, @" +
-                "timeStamp, @amps)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO pad2Amps\r\n                         (radioID, amps, timeStamp)\r\nVALUES" +
+                "        (@radioID,@timeStamp,@amps)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6755,11 +8253,18 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT radioID, timeStamp, amps FROM dbo.pad2Amps";
+            this._commandCollection[0].CommandText = "SELECT radioID, amps FROM pad2Amps";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT radioID, amps FROM pad2Amps WHERE (radioID LIKE @CARID) AND (timeStamp >= " +
+                "@SESSIONSTART)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6781,6 +8286,54 @@ WHERE        (carID LIKE @CARID)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual INDUCTIVEDataSet.pad2AmpsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            INDUCTIVEDataSet.pad2AmpsDataTable dataTable = new INDUCTIVEDataSet.pad2AmpsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionByCar(INDUCTIVEDataSet.pad2AmpsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.pad2AmpsDataTable GetCurrentChargeSessionByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             INDUCTIVEDataSet.pad2AmpsDataTable dataTable = new INDUCTIVEDataSet.pad2AmpsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -6819,21 +8372,21 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string radioID, global::System.Nullable<global::System.DateTime> timeStamp, global::System.Nullable<double> amps) {
+        public virtual int Insert(string radioID, global::System.Nullable<long> amps, global::System.Nullable<double> timeStamp) {
             if ((radioID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(radioID));
             }
-            if ((timeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(timeStamp.Value));
+            if ((amps.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(amps.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((amps.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(amps.Value));
+            if ((timeStamp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(timeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -6977,17 +8530,16 @@ WHERE        (carID LIKE @CARID)";
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "pad2Volts";
             tableMapping.ColumnMappings.Add("radioID", "radioID");
-            tableMapping.ColumnMappings.Add("timeStamp", "timeStamp");
             tableMapping.ColumnMappings.Add("volts", "volts");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[pad2Volts] ([radioID], [timeStamp], [volts]) VALUES (@radioID," +
-                " @timeStamp, @volts)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO pad2Volts\r\n                         (radioID, volts, timeStamp)\r\nVALU" +
+                "ES        (@radioID,@volts,@timeStamp)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@volts", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "volts", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@volts", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "volts", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7003,16 +8555,31 @@ WHERE        (carID LIKE @CARID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT radioID, timeStamp, volts FROM dbo.pad2Volts";
+            this._commandCollection[0].CommandText = "SELECT radioID, volts FROM pad2Volts WHERE (radioID LIKE @CARID) AND (timeStamp >" +
+                "= @SESSIONSTART)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(INDUCTIVEDataSet.pad2VoltsDataTable dataTable) {
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.pad2VoltsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -7024,8 +8591,20 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual INDUCTIVEDataSet.pad2VoltsDataTable GetData() {
+        public virtual INDUCTIVEDataSet.pad2VoltsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             INDUCTIVEDataSet.pad2VoltsDataTable dataTable = new INDUCTIVEDataSet.pad2VoltsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -7064,7 +8643,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string radioID, global::System.Nullable<global::System.DateTime> timeStamp, global::System.Nullable<double> volts) {
+        public virtual int Insert(string radioID, global::System.Nullable<long> timeStamp, global::System.Nullable<double> volts) {
             if ((radioID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7072,7 +8651,7 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(radioID));
             }
             if ((timeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(timeStamp.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -7227,11 +8806,11 @@ WHERE        (carID LIKE @CARID)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[pad3Amps] ([radioID], [timestamp], [amps]) VALUES (@radioID, @" +
-                "timestamp, @amps)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [pad3Amps] ([radioID], [timestamp], [amps]) VALUES (@radioID, @timest" +
+                "amp, @amps)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timestamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timestamp", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -7245,11 +8824,18 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT radioID, timestamp, amps FROM dbo.pad3Amps";
+            this._commandCollection[0].CommandText = "SELECT        radioID, timestamp, amps\r\nFROM            pad3Amps";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        radioID, timestamp, amps\r\nFROM            pad3Amps\r\nWHERE        (r" +
+                "adioID LIKE @CARID) AND (timeStamp >= @SESSIONSTART)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7271,6 +8857,54 @@ WHERE        (carID LIKE @CARID)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual INDUCTIVEDataSet.pad3AmpsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            INDUCTIVEDataSet.pad3AmpsDataTable dataTable = new INDUCTIVEDataSet.pad3AmpsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.pad3AmpsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.pad3AmpsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             INDUCTIVEDataSet.pad3AmpsDataTable dataTable = new INDUCTIVEDataSet.pad3AmpsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -7309,7 +8943,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string radioID, global::System.Nullable<global::System.DateTime> timestamp, global::System.Nullable<double> amps) {
+        public virtual int Insert(string radioID, global::System.Nullable<long> timestamp, global::System.Nullable<double> amps) {
             if ((radioID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7317,7 +8951,7 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(radioID));
             }
             if ((timestamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(timestamp.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timestamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -7476,7 +9110,7 @@ WHERE        (carID LIKE @CARID)";
                 " @timestamp, @volts)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@radioID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timestamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timestamp", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@volts", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "volts", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -7490,11 +9124,18 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT radioID, timestamp, volts FROM dbo.pad3Volts";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        radioID, timestamp, volts\r\nFROM            pad3Volts\r\nWHERE        " +
+                "(radioID LIKE @CARID) AND (timeStamp >= @SESSIONSTART)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "radioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7516,6 +9157,54 @@ WHERE        (carID LIKE @CARID)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual INDUCTIVEDataSet.pad3VoltsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            INDUCTIVEDataSet.pad3VoltsDataTable dataTable = new INDUCTIVEDataSet.pad3VoltsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.pad3VoltsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.pad3VoltsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             INDUCTIVEDataSet.pad3VoltsDataTable dataTable = new INDUCTIVEDataSet.pad3VoltsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -7554,7 +9243,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string radioID, global::System.Nullable<global::System.DateTime> timestamp, global::System.Nullable<double> volts) {
+        public virtual int Insert(string radioID, global::System.Nullable<long> timestamp, global::System.Nullable<double> volts) {
             if ((radioID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7562,7 +9251,7 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(radioID));
             }
             if ((timestamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(timestamp.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timestamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -7717,12 +9406,12 @@ WHERE        (carID LIKE @CARID)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[carAmps] ([CarID], [amps], [timeStamp]) VALUES (@CarID, @amps," +
-                " @timeStamp)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO carAmps\r\n                         (carID, amps, timeStamp)\r\nVALUES   " +
+                "     (@CarID,@amps,@timeStamp)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarID", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amps", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "amps", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7735,20 +9424,26 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CarID, amps, timeStamp FROM dbo.carAmps";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        carID, amps, timeStamp\r\nFROM            carAmps\r\nWHERE        (carI" +
-                "D LIKE @CARID) AND (timeStamp > @STARTTIME) AND (timeStamp < @ENDTIME)\r\nORDER BY" +
-                " timeStamp";
+            this._commandCollection[1].CommandText = "SELECT amps, carID, timeStamp FROM carAmps WHERE (carID LIKE @CARID) AND (timeSta" +
+                "mp > @STARTTIME) AND (timeStamp < @ENDTIME) ORDER BY timeStamp";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        CarID, amps, timeStamp\r\nFROM            carAmps\r\nWHERE        (CarI" +
+                "D LIKE @CARID) AND (timeStamp >= @SESSIONSTART)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7779,7 +9474,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByCarID(INDUCTIVEDataSet.carAmpsDataTable dataTable, string CARID, global::System.Nullable<global::System.DateTime> STARTTIME, global::System.Nullable<global::System.DateTime> ENDTIME) {
+        public virtual int FillByCarID(INDUCTIVEDataSet.carAmpsDataTable dataTable, string CARID, global::System.Nullable<long> STARTTIME, global::System.Nullable<long> ENDTIME) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((CARID == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -7788,13 +9483,13 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
             }
             if ((STARTTIME.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(STARTTIME.Value));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(STARTTIME.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((ENDTIME.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(ENDTIME.Value));
+                this.Adapter.SelectCommand.Parameters[2].Value = ((long)(ENDTIME.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -7810,7 +9505,7 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual INDUCTIVEDataSet.carAmpsDataTable GetDataByCarID(string CARID, global::System.Nullable<global::System.DateTime> STARTTIME, global::System.Nullable<global::System.DateTime> ENDTIME) {
+        public virtual INDUCTIVEDataSet.carAmpsDataTable GetDataByCarID(string CARID, global::System.Nullable<long> STARTTIME, global::System.Nullable<long> ENDTIME) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((CARID == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -7819,16 +9514,64 @@ WHERE        (carID LIKE @CARID)";
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
             }
             if ((STARTTIME.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(STARTTIME.Value));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(STARTTIME.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((ENDTIME.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(ENDTIME.Value));
+                this.Adapter.SelectCommand.Parameters[2].Value = ((long)(ENDTIME.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            INDUCTIVEDataSet.carAmpsDataTable dataTable = new INDUCTIVEDataSet.carAmpsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.carAmpsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.carAmpsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             INDUCTIVEDataSet.carAmpsDataTable dataTable = new INDUCTIVEDataSet.carAmpsDataTable();
             this.Adapter.Fill(dataTable);
@@ -7868,21 +9611,21 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string CarID, global::System.Nullable<double> amps, global::System.Nullable<global::System.DateTime> timeStamp) {
+        public virtual int Insert(string CarID, global::System.Nullable<long> timeStamp, global::System.Nullable<double> amps) {
             if ((CarID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(CarID));
             }
-            if ((amps.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((double)(amps.Value));
+            if ((timeStamp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((timeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(timeStamp.Value));
+            if ((amps.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(amps.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -8034,9 +9777,9 @@ WHERE        (carID LIKE @CARID)";
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[carVolts] ([CarID], [volts], [timeStamp]) VALUES (@CarID, @vol" +
                 "ts, @timeStamp)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarID", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarID", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@volts", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "volts", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@timeStamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8049,20 +9792,26 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CarID, volts, timeStamp FROM dbo.carVolts";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        carID, volts, timeStamp\r\nFROM            carVolts\r\nWHERE        (ca" +
-                "rID LIKE @CARID) AND (timeStamp > @STARTTIME) AND (timeStamp < @ENDTIME)\r\nORDER " +
-                "BY timeStamp";
+            this._commandCollection[1].CommandText = "SELECT carID, timeStamp, volts FROM carVolts WHERE (carID LIKE @CARID) AND (timeS" +
+                "tamp > @STARTTIME) AND (timeStamp < @ENDTIME) ORDER BY timeStamp";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STARTTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENDTIME", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        CarID, volts, timeStamp\r\nFROM            carVolts\r\nWHERE        (Ca" +
+                "rID LIKE @CARID) AND (timeStamp >= @SESSIONSTART)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.NText, 1073741823, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SESSIONSTART", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "timeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8152,6 +9901,54 @@ WHERE        (carID LIKE @CARID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrentChargeSessionDataByCar(INDUCTIVEDataSet.carVoltsDataTable dataTable, string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual INDUCTIVEDataSet.carVoltsDataTable GetCurrentChargeSessionDataByCar(string CARID, global::System.Nullable<long> SESSIONSTART) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((CARID == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(CARID));
+            }
+            if ((SESSIONSTART.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(SESSIONSTART.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            INDUCTIVEDataSet.carVoltsDataTable dataTable = new INDUCTIVEDataSet.carVoltsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(INDUCTIVEDataSet.carVoltsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
@@ -8182,21 +9979,21 @@ WHERE        (carID LIKE @CARID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string CarID, global::System.Nullable<double> volts, global::System.Nullable<global::System.DateTime> timeStamp) {
+        public virtual int Insert(string CarID, global::System.Nullable<long> timeStamp, global::System.Nullable<double> volts) {
             if ((CarID == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("CarID");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(CarID));
             }
-            if ((volts.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((double)(volts.Value));
+            if ((timeStamp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(timeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((timeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(timeStamp.Value));
+            if ((volts.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(volts.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;

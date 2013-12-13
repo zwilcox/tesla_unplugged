@@ -25,6 +25,7 @@ namespace InductiveCharging
             InitializeComponent();
             //serialPort1.PortName = Properties.Settings.Default.selectedPort;
             dataManager = _manager;
+            this.FormClosing += TestForm_FormClosing;
         }
 
         private void displayText(object sender, EventArgs e)
@@ -196,7 +197,11 @@ namespace InductiveCharging
         {
             if (sendCommand("CC P1"))
             {
-                // wait for response
+                dataManager.isCalPad1 = true;
+                if (dataManager.isCalPad2 && dataManager.isCalPad3)
+                {
+                    Properties.Settings.Default.isCalibrated = true;
+                }
             }
             else
             {
@@ -325,7 +330,11 @@ namespace InductiveCharging
         {
             if (sendCommand("CC P2"))
             {
-                // wait for response
+                dataManager.isCalPad2 = true;
+                if (dataManager.isCalPad1 && dataManager.isCalPad3)
+                {
+                    Properties.Settings.Default.isCalibrated = true;
+                }
             }
             else
             {
@@ -456,7 +465,11 @@ namespace InductiveCharging
         {
             if (sendCommand("CC P3"))
             {
-                // wait for response
+                dataManager.isCalPad3 = true;
+                if (dataManager.isCalPad1 && dataManager.isCalPad2)
+                {
+                    Properties.Settings.Default.isCalibrated = true;
+                }
             }
             else
             {

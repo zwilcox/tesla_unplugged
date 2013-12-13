@@ -45,5 +45,29 @@ namespace InductiveCharging.Properties {
                 return ((string)(this["INDUCTIVEConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isCalibrated {
+            get {
+                return ((bool)(this["isCalibrated"]));
+            }
+            set {
+                this["isCalibrated"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkForCal {
+            get {
+                return ((bool)(this["checkForCal"]));
+            }
+            set {
+                this["checkForCal"] = value;
+            }
+        }
     }
 }

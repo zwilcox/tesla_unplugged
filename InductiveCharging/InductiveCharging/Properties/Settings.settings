@@ -13,5 +13,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=DSLWIN17\SQLEXPRESS;Initial Catalog=INDUCTIVE;User ID=sa;Password=sql2012</Value>
     </Setting>
+    <Setting Name="isCalibrated" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="checkForCal" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
