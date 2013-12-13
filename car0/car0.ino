@@ -78,19 +78,62 @@ void loop()
     
 }
 
+/***** floatToStr( float val, char * str) ******
+ * Reads the float val and prints 5 characters into the char * array str.
+ * Important: array size 6 or greater or BAD things happen.
+ ********************************************/
+void floatToStr( float val, char * str)
+{
+  sprintf(str,"%02d",(int) val);
+  sprintf(&str[2],".");
+  
+  uint8_t printIndx = 3;
+  unsigned int precision = 100;
+  unsigned int frac;
+  if(val >= 0)
+    frac = (val - int(val)) * precision;
+  else
+     frac = (int(val)- val ) * precision;
+  int frac1 = frac;
+  while( frac1 /= 10 )
+      precision /= 10;
+  precision /= 10;
+  while(  precision /= 10)
+      sprintf(&str[printIndx++],"0");
+
+  sprintf(&str[printIndx],"%d",frac);
+}
+  
 uint8_t* prepare_message(const String message, float f, int* sizeOf)
 {
   //  Serial.println(f);
-  char c [sizeof(f)];
-  dtostrf(f, 5, 2, c);
+//  char c [6];
+//  c[5] = 0;
+ char c [10];
+ dtostrf(f, 5, 2, c);
+  //floatToStr(f,c);
   // SV #V  or
   // SA #A
+//  Serial.print("C is: ");
+//  Serial.println(c);
   String temp = message + c;
- // Serial.print(temp);
+//   Serial.print("\nTemp is: " );
+//   Serial.println(temp);
+   
   uint8_t results[temp.length()];
-  temp.getBytes(results, temp.length());
+
+//  Serial.println("");
+  //temp.getBytes(results, temp.length());
+  
+ // Serial.print("The result array is" );
+  for(int i = 0; i < temp.length(); i++)
+  {
+      results[i] = temp[i];
+  }
   *sizeOf = temp.length();
+ // Serial.print("\nResults is: ");
 // Serial.println((char*)results);
+// Serial.println("\n\n");
   return results; 
 }
 
