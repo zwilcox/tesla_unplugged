@@ -43,7 +43,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.titleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.systemTestsButton = new System.Windows.Forms.Button();
@@ -65,6 +64,7 @@
             this.session1Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.session2Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.session3Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.inductiveDataSet1 = new InductiveCharging.INDUCTIVEDataSet();
             this.carsTableAdapter1 = new InductiveCharging.INDUCTIVEDataSetTableAdapters.CarsTableAdapter();
@@ -125,17 +125,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.87805F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(993, 556);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(61, 23);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(283, 37);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Inductive Charging";
             // 
             // tableLayoutPanel
             // 
@@ -416,6 +405,17 @@
             this.session3Chart.TabIndex = 3;
             this.session3Chart.Text = "session3Chart";
             // 
+            // titleLabel
+            // 
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(61, 23);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(283, 37);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "Inductive Charging";
+            // 
             // inductiveDataSet1
             // 
             this.inductiveDataSet1.DataSetName = "INDUCTIVEDataSet";
@@ -480,7 +480,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 583);
+            this.ClientSize = new System.Drawing.Size(1020, 580);
             this.Controls.Add(this.mainFlowLayoutPanel);
             this.MaximizeBox = false;
             this.Name = "MainForm";

@@ -512,7 +512,7 @@ namespace InductiveCharging
 
         private void clearCarListButton_Click(object sender, EventArgs e)
         {
-            
+            dataManager.clearBSAuthCarsList();
         }
 
 

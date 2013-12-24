@@ -7,8 +7,8 @@
 //pad1 pins
 #define CHARGEPADENABLE1  48
 #define SENSORLED1        23
-#define SDA1               26
-#define SCL1               27
+#define SDA1              26
+#define SCL1              27
 #define VOLTAGESENSOR1    A8 
 #define CURRENTSENSOR1    A9
 //voltage sense resistance
@@ -23,8 +23,8 @@
 #define VOLTAGESENSOR2    A10
 #define CURRENTSENSOR2    A11
 //voltage sense resistance
-#define R1_PAD2           5850000
-#define R2_PAD2           1373000
+#define R1_PAD2           11
+#define R2_PAD2           2
 
 //pad3 pins
 #define CHARGEPADENABLE3  52
@@ -34,8 +34,8 @@
 #define VOLTAGESENSOR3    A12
 #define CURRENTSENSOR3    A13
 //voltage sense resistance
-#define R1_PAD3           5820000
-#define R2_PAD3           1473000
+#define R1_PAD3           11
+#define R2_PAD3           2	
 
 //file scope variables; 'singleton' class instances.
 static ChargePad * pad1;

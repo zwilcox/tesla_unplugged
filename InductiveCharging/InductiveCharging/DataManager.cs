@@ -72,11 +72,11 @@ namespace InductiveCharging
 
         public DataManager(INDUCTIVEDataSet data, INDUCTIVEDataSetTableAdapters.TableAdapterManager tableAdapterManager )
         {
-            //TODO: initialize authorizedVehicleIDs list
+            
             baseStationSerialPort = new SerialPort(Properties.Settings.Default.selectedPort);
             if (baseStationSerialPort.PortName != "")
             {
-                baseStationSerialPort.Open();
+                    baseStationSerialPort.Open();
             }
             else MessageBox.Show("Serial Port Error.", "Error", MessageBoxButtons.OK);
 
@@ -256,15 +256,7 @@ namespace InductiveCharging
 
         public void baseStationSerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            //rxString = baseStationSerialPort.ReadExisting();
-            //if (testForm != null)
-            //{
-            //    testForm.Invoke(new EventHandler(displayText));
-            //}
-
-            // parse the incoming data and do stuff with it
-            // TODO: all receive code
-
+            
             int readChar;
             while ((readChar = baseStationSerialPort.ReadByte()) != -1)
             {

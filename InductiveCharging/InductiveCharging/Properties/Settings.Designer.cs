@@ -38,8 +38,8 @@ namespace InductiveCharging.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DSLWIN17\\SQLEXPRESS;Initial Catalog=INDUCTIVE;User ID=sa;Password=sql" +
-            "2012")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=122691A\\SQL2012EXP;Initial Catalog=INDUCTIVE;User ID=sa;Password=sql2" +
+            "012")]
         public string INDUCTIVEConnectionString {
             get {
                 return ((string)(this["INDUCTIVEConnectionString"]));
@@ -60,7 +60,7 @@ namespace InductiveCharging.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool checkForCal {
             get {
                 return ((bool)(this["checkForCal"]));
